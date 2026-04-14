@@ -28,21 +28,14 @@ export default function StepSelectDetails({
   const [error, setError] = useState('');
   const selectedClass = boatClasses.find((c) => c.id === formData.boatClassId);
 
-  const getPrice = (durationId: string) => {
-    return pricing.find(
+  const getPrice = (durationId: string) =>
+    pricing.find(
       (p) => p.boat_class_id === formData.boatClassId && p.trip_duration_id === durationId
     );
-  };
 
   const handleNext = () => {
-    if (!formData.tripDurationId) {
-      setError('Please select a trip duration.');
-      return;
-    }
-    if (!formData.bookingDate) {
-      setError('Please select a date.');
-      return;
-    }
+    if (!formData.tripDurationId) { setError('Please select a trip duration.'); return; }
+    if (!formData.bookingDate) { setError('Please select a date.'); return; }
     setError('');
     onNext();
   };
@@ -51,15 +44,16 @@ export default function StepSelectDetails({
 
   return (
     <div>
-      <h2 className="text-2xl text-navy-900 mb-2 text-center">Choose Trip Details</h2>
-      <p className="text-navy-500 font-body text-center mb-8">
-        {selectedClass?.name} -- select your duration, date, and party size
+      <h2 className="text-2xl text-white uppercase text-center mb-2">Choose Trip Details</h2>
+      <p className="text-slate-400 text-center mb-8">
+        {selectedClass?.name} — select your duration, date, and party size
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="space-y-6">
+          {/* Duration */}
           <div>
-            <label className="block text-sm font-body font-semibold text-navy-700 mb-3">
+            <label className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-3">
               Trip Duration
             </label>
             <div className="space-y-3">
@@ -70,27 +64,27 @@ export default function StepSelectDetails({
                   <button
                     key={td.id}
                     onClick={() => onUpdate({ tripDurationId: td.id })}
-                    className={`w-full flex items-center justify-between p-4 rounded-xl border-2 transition-all duration-200 text-left ${
+                    className={`w-full flex items-center justify-between p-4 rounded-xl border-2 transition-all text-left ${
                       isSelected
-                        ? 'border-sea-500 bg-sea-50'
-                        : 'border-navy-200 bg-white hover:border-navy-300'
+                        ? 'border-accent-orange bg-accent-orange/10'
+                        : 'border-white/10 bg-nautical-blue hover:border-white/20'
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <Clock className={`w-5 h-5 ${isSelected ? 'text-sea-600' : 'text-navy-400'}`} />
+                      <Clock className={`w-5 h-5 ${isSelected ? 'text-accent-orange' : 'text-slate-500'}`} />
                       <div>
-                        <p className={`font-body font-semibold ${isSelected ? 'text-sea-700' : 'text-navy-900'}`}>
+                        <p className={`font-bold text-sm ${isSelected ? 'text-accent-orange' : 'text-white'}`}>
                           {td.name}
                         </p>
-                        <p className="text-navy-400 font-body text-xs">{td.time_description}</p>
+                        <p className="text-slate-500 text-xs">{td.time_description}</p>
                       </div>
                     </div>
                     {price && (
                       <div className="text-right">
-                        <p className="font-display text-lg text-navy-900">
+                        <p className="font-display text-lg text-white">
                           {formatCents(price.deposit_amount)}
                         </p>
-                        <p className="text-navy-400 font-body text-xs">deposit</p>
+                        <p className="text-slate-500 text-xs">deposit</p>
                       </div>
                     )}
                   </button>
@@ -99,21 +93,22 @@ export default function StepSelectDetails({
             </div>
           </div>
 
+          {/* Party size */}
           <div>
-            <label className="block text-sm font-body font-semibold text-navy-700 mb-3">
+            <label className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-3">
               <Users className="w-4 h-4 inline mr-1" />
               Party Size
             </label>
-            <div className="flex items-center gap-4 bg-white border border-navy-200 rounded-xl p-4">
+            <div className="flex items-center gap-4 bg-nautical-blue border border-white/10 rounded-xl p-4">
               <button
                 onClick={() => onUpdate({ partySize: Math.max(1, formData.partySize - 1) })}
-                className="w-10 h-10 rounded-lg bg-navy-100 flex items-center justify-center hover:bg-navy-200 transition-colors"
+                className="w-10 h-10 rounded-lg bg-nautical-light flex items-center justify-center hover:bg-nautical-light/80 transition-colors"
               >
-                <Minus className="w-4 h-4 text-navy-600" />
+                <Minus className="w-4 h-4 text-slate-300" />
               </button>
               <div className="flex-1 text-center">
-                <span className="text-2xl font-display text-navy-900">{formData.partySize}</span>
-                <p className="text-navy-400 font-body text-xs">
+                <span className="text-2xl font-display text-white">{formData.partySize}</span>
+                <p className="text-slate-500 text-xs">
                   {formData.partySize === 1 ? 'person' : 'people'}
                 </p>
               </div>
@@ -123,22 +118,23 @@ export default function StepSelectDetails({
                     partySize: Math.min(selectedClass?.max_passengers || 6, formData.partySize + 1),
                   })
                 }
-                className="w-10 h-10 rounded-lg bg-navy-100 flex items-center justify-center hover:bg-navy-200 transition-colors"
+                className="w-10 h-10 rounded-lg bg-nautical-light flex items-center justify-center hover:bg-nautical-light/80 transition-colors"
               >
-                <Plus className="w-4 h-4 text-navy-600" />
+                <Plus className="w-4 h-4 text-slate-300" />
               </button>
             </div>
-            <p className="text-navy-400 font-body text-xs mt-1">
+            <p className="text-slate-500 text-xs mt-1">
               Max {selectedClass?.max_passengers} passengers for this vessel class
             </p>
           </div>
         </div>
 
+        {/* Calendar */}
         <div>
-          <label className="block text-sm font-body font-semibold text-navy-700 mb-3">
+          <label className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-3">
             Select Date
           </label>
-          <div className="bg-white border border-navy-200 rounded-xl p-4 flex justify-center">
+          <div className="bg-nautical-blue border border-white/10 rounded-xl p-4 flex justify-center">
             <DayPicker
               mode="single"
               selected={formData.bookingDate || undefined}
@@ -149,16 +145,14 @@ export default function StepSelectDetails({
             />
           </div>
           {formData.bookingDate && (
-            <p className="text-sea-600 font-body text-sm mt-2 text-center font-medium">
-              Selected: {format(formData.bookingDate, 'EEEE, MMMM d, yyyy')}
+            <p className="text-accent-orange text-sm mt-2 text-center font-bold">
+              {format(formData.bookingDate, 'EEEE, MMMM d, yyyy')}
             </p>
           )}
         </div>
       </div>
 
-      {error && (
-        <p className="text-red-600 font-body text-sm text-center mt-4">{error}</p>
-      )}
+      {error && <p className="text-red-400 text-sm text-center mt-4">{error}</p>}
 
       <div className="flex justify-between mt-8">
         <button onClick={onBack} className="btn-ghost">

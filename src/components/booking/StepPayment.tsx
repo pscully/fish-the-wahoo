@@ -36,12 +36,12 @@ export default function StepPayment({
       const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
       const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-      const response = await fetch(`${supabaseUrl}/functions/v1/create-payment-intent`, {
+      const res = await fetch(`${supabaseUrl}/functions/v1/create-payment-intent`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${supabaseKey}`,
-          'apikey': supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+          apikey: supabaseKey,
         },
         body: JSON.stringify({
           boatClassId: formData.boatClassId,
@@ -56,15 +56,9 @@ export default function StepPayment({
         }),
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to process payment');
-      }
-
-      if (data.referenceCode) {
-        onSuccess(data.referenceCode);
-      }
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to process payment');
+      if (data.referenceCode) onSuccess(data.referenceCode);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Payment failed. Please try again.');
     } finally {
@@ -74,99 +68,92 @@ export default function StepPayment({
 
   return (
     <div>
-      <h2 className="text-2xl text-navy-900 mb-2 text-center">Review & Pay Deposit</h2>
-      <p className="text-navy-500 font-body text-center mb-8">
-        Confirm your details and pay the booking deposit
-      </p>
+      <h2 className="text-2xl text-white uppercase text-center mb-2">Review & Pay Deposit</h2>
+      <p className="text-slate-400 text-center mb-8">Confirm your details and pay the booking deposit</p>
 
       <div className="max-w-lg mx-auto">
-        <div className="bg-white border border-navy-200 rounded-xl overflow-hidden mb-6">
-          <div className="bg-navy-900 px-6 py-4">
-            <h3 className="text-white font-body font-semibold">Booking Summary</h3>
+        {/* Summary card */}
+        <div className="bg-nautical-blue border border-white/10 rounded-xl overflow-hidden mb-6">
+          <div className="bg-nautical-light/50 px-6 py-4 border-b border-white/10">
+            <h3 className="text-white font-bold uppercase tracking-widest text-sm">Booking Summary</h3>
           </div>
-          <div className="p-6 space-y-4">
-            <div className="flex justify-between">
-              <span className="text-navy-500 font-body text-sm">Vessel Class</span>
-              <span className="text-navy-900 font-body font-medium text-sm">
-                {selectedClass?.name}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-navy-500 font-body text-sm">Trip Duration</span>
-              <span className="text-navy-900 font-body font-medium text-sm">
-                {selectedDuration?.name} ({selectedDuration?.time_description})
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-navy-500 font-body text-sm">Date</span>
-              <span className="text-navy-900 font-body font-medium text-sm">
-                {formData.bookingDate
+          <div className="p-6 space-y-3">
+            {[
+              { label: 'Vessel Class', value: selectedClass?.name },
+              {
+                label: 'Trip Duration',
+                value: selectedDuration
+                  ? `${selectedDuration.name} (${selectedDuration.time_description})`
+                  : null,
+              },
+              {
+                label: 'Date',
+                value: formData.bookingDate
                   ? format(formData.bookingDate, 'EEEE, MMMM d, yyyy')
-                  : '---'}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-navy-500 font-body text-sm">Party Size</span>
-              <span className="text-navy-900 font-body font-medium text-sm">
-                {formData.partySize} {formData.partySize === 1 ? 'person' : 'people'}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-navy-500 font-body text-sm">Customer</span>
-              <span className="text-navy-900 font-body font-medium text-sm">
-                {formData.firstName} {formData.lastName}
-              </span>
-            </div>
+                  : '---',
+              },
+              {
+                label: 'Party Size',
+                value: `${formData.partySize} ${formData.partySize === 1 ? 'person' : 'people'}`,
+              },
+              {
+                label: 'Customer',
+                value: `${formData.firstName} ${formData.lastName}`,
+              },
+            ].map(({ label, value }) => (
+              <div key={label} className="flex justify-between text-sm">
+                <span className="text-slate-400">{label}</span>
+                <span className="text-white font-medium">{value ?? '---'}</span>
+              </div>
+            ))}
+
             {formData.specialRequests && (
-              <div className="pt-2 border-t border-navy-100">
-                <span className="text-navy-500 font-body text-xs">Special Requests</span>
-                <p className="text-navy-700 font-body text-sm mt-1">{formData.specialRequests}</p>
+              <div className="pt-2 border-t border-white/10">
+                <span className="text-slate-500 text-xs">Special Requests</span>
+                <p className="text-slate-300 text-sm mt-1">{formData.specialRequests}</p>
               </div>
             )}
 
-            <div className="border-t border-navy-200 pt-4 mt-4">
-              <div className="flex justify-between text-sm mb-1">
-                <span className="text-navy-500 font-body">Full Trip Price</span>
-                <span className="text-navy-500 font-body">
+            <div className="border-t border-white/10 pt-4 mt-2 space-y-2">
+              <div className="flex justify-between text-sm">
+                <span className="text-slate-400">Full Trip Price</span>
+                <span className="text-slate-300">
                   {selectedPricing ? formatCents(selectedPricing.total_price) : '---'}
                 </span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-navy-900 font-body font-semibold">Deposit Due Now</span>
-                <span className="text-2xl font-display text-sea-700">
+              <div className="flex justify-between items-baseline">
+                <span className="text-white font-bold">Deposit Due Now</span>
+                <span className="text-2xl font-display text-accent-orange">
                   {selectedPricing ? formatCents(selectedPricing.deposit_amount) : '---'}
                 </span>
               </div>
-              <p className="text-navy-400 font-body text-xs mt-2">
-                Remaining balance of{' '}
+              <p className="text-slate-500 text-xs">
+                Remaining{' '}
                 {selectedPricing
                   ? formatCents(selectedPricing.total_price - selectedPricing.deposit_amount)
                   : '---'}{' '}
-                is paid directly to your captain on the day of the trip.
+                paid directly to your captain on trip day.
               </p>
             </div>
           </div>
         </div>
 
-        <div className="bg-sea-50 border border-sea-200 rounded-xl p-5 mb-6">
-          <div className="flex items-start gap-3">
-            <Shield className="w-5 h-5 text-sea-600 mt-0.5 shrink-0" />
-            <div>
-              <p className="text-sea-800 font-body font-semibold text-sm mb-1">
-                Secure Booking Deposit
-              </p>
-              <p className="text-sea-700 font-body text-xs leading-relaxed">
-                Your deposit secures your booking and is our captain placement fee. The remaining
-                trip balance is paid directly to your assigned captain on the day of your charter.
-                All payments are processed securely via Stripe.
-              </p>
-            </div>
+        {/* Security note */}
+        <div className="bg-accent-orange/10 border border-accent-orange/20 rounded-xl p-5 mb-6 flex items-start gap-3">
+          <Shield className="w-5 h-5 text-accent-orange mt-0.5 shrink-0" />
+          <div>
+            <p className="text-white font-bold text-sm mb-1">Secure Booking Deposit</p>
+            <p className="text-slate-400 text-xs leading-relaxed">
+              Your deposit secures your booking and is our captain placement fee. The remaining
+              trip balance is paid directly to your assigned captain on the day of your charter.
+              All payments are processed securely via Stripe.
+            </p>
           </div>
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
-            <p className="text-red-700 font-body text-sm">{error}</p>
+          <div className="bg-red-900/30 border border-red-900/50 rounded-xl p-4 mb-6">
+            <p className="text-red-400 text-sm">{error}</p>
           </div>
         )}
 
@@ -176,14 +163,9 @@ export default function StepPayment({
           className="btn-primary w-full py-4 text-base disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? (
-            <>
-              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-              Processing...
-            </>
+            <><Loader2 className="w-5 h-5 mr-2 animate-spin" />Processing...</>
           ) : (
-            <>
-              Pay Deposit {selectedPricing ? formatCents(selectedPricing.deposit_amount) : ''}
-            </>
+            <>Pay Deposit {selectedPricing ? formatCents(selectedPricing.deposit_amount) : ''}</>
           )}
         </button>
 

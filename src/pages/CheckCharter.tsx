@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Search, Loader2, Ship, Calendar, Users, Anchor } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import type { BookingWithRelations } from '../lib/types';
@@ -6,15 +7,27 @@ import { formatDate, formatCents, getStatusColor, getStatusLabel } from '../lib/
 import SEO from '../components/seo/SEO';
 
 export default function CheckCharter() {
+  const [searchParams] = useSearchParams();
   const [lastName, setLastName] = useState('');
   const [refCode, setRefCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<BookingWithRelations[] | null>(null);
   const [searched, setSearched] = useState(false);
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!lastName.trim() && !refCode.trim()) return;
+  // Auto-search when ?ref= is present in the URL (e.g. linked from booking confirmation)
+  useEffect(() => {
+    const ref = searchParams.get('ref');
+    if (ref) {
+      setRefCode(ref.toUpperCase());
+      runSearch(undefined, ref.toUpperCase());
+    }
+  }, []);
+
+  const runSearch = async (overrideLastName?: string, overrideRef?: string) => {
+    const last = overrideLastName ?? lastName;
+    const ref = overrideRef ?? refCode;
+    if (!last.trim() && !ref.trim()) return;
+
     setLoading(true);
     setSearched(true);
 
@@ -23,21 +36,21 @@ export default function CheckCharter() {
       .select('*, boat_classes(*), trip_durations(*), captains(*), boats(*)')
       .order('booking_date', { ascending: true });
 
-    if (refCode.trim()) {
-      query = query.eq('reference_code', refCode.trim().toUpperCase());
+    if (ref.trim()) {
+      query = query.eq('reference_code', ref.trim().toUpperCase());
     } else {
-      query = query.ilike('customer_last_name', lastName.trim());
+      query = query.ilike('customer_last_name', last.trim());
     }
 
     const { data } = await query;
-
-    if (data) {
-      setResults(data as BookingWithRelations[]);
-    } else {
-      setResults([]);
-    }
-
+    if (data) setResults(data as BookingWithRelations[]);
+    else setResults([]);
     setLoading(false);
+  };
+
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    runSearch();
   };
 
   return (
