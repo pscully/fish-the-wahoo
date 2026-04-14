@@ -26,6 +26,7 @@ import CancellationPolicy from './pages/CancellationPolicy';
 import Contact from './pages/Contact';
 import SanteeRiverSportsmen from './pages/SanteeRiverSportsmen';
 import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse';
 import CharterPayment from './pages/CharterPayment';
@@ -133,6 +134,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/santee-river-sportsmen" element={<SanteeRiverSportsmen />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
 
           {/* Legal */}
           <Route path="/cancellation-policy" element={<CancellationPolicy />} />
