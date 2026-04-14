@@ -1,0 +1,65 @@
+# WooCommerce replacements
+/shop /book 301
+/checkout /book 301
+/cart /book 301
+/my-account /book 301
+/thank-you /book 301
+/success /book 301
+/fishing-reservation /book 301
+
+# Booking aliases
+/book-your-trip /book 301
+/manual-booking /book 301
+
+# Check aliases
+/check-my-charter /check 301
+
+# About aliases
+/meet-the-crew /about 301
+
+# Contact aliases
+/contact-us /contact 301
+/contact-us/privacy-policy /privacy-policy 301
+/contact-us/terms-of-use /terms-of-use 301
+
+# Packages
+/packages-and-prices /packages 301
+
+# Daily catch
+/captain-daily-report /daily-catch 301
+/charter-survey /contact 301
+
+# Blog category
+/category/general /blog 301
+
+# Species legacy flat URLs
+/blue-marlin-fishing /species/blue-marlin 301
+/white-marlin-fishing /species/white-marlin 301
+/dolphin-fishing /species/dolphin 301
+/mahi-mahi-fishing /species/mahi-mahi 301
+/grouper-fishing /species/grouper 301
+/red-snapper-fishing /species/red-snapper 301
+/sailfish-fishing /species/sailfish 301
+/sea-bass-fishing /species/sea-bass 301
+/tuna-fishing /species/tuna-charleston 301
+/swordfish-fishing /species/swordfish 301
+/shark-fishing /species/shark 301
+/wahoo-fishing /species/wahoo 301
+
+# Cryptic date-slug daily catch posts
+/7716 /daily-catch 301
+/82016 /daily-catch 301
+/125-1221 /daily-catch 301
+/1224-228 /daily-catch 301
+/925-108 /daily-catch 301
+/82916-2 /daily-catch 301
+/8516-81816 /daily-catch 301
+/1010-112 /daily-catch 301
+/12-22-16 /daily-catch 301
+/12-1-23-fish-report /daily-catch 301
+/september-4th-harbor-cruise /daily-catch 301
+/august-1-inshore /daily-catch 301
+/july-5th-deep-sea-fishing-adventure /daily-catch 301
+
+# SPA fallback — must be last
+/* /index.html 200

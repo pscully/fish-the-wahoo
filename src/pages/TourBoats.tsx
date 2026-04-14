@@ -1,0 +1,101 @@
+import { Link } from 'react-router-dom';
+import { boats } from '../content/boats';
+import SEO from '../components/seo/SEO';
+import Hero from '../components/sections/Hero';
+
+export default function TourBoats() {
+  return (
+    <>
+      <SEO
+        title="Our Fishing Charter Boats | Fish The Wahoo Fleet"
+        description="Explore the Fish The Wahoo fleet. Three classes of offshore sportfishing vessels, from 48 to 62 feet, to match any budget and group size."
+        canonicalPath="/tour-boats/"
+      />
+      <Hero
+        badge="The Fleet"
+        headline={
+          <>
+            Our <span className="text-accent-orange">Boats</span>
+          </>
+        }
+        subheadline="Three classes of offshore sportfishing vessels, from economical to ultimate luxury. Every boat is maintained to the highest standards."
+        primaryCta={{ label: 'Book A Trip', to: '/book' }}
+        fullscreen={false}
+      />
+
+      <section className="py-20 bg-nautical-dark">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-16">
+            {boats.map((boat, i) => (
+              <div
+                key={boat.slug}
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
+                  i % 2 !== 0 ? 'lg:flex-row-reverse' : ''
+                }`}
+              >
+                <div className={i % 2 !== 0 ? 'lg:order-2' : ''}>
+                  <div className="aspect-[4/3] rounded-xl overflow-hidden">
+                    <img
+                      src={boat.image}
+                      alt={boat.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                <div className={i % 2 !== 0 ? 'lg:order-1' : ''}>
+                  <span className="section-label">{boat.length} Sportfisher</span>
+                  <h2 className="text-4xl text-white uppercase mb-4">{boat.name}</h2>
+                  <p className="text-accent-orange font-bold uppercase tracking-widest text-sm mb-6">
+                    {boat.tagline}
+                  </p>
+                  <p className="text-slate-300 leading-relaxed mb-8">{boat.description}</p>
+
+                  <div className="grid grid-cols-3 gap-6 mb-8">
+                    {[
+                      { label: 'Length', value: boat.length },
+                      { label: 'Engine', value: boat.engine },
+                      { label: 'Speed', value: boat.speed },
+                    ].map((spec) => (
+                      <div key={spec.label}>
+                        <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">
+                          {spec.label}
+                        </p>
+                        <p className="text-white font-semibold text-sm">{spec.value}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mb-8">
+                    <p className="text-white text-sm font-bold uppercase tracking-widest mb-4">
+                      Amenities
+                    </p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {boat.amenities.map((item) => (
+                        <div key={item} className="flex items-center gap-2 text-slate-400 text-sm">
+                          <div className="w-1 h-1 bg-accent-orange rounded-full" />
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <Link to="/book" className="btn-primary py-3 px-8">
+                      Book This Boat
+                    </Link>
+                    <Link
+                      to={`/tour-boats/${boat.slug}`}
+                      className="btn-outline py-3 px-8"
+                    >
+                      Full Specs
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

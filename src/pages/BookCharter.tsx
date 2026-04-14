@@ -71,11 +71,11 @@ export default function BookCharter() {
   );
 
   return (
-    <div className="bg-navy-50 min-h-screen pt-24 pb-16">
+    <div className="bg-nautical-dark min-h-screen pt-24 pb-16">
       <div className="container-wide mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h1 className="text-3xl sm:text-4xl text-navy-900 mb-2">Book Your Charter</h1>
-          <p className="text-navy-500 font-body">
+          <h1 className="text-3xl sm:text-4xl text-white uppercase mb-2">Book Your Charter</h1>
+          <p className="text-slate-400">
             Reserve your deep sea fishing adventure in four easy steps
           </p>
         </div>
@@ -92,10 +92,10 @@ export default function BookCharter() {
                       <div
                         className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
                           isComplete
-                            ? 'bg-sea-600 text-white'
+                            ? 'bg-accent-orange text-white'
                             : isActive
-                            ? 'bg-navy-900 text-white'
-                            : 'bg-navy-200 text-navy-400'
+                            ? 'bg-white text-nautical-dark'
+                            : 'bg-nautical-light text-slate-500'
                         }`}
                       >
                         {isComplete ? (
@@ -105,8 +105,8 @@ export default function BookCharter() {
                         )}
                       </div>
                       <span
-                        className={`mt-2 text-xs font-body font-medium hidden sm:block ${
-                          isActive ? 'text-navy-900' : 'text-navy-400'
+                        className={`mt-2 text-xs font-medium hidden sm:block ${
+                          isActive ? 'text-white' : 'text-slate-500'
                         }`}
                       >
                         {step.label}
@@ -115,7 +115,7 @@ export default function BookCharter() {
                     {index < 3 && (
                       <div
                         className={`flex-1 h-0.5 mx-2 sm:mx-4 transition-colors duration-300 ${
-                          index < currentStepIndex ? 'bg-sea-600' : 'bg-navy-200'
+                          index < currentStepIndex ? 'bg-accent-orange' : 'bg-nautical-light'
                         }`}
                       />
                     )}
