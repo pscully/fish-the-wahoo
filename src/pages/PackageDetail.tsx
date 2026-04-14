@@ -1,14 +1,32 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { Clock, Users, ChevronRight, Fish } from 'lucide-react';
 import { getPackageBySlug } from '../content/packages';
+import { supabase } from '../lib/supabase';
 import SEO from '../components/seo/SEO';
 import CTABanner from '../components/sections/CTABanner';
 
 export default function PackageDetail() {
   const { slug } = useParams<{ slug: string }>();
   const pkg = getPackageBySlug(slug ?? '');
+  const [heroImage, setHeroImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!pkg) return;
+    supabase
+      .from('boat_classes')
+      .select('image_url')
+      .order('display_order')
+      .then(({ data }) => {
+        if (data && data[pkg.boatClassIndex]?.image_url) {
+          setHeroImage(data[pkg.boatClassIndex].image_url as string);
+        }
+      });
+  }, [pkg]);
 
   if (!pkg) return <Navigate to="/packages" replace />;
+
+  const displayImage = heroImage ?? pkg.image;
 
   return (
     <>
@@ -21,7 +39,7 @@ export default function PackageDetail() {
       {/* Hero */}
       <section className="relative min-h-[60vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src={pkg.image} alt={pkg.name} className="w-full h-full object-cover" />
+          <img src={displayImage} alt={pkg.name} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-nautical-dark via-nautical-dark/60 to-transparent" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">

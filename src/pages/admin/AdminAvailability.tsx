@@ -1,6 +1,14 @@
 import { useEffect, useState, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, Loader2, Check, X as XIcon } from 'lucide-react';
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, addMonths, subMonths, getDay } from 'date-fns';
+import {
+  format,
+  startOfMonth,
+  endOfMonth,
+  eachDayOfInterval,
+  addMonths,
+  subMonths,
+  getDay,
+} from 'date-fns';
 import { supabase } from '../../lib/supabase';
 import type { Captain, Boat, CaptainAvailability } from '../../lib/types';
 
@@ -41,19 +49,21 @@ export default function AdminAvailability() {
     if (!selectedCaptain) return;
     const start = format(startOfMonth(currentMonth), 'yyyy-MM-dd');
     const end = format(endOfMonth(currentMonth), 'yyyy-MM-dd');
-
     const { data } = await supabase
       .from('captain_availability')
       .select('*')
       .eq('captain_id', selectedCaptain)
       .gte('date', start)
       .lte('date', end);
-
     if (data) setAvailability(data as CaptainAvailability[]);
   };
 
-  useEffect(() => { loadData(); }, []);
-  useEffect(() => { loadAvailability(); }, [selectedCaptain, currentMonth]);
+  useEffect(() => {
+    loadData();
+  }, []);
+  useEffect(() => {
+    loadAvailability();
+  }, [selectedCaptain, currentMonth]);
 
   const days = useMemo(() => {
     const start = startOfMonth(currentMonth);
@@ -63,23 +73,17 @@ export default function AdminAvailability() {
 
   const firstDayOffset = getDay(startOfMonth(currentMonth));
 
-  const getDateAvailability = (dateStr: string) => {
-    return availability.filter((a) => a.date === dateStr);
-  };
+  const getDateAvailability = (dateStr: string) =>
+    availability.filter((a) => a.date === dateStr);
 
   const toggleSlot = async (dateStr: string, slot: string) => {
     setSaving(true);
     const existing = availability.find(
       (a) => a.date === dateStr && a.slot === slot && a.captain_id === selectedCaptain
     );
-
     const captainBoats = boats.filter((b) => b.captain_id === selectedCaptain);
     const boatId = captainBoats.length > 0 ? captainBoats[0].id : boats[0]?.id;
-
-    if (!boatId) {
-      setSaving(false);
-      return;
-    }
+    if (!boatId) { setSaving(false); return; }
 
     if (existing) {
       await supabase.from('captain_availability').delete().eq('id', existing.id);
@@ -92,7 +96,6 @@ export default function AdminAvailability() {
         is_available: true,
       });
     }
-
     await loadAvailability();
     setSaving(false);
   };
@@ -122,19 +125,22 @@ export default function AdminAvailability() {
         await supabase.from('captain_availability').delete().eq('id', item.id);
       }
     }
-
     await loadAvailability();
     setSaving(false);
   };
 
   if (loading) {
-    return <div className="text-center py-12 text-navy-400 font-body">Loading...</div>;
+    return (
+      <div className="text-center py-12 text-slate-400">
+        <Loader2 className="w-6 h-6 animate-spin mx-auto" />
+      </div>
+    );
   }
 
   if (captains.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-navy-400 font-body">Add captains first before managing availability.</p>
+        <p className="text-slate-400">Add captains first before managing availability.</p>
       </div>
     );
   }
@@ -143,42 +149,49 @@ export default function AdminAvailability() {
     <div>
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
         <div>
-          <label className="block text-xs font-body font-medium text-navy-500 mb-1">Captain</label>
+          <label className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-1.5">
+            Captain
+          </label>
           <select
             value={selectedCaptain}
             onChange={(e) => setSelectedCaptain(e.target.value)}
             className="input-field text-sm min-w-[200px]"
           >
             {captains.map((c) => (
-              <option key={c.id} value={c.id}>{c.name}</option>
+              <option key={c.id} value={c.id}>
+                {c.name}
+              </option>
             ))}
           </select>
         </div>
 
         <div className="flex items-center gap-3 sm:ml-auto">
-          {saving && <Loader2 className="w-4 h-4 text-sea-600 animate-spin" />}
+          {saving && <Loader2 className="w-4 h-4 text-accent-orange animate-spin" />}
           <button
             onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
-            className="p-2 hover:bg-navy-100 rounded-lg"
+            className="p-2 hover:bg-nautical-light rounded-lg text-slate-400 hover:text-white transition-colors"
           >
-            <ChevronLeft className="w-5 h-5 text-navy-600" />
+            <ChevronLeft className="w-5 h-5" />
           </button>
-          <span className="font-display text-lg text-navy-900 min-w-[180px] text-center">
+          <span className="font-display font-bold text-lg text-white min-w-[180px] text-center">
             {format(currentMonth, 'MMMM yyyy')}
           </span>
           <button
             onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
-            className="p-2 hover:bg-navy-100 rounded-lg"
+            className="p-2 hover:bg-nautical-light rounded-lg text-slate-400 hover:text-white transition-colors"
           >
-            <ChevronRight className="w-5 h-5 text-navy-600" />
+            <ChevronRight className="w-5 h-5" />
           </button>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-navy-200 overflow-hidden">
-        <div className="grid grid-cols-7 border-b border-navy-200">
+      <div className="bg-nautical-blue rounded-xl border border-white/10 overflow-hidden">
+        <div className="grid grid-cols-7 border-b border-white/10">
           {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-            <div key={day} className="px-2 py-3 text-center text-xs font-body font-semibold text-navy-500 uppercase">
+            <div
+              key={day}
+              className="px-2 py-3 text-center text-xs font-bold text-slate-500 uppercase"
+            >
               {day}
             </div>
           ))}
@@ -186,7 +199,10 @@ export default function AdminAvailability() {
 
         <div className="grid grid-cols-7">
           {Array.from({ length: firstDayOffset }).map((_, i) => (
-            <div key={`empty-${i}`} className="border-b border-r border-navy-100 min-h-[80px] bg-navy-50/50" />
+            <div
+              key={`empty-${i}`}
+              className="border-b border-r border-white/5 min-h-[80px] bg-white/2"
+            />
           ))}
           {days.map((day) => {
             const dateStr = format(day, 'yyyy-MM-dd');
@@ -199,17 +215,25 @@ export default function AdminAvailability() {
               <div
                 key={dateStr}
                 onClick={() => !isPast && setSelectedDate(isSelected ? null : dateStr)}
-                className={`border-b border-r border-navy-100 min-h-[80px] p-2 cursor-pointer transition-colors ${
-                  isPast ? 'bg-navy-50/50 opacity-50 cursor-default' : isSelected ? 'bg-sea-50' : 'hover:bg-navy-50'
+                className={`border-b border-r border-white/5 min-h-[80px] p-2 transition-colors ${
+                  isPast
+                    ? 'opacity-30 cursor-default'
+                    : isSelected
+                    ? 'bg-accent-orange/10 cursor-pointer'
+                    : 'hover:bg-nautical-light/50 cursor-pointer'
                 }`}
               >
-                <span className={`text-sm font-body ${slotCount > 0 ? 'font-semibold text-navy-900' : 'text-navy-400'}`}>
+                <span
+                  className={`text-sm ${
+                    slotCount > 0 ? 'font-bold text-white' : 'text-slate-500'
+                  }`}
+                >
                   {format(day, 'd')}
                 </span>
                 {slotCount > 0 && (
                   <div className="mt-1 flex flex-wrap gap-0.5">
                     {dayAvail.map((a) => (
-                      <span key={a.id} className="w-2 h-2 rounded-full bg-sea-500" />
+                      <span key={a.id} className="w-2 h-2 rounded-full bg-accent-orange" />
                     ))}
                   </div>
                 )}
@@ -220,21 +244,21 @@ export default function AdminAvailability() {
       </div>
 
       {selectedDate && (
-        <div className="mt-4 bg-white rounded-xl border border-navy-200 p-6">
+        <div className="mt-4 bg-nautical-blue rounded-xl border border-white/10 p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-display text-lg text-navy-900">
+            <h3 className="font-display font-bold text-lg text-white">
               {format(new Date(selectedDate + 'T12:00:00'), 'EEEE, MMMM d, yyyy')}
             </h3>
             <div className="flex gap-2">
               <button
                 onClick={() => setAllSlots(selectedDate, true)}
-                className="px-3 py-1.5 bg-green-50 text-green-700 rounded-lg font-body text-xs font-medium hover:bg-green-100 transition-colors"
+                className="px-3 py-1.5 bg-green-900/40 text-green-400 border border-green-900/50 rounded-lg text-xs font-bold hover:bg-green-900/60 transition-colors"
               >
                 <Check className="w-3 h-3 inline mr-1" /> All Available
               </button>
               <button
                 onClick={() => setAllSlots(selectedDate, false)}
-                className="px-3 py-1.5 bg-red-50 text-red-700 rounded-lg font-body text-xs font-medium hover:bg-red-100 transition-colors"
+                className="px-3 py-1.5 bg-red-900/40 text-red-400 border border-red-900/50 rounded-lg text-xs font-bold hover:bg-red-900/60 transition-colors"
               >
                 <XIcon className="w-3 h-3 inline mr-1" /> Clear All
               </button>
@@ -251,14 +275,12 @@ export default function AdminAvailability() {
                   onClick={() => toggleSlot(selectedDate, slot.key)}
                   className={`p-4 rounded-xl border-2 text-center transition-all ${
                     isAvail
-                      ? 'border-sea-500 bg-sea-50 text-sea-700'
-                      : 'border-navy-200 bg-white text-navy-400 hover:border-navy-300'
+                      ? 'border-accent-orange bg-accent-orange/10 text-accent-orange'
+                      : 'border-white/10 text-slate-500 hover:border-white/20 hover:text-slate-300'
                   }`}
                 >
-                  <p className="font-body text-sm font-semibold">{slot.label}</p>
-                  <p className="font-body text-xs mt-1">
-                    {isAvail ? 'Available' : 'Unavailable'}
-                  </p>
+                  <p className="text-sm font-bold">{slot.label}</p>
+                  <p className="text-xs mt-1">{isAvail ? 'Available' : 'Unavailable'}</p>
                 </button>
               );
             })}
@@ -266,9 +288,9 @@ export default function AdminAvailability() {
         </div>
       )}
 
-      <div className="mt-4 flex items-center gap-4 text-xs font-body text-navy-400">
+      <div className="mt-4 flex items-center gap-4 text-xs text-slate-500">
         <span className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-sea-500" /> Available slot
+          <span className="w-2.5 h-2.5 rounded-full bg-accent-orange" /> Available slot
         </span>
         <span>Click a date to manage time slots</span>
       </div>

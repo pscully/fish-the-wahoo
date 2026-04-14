@@ -27,9 +27,7 @@ export default function AdminLayout() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
-        navigate('/admin/login');
-      }
+      if (!session) navigate('/admin/login');
       setChecking(false);
     });
   }, [navigate]);
@@ -45,8 +43,8 @@ export default function AdminLayout() {
 
   if (checking) {
     return (
-      <div className="min-h-screen bg-navy-50 flex items-center justify-center">
-        <div className="animate-pulse text-navy-400 font-body">Loading...</div>
+      <div className="min-h-screen bg-nautical-dark flex items-center justify-center">
+        <div className="animate-pulse text-slate-400">Loading...</div>
       </div>
     );
   }
@@ -55,53 +53,56 @@ export default function AdminLayout() {
     exact ? location.pathname === path : location.pathname.startsWith(path);
 
   return (
-    <div className="min-h-screen bg-navy-50 flex">
+    <div className="min-h-screen bg-nautical-dark flex">
+      {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-64 bg-navy-950 transform transition-transform duration-300 lg:translate-x-0 lg:static ${
+        className={`fixed inset-y-0 left-0 z-40 w-64 bg-nautical-blue border-r border-white/10 transform transition-transform duration-300 lg:translate-x-0 lg:static flex flex-col ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className="flex items-center justify-between px-5 h-16 border-b border-navy-800">
+        <div className="flex items-center justify-between px-5 h-16 border-b border-white/10 shrink-0">
           <Link to="/admin" className="flex items-center gap-2">
-            <Anchor className="w-6 h-6 text-sea-400" />
-            <span className="text-white font-display text-lg">FTW Admin</span>
+            <div className="bg-accent-orange p-1.5 rounded-full">
+              <Anchor className="w-4 h-4 text-white" />
+            </div>
+            <span className="text-white font-display font-bold text-lg tracking-tight">FTW Admin</span>
           </Link>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden text-navy-400 hover:text-white"
+            className="lg:hidden text-slate-400 hover:text-white"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <nav className="px-3 py-4 space-y-1">
+        <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
           {sidebarLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg font-body text-sm transition-colors ${
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                 isActive(link.to, link.exact)
-                  ? 'bg-sea-600/20 text-sea-400'
-                  : 'text-navy-400 hover:bg-navy-800 hover:text-white'
+                  ? 'bg-accent-orange/20 text-accent-orange'
+                  : 'text-slate-400 hover:bg-nautical-light hover:text-white'
               }`}
             >
-              <link.icon className="w-5 h-5" />
+              <link.icon className="w-5 h-5 shrink-0" />
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-navy-800">
+        <div className="px-3 py-4 border-t border-white/10 space-y-1 shrink-0">
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg font-body text-sm text-navy-400 hover:bg-navy-800 hover:text-white transition-colors"
+            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-slate-400 hover:bg-nautical-light hover:text-white transition-colors"
           >
             <LogOut className="w-5 h-5" />
             Sign Out
           </button>
           <Link
             to="/"
-            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg font-body text-sm text-navy-500 hover:bg-navy-800 hover:text-navy-300 transition-colors mt-1"
+            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-slate-500 hover:bg-nautical-light hover:text-slate-300 transition-colors"
           >
             View Public Site
           </Link>
@@ -110,20 +111,20 @@ export default function AdminLayout() {
 
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+          className="fixed inset-0 bg-black/60 z-30 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="bg-white border-b border-navy-200 h-16 flex items-center px-4 sm:px-6 lg:px-8 gap-4">
+        <header className="bg-nautical-blue border-b border-white/10 h-16 flex items-center px-4 sm:px-6 lg:px-8 gap-4 shrink-0">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden p-2 text-navy-600 hover:text-navy-900"
+            className="lg:hidden p-2 text-slate-400 hover:text-white"
           >
             <Menu className="w-5 h-5" />
           </button>
-          <h1 className="text-lg font-display text-navy-900">
+          <h1 className="text-lg font-display font-bold text-white">
             {sidebarLinks.find((l) => isActive(l.to, l.exact))?.label || 'Admin'}
           </h1>
         </header>

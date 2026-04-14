@@ -11,7 +11,14 @@ export interface PackageData {
   maxPassengers: number;
   includes: string[];
   targetSpecies: string[];
+  /** Fallback image used when Supabase boat_classes image is unavailable */
   image: string;
+  /**
+   * Which boat class to pull the hero image from (0 = smallest/first by
+   * display_order, 1 = mid, 2 = largest). Used by PackageDetail to fetch
+   * image_url from Supabase instead of using the static image above.
+   */
+  boatClassIndex: 0 | 1 | 2;
   metaTitle: string;
   metaDescription: string;
 }
@@ -40,6 +47,7 @@ export const packages: PackageData[] = [
     targetSpecies: ['Red Snapper', 'Sea Bass', 'Flounder', 'Spanish Mackerel'],
     image:
       'https://images.pexels.com/photos/1618606/pexels-photo-1618606.jpeg?auto=compress&cs=tinysrgb&w=800',
+    boatClassIndex: 0 as const,
     metaTitle: '4-Hour Family Fun Fishing Charter | Fish The Wahoo Charleston',
     metaDescription:
       'Book a 4-hour family fishing charter out of Charleston, SC. Perfect for kids and beginners. All gear included. Call (843) 568-3222.',
@@ -67,6 +75,7 @@ export const packages: PackageData[] = [
     targetSpecies: ['Red Snapper', 'Grouper', 'Sea Bass', 'Flounder', 'Spanish Mackerel'],
     image:
       'https://images.pexels.com/photos/1393382/pexels-photo-1393382.jpeg?auto=compress&cs=tinysrgb&w=800',
+    boatClassIndex: 0 as const,
     metaTitle: '6-Hour Family Fishing Charter | Fish The Wahoo Charleston',
     metaDescription:
       'Six hours of nearshore fishing out of Charleston, SC. Family-friendly, all gear included. Book your spot today.',
@@ -94,6 +103,7 @@ export const packages: PackageData[] = [
     targetSpecies: ['Red Snapper', 'Grouper', 'Sea Bass', 'Amberjack'],
     image:
       'https://images.pexels.com/photos/1586880/pexels-photo-1586880.jpeg?auto=compress&cs=tinysrgb&w=800',
+    boatClassIndex: 0 as const,
     metaTitle: '4-Hour Nearshore Fishing Charter Charleston SC | Fish The Wahoo',
     metaDescription:
       'Fast-paced nearshore fishing trips out of Charleston, SC. Targeting snapper, grouper, and sea bass. All tackle included.',
@@ -121,6 +131,7 @@ export const packages: PackageData[] = [
     targetSpecies: ['Red Snapper', 'Grouper', 'Sea Bass', 'Amberjack', 'King Mackerel'],
     image:
       'https://images.pexels.com/photos/2624849/pexels-photo-2624849.jpeg?auto=compress&cs=tinysrgb&w=800',
+    boatClassIndex: 0 as const,
     metaTitle: '6-Hour Nearshore Fishing Charter Charleston SC | Fish The Wahoo',
     metaDescription:
       'Six-hour nearshore fishing charters from Charleston, SC. Extended action targeting snapper, grouper, and more.',
@@ -148,6 +159,7 @@ export const packages: PackageData[] = [
     targetSpecies: ['Mahi-Mahi', 'Wahoo', 'Tuna', 'King Mackerel'],
     image:
       'https://images.pexels.com/photos/3361691/pexels-photo-3361691.jpeg?auto=compress&cs=tinysrgb&w=800',
+    boatClassIndex: 1 as const,
     metaTitle: '6-Hour Deep Sea Fishing Charter Charleston SC | Fish The Wahoo',
     metaDescription:
       'Six-hour deep sea fishing trips out of Charleston, SC. Target mahi-mahi, wahoo, and tuna offshore. Book today.',
@@ -176,6 +188,7 @@ export const packages: PackageData[] = [
     targetSpecies: ['Mahi-Mahi', 'Wahoo', 'Tuna', 'Sailfish', 'Blue Marlin'],
     image:
       'https://images.pexels.com/photos/1172739/pexels-photo-1172739.jpeg?auto=compress&cs=tinysrgb&w=800',
+    boatClassIndex: 1 as const,
     metaTitle: '9-Hour Deep Sea Fishing Charter Charleston SC | Fish The Wahoo',
     metaDescription:
       'Nine-hour offshore fishing charters from Charleston. Maximum time on the water targeting mahi, wahoo, tuna, and marlin.',
@@ -212,6 +225,7 @@ export const packages: PackageData[] = [
     ],
     image:
       'https://images.pexels.com/photos/1630344/pexels-photo-1630344.jpeg?auto=compress&cs=tinysrgb&w=800',
+    boatClassIndex: 2 as const,
     metaTitle: '12-Hour Full Day Deep Sea Fishing Charter Charleston SC | Fish The Wahoo',
     metaDescription:
       'Full-day 12-hour deep sea fishing charters from Charleston, SC. Targeting blue marlin, mahi, wahoo, and tuna. The ultimate offshore experience.',
@@ -242,6 +256,7 @@ export const packages: PackageData[] = [
     targetSpecies: ['Swordfish', 'Blue Marlin', 'Wahoo', 'Mahi-Mahi', 'Yellowfin Tuna'],
     image:
       'https://images.pexels.com/photos/2131967/pexels-photo-2131967.jpeg?auto=compress&cs=tinysrgb&w=800',
+    boatClassIndex: 2 as const,
     metaTitle: 'Overnight Gulf Stream Deep Sea Fishing | Fish The Wahoo Charleston',
     metaDescription:
       'Overnight swordfish and big game fishing trips to the Gulf Stream from Charleston, SC. The most epic fishing adventure on the East Coast.',
@@ -268,6 +283,7 @@ export const packages: PackageData[] = [
     targetSpecies: [],
     image:
       'https://images.pexels.com/photos/1172739/pexels-photo-1172739.jpeg?auto=compress&cs=tinysrgb&w=800',
+    boatClassIndex: 0 as const,
     metaTitle: 'Charleston Harbor Cruise Charters | Fish The Wahoo',
     metaDescription:
       'Private harbor cruise charters in Charleston, SC. See Fort Sumter, dolphins, and the Charleston skyline from the water.',

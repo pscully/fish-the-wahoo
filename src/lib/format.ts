@@ -24,20 +24,21 @@ export function formatDateShort(dateStr: string): string {
   });
 }
 
+/** Dark-mode status badge classes */
 export function getStatusColor(status: string): string {
   switch (status) {
     case 'confirmed':
     case 'captain_assigned':
     case 'paid':
     case 'completed':
-      return 'bg-green-100 text-green-800';
+      return 'bg-green-900/40 text-green-400';
     case 'pending':
-      return 'bg-amber-100 text-amber-800';
+      return 'bg-amber-900/40 text-amber-400';
     case 'cancelled':
     case 'refunded':
-      return 'bg-red-100 text-red-800';
+      return 'bg-red-900/40 text-red-400';
     default:
-      return 'bg-navy-100 text-navy-800';
+      return 'bg-white/10 text-slate-400';
   }
 }
 
