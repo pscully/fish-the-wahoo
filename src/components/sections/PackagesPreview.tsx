@@ -61,7 +61,7 @@ export default function PackagesPreview({ boatClasses }: PackagesPreviewProps) {
                 </p>
                 <div className="flex gap-3">
                   <Link
-                    to={`/book?class=${bc.slug}`}
+                    to={`/book/calendar?class=${bc.slug}`}
                     className="btn-primary flex-grow py-3 text-sm text-center"
                   >
                     Book Trip

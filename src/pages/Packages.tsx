@@ -58,7 +58,7 @@ export default function Packages() {
                   </p>
                   <div className="flex gap-3">
                     <Link
-                      to={`/book?package=${pkg.slug}`}
+                      to={`/book/calendar?package=${pkg.slug}`}
                       className="btn-primary flex-grow py-2 text-sm text-center"
                     >
                       Book Trip

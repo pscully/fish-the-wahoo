@@ -4,6 +4,7 @@ import PublicLayout from './components/layout/PublicLayout';
 // Existing pages
 import Home from './pages/Home';
 import BookCharter from './pages/BookCharter';
+import BookCalendar from './pages/BookCalendar';
 import CheckCharter from './pages/CheckCharter';
 import About from './pages/About';
 import FAQ from './pages/FAQ';
@@ -49,6 +50,7 @@ export default function App() {
 
           {/* Booking */}
           <Route path="/book" element={<BookCharter />} />
+          <Route path="/book/calendar" element={<BookCalendar />} />
           <Route path="/check" element={<CheckCharter />} />
           <Route path="/charter-payment" element={<CharterPayment />} />
 

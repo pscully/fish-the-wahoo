@@ -105,7 +105,7 @@ export default function PackageDetail() {
                   ))}
                 </ul>
                 <Link
-                  to={`/book?package=${pkg.slug}`}
+                  to={`/book/calendar?package=${pkg.slug}`}
                   className="btn-primary w-full text-center py-4 block"
                 >
                   Book This Trip
@@ -123,7 +123,7 @@ export default function PackageDetail() {
         headline="Ready to Book This Trip?"
         subtext="Our calendar fills up fast. Secure your date with a small deposit and we'll match you with the perfect captain and boat."
         ctaLabel="Book Now"
-        ctaTo={`/book?package=${pkg.slug}`}
+        ctaTo={`/book/calendar?package=${pkg.slug}`}
       />
     </>
   );

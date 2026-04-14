@@ -67,7 +67,7 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
-          <Link to="/book" className="btn-primary py-2 px-6 text-sm">
+          <Link to="/book/calendar" className="btn-primary py-2 px-6 text-sm">
             Book A Trip
           </Link>
         </nav>
@@ -105,7 +105,7 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
-              <Link to="/book" className="btn-primary w-full mt-4 text-center">
+              <Link to="/book/calendar" className="btn-primary w-full mt-4 text-center">
                 Book A Trip
               </Link>
             </nav>
