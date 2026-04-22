@@ -16,8 +16,9 @@ Trips are sold in 1/2 day (6 hour), 3/4 day (8 hour), and full day (10-12 hour) 
 
 ```bash
 npm run dev                # Vite dev server at http://localhost:5173
-npm run build              # Regenerates _redirects then builds to dist/
+npm run build              # Regenerates _redirects + sitemap.xml, then builds to dist/
 npm run build:redirects    # Regenerate public/_redirects from src/data/redirects.ts
+npm run build:sitemap      # Regenerate public/sitemap.xml (override host with SITE_URL=...)
 npm run preview            # Preview production build
 npm run typecheck          # tsc --noEmit -p tsconfig.app.json
 npm run lint               # ESLint (flat config, TS + react-hooks + react-refresh)
@@ -50,6 +51,8 @@ Vite + React 18 + TypeScript (strict, `noUnusedLocals`, `noUnusedParameters`), R
 [src/App.tsx](src/App.tsx) is a single flat `<Routes>` tree containing every route, including client-side navigations for legacy WordPress URLs. Server-side 301s are served by [public/_redirects](public/_redirects) when deployed to Cloudflare Pages.
 
 The redirect map has a single source of truth: [src/data/redirects.ts](src/data/redirects.ts). `public/_redirects` is regenerated from it at build time via [scripts/build-redirects.ts](scripts/build-redirects.ts) (runs automatically as part of `npm run build`). To add a legacy redirect, edit `redirects.ts` and rerun the build. Do not hand-edit `public/_redirects`.
+
+Likewise, `public/sitemap.xml` is regenerated at build time by [scripts/build-sitemap.ts](scripts/build-sitemap.ts). It emits a static route list, plus entries for every package, species, boat, and blog post. To add a page to the sitemap, either add its path to the `staticPaths` array or add an entry to the relevant `src/content/*.ts` file. Host defaults to `https://fishthewahoo.com`; override with `SITE_URL` env var.
 
 ### Booking flow
 
@@ -91,5 +94,4 @@ Cloudflare Pages. Build command `npm install && npm run build`, output directory
 
 - `.bolt/` is scaffolding from Bolt.new and is safe to ignore.
 - The blog loader keys on the absolute Vite path `/content/blog/*.md`, so the `content/` directory must live at the repo root.
-- `scripts/build-sitemap.ts` is referenced in PROGRESS.md but does not exist yet. `public/sitemap.xml` must be generated before launch.
 - Legacy numeric URLs like `/7716`, `/82016`, `/125-1221` are real redirects in `redirects.ts` (old WP daily-catch post slugs). Do not treat them as typos.
