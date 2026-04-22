@@ -60,9 +60,6 @@ Deno.serve(async (req: Request) => {
     const tripDuration = booking.trip_durations;
     const boat = booking.boats;
 
-    const depositCents = booking.deposit_amount;
-    const totalCents = 0;
-
     const emailBody = `
 Captain ${captain.name},
 

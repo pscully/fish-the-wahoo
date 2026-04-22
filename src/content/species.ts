@@ -51,7 +51,7 @@ export const species: SpeciesData[] = [
     tagline: 'The most colorful fish in the sea',
     description:
       'Mahi-mahi are the bread and butter of offshore fishing out of Charleston. Fast-growing, incredible fighters, and absolutely delicious.',
-    body: `Mahi-mahi (also called dolphin or dorado) are the most popular target for offshore anglers out of Charleston. These spectacular fish are known for their vivid colors — bright yellow, green, and blue — their speed, and their tendency to school around floating debris and weed lines in the Gulf Stream.\n\nMahi-mahi are aggressive surface feeders and will readily take trolled baits and lures. When you find a school, it\'s not unusual to catch dozens of fish. They\'re also exceptional table fare, making mahi one of the few fish where everyone goes home happy.\n\nPrime mahi season in Charleston runs from May through October, with the best action often in June and July when the Gulf Stream pushes its northernmost.`,
+    body: `Mahi-mahi (also called dolphin or dorado) are the most popular target for offshore anglers out of Charleston. These spectacular fish are known for their vivid colors — bright yellow, green, and blue — their speed, and their tendency to school around floating debris and weed lines in the Gulf Stream.\n\nMahi-mahi are aggressive surface feeders and will readily take trolled baits and lures. When you find a school, it's not unusual to catch dozens of fish. They're also exceptional table fare, making mahi one of the few fish where everyone goes home happy.\n\nPrime mahi season in Charleston runs from May through October, with the best action often in June and July when the Gulf Stream pushes its northernmost.`,
     image:
       'https://images.pexels.com/photos/2624849/pexels-photo-2624849.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'May through October',
@@ -67,7 +67,7 @@ export const species: SpeciesData[] = [
     tagline: 'The fastest fish in the Atlantic',
     description:
       'Wahoo are the speed demons of the deep, capable of bursts over 60 mph. They strike hard, run fast, and taste incredible.',
-    body: `Wahoo are one of the most sought-after offshore species in the Atlantic. Known for their blistering speed — they can exceed 60 mph — wahoo are apex predators that strike trolled baits with explosive force. The initial run of a wahoo is unforgettable.\n\nFished almost exclusively by high-speed trolling, wahoo respond to lures and rigged baits pulled at 12-16 knots. They favor the edges and temperature breaks of the Gulf Stream and are often found at depth on down-riggers during the winter months.\n\nWahoo are prime table fare — their white, firm flesh is prized by chefs. It\'s no coincidence the boat "Wahoo" is one of Fish The Wahoo\'s most sought-after vessels.`,
+    body: `Wahoo are one of the most sought-after offshore species in the Atlantic. Known for their blistering speed — they can exceed 60 mph — wahoo are apex predators that strike trolled baits with explosive force. The initial run of a wahoo is unforgettable.\n\nFished almost exclusively by high-speed trolling, wahoo respond to lures and rigged baits pulled at 12-16 knots. They favor the edges and temperature breaks of the Gulf Stream and are often found at depth on down-riggers during the winter months.\n\nWahoo are prime table fare — their white, firm flesh is prized by chefs. It's no coincidence the boat "Wahoo" is one of Fish The Wahoo's most sought-after vessels.`,
     image:
       'https://images.pexels.com/photos/1172739/pexels-photo-1172739.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'Year-round (peak: October through February)',
@@ -131,7 +131,7 @@ export const species: SpeciesData[] = [
     tagline: 'The best beginner fish in the Atlantic',
     description:
       'Black sea bass are abundant, easy to catch, hard fighting for their size, and excellent eating. Perfect for families.',
-    body: `Black sea bass are one of the most popular and accessible sport fish off the South Carolina coast. These compact, aggressive fish inhabit rocky bottom, artificial reefs, and wrecks in relatively shallow water. They\'ll take almost any natural bait fished on the bottom.\n\nSea bass are ideal for beginners and families because they bite readily, fight well for their size, and taste outstanding. A trip targeting sea bass with a family is almost guaranteed to produce action.\n\nThey\'re found year-round in Charleston waters and represent excellent value on a nearshore charter.`,
+    body: `Black sea bass are one of the most popular and accessible sport fish off the South Carolina coast. These compact, aggressive fish inhabit rocky bottom, artificial reefs, and wrecks in relatively shallow water. They'll take almost any natural bait fished on the bottom.\n\nSea bass are ideal for beginners and families because they bite readily, fight well for their size, and taste outstanding. A trip targeting sea bass with a family is almost guaranteed to produce action.\n\nThey're found year-round in Charleston waters and represent excellent value on a nearshore charter.`,
     image:
       'https://images.pexels.com/photos/1618606/pexels-photo-1618606.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'Year-round (peak: spring and fall)',
@@ -163,7 +163,7 @@ export const species: SpeciesData[] = [
     tagline: 'The ultimate overnight trophy',
     description:
       'Swordfish are deep water predators targeted at night. An overnight Gulf Stream trip gives you the best shot at these magnificent fish.',
-    body: `Swordfish are one of the most prized and challenging fish to target in the Atlantic. Unlike most sport fish, broadbill swordfish are primarily targeted at night using deep baits suspended on glow sticks at 500-1,500 feet of water. The overnight drift fishing technique produces the best results.\n\nOur overnight Gulf Stream trips are specifically designed for swordfish, though mahi-mahi, wahoo, and marlin are often caught as well. The experience of fishing through the night in the Gulf Stream is something you\'ll never forget.\n\nSwordfish can exceed 1,000 pounds, though fish in the 100-300 pound range are more common.`,
+    body: `Swordfish are one of the most prized and challenging fish to target in the Atlantic. Unlike most sport fish, broadbill swordfish are primarily targeted at night using deep baits suspended on glow sticks at 500-1,500 feet of water. The overnight drift fishing technique produces the best results.\n\nOur overnight Gulf Stream trips are specifically designed for swordfish, though mahi-mahi, wahoo, and marlin are often caught as well. The experience of fishing through the night in the Gulf Stream is something you'll never forget.\n\nSwordfish can exceed 1,000 pounds, though fish in the 100-300 pound range are more common.`,
     image:
       'https://images.pexels.com/photos/1172739/pexels-photo-1172739.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'Year-round (best: May through October)',
@@ -195,7 +195,7 @@ export const species: SpeciesData[] = [
     tagline: 'The colorful kings of the weed lines',
     description:
       'Dolphin (the fish, not the mammal) are the most exciting and reliable offshore target out of Charleston.',
-    body: `Dolphinfish — commonly called mahi-mahi, dorado, or "dolphin" in the South — are the most popular offshore target out of Charleston. Don\'t be confused: these are fish, not marine mammals.\n\nDolphin are found along floating grass lines and debris in the Gulf Stream. When you find a good weed line, the action can be non-stop. Dolphin are spectacular fighters with brilliant colors — bright yellow, green, and blue — that fade quickly after landing.\n\nThey\'re also exceptional table fare, which is why dolphin trips consistently rate as the most popular offshore charters from Charleston.`,
+    body: `Dolphinfish — commonly called mahi-mahi, dorado, or "dolphin" in the South — are the most popular offshore target out of Charleston. Don't be confused: these are fish, not marine mammals.\n\nDolphin are found along floating grass lines and debris in the Gulf Stream. When you find a good weed line, the action can be non-stop. Dolphin are spectacular fighters with brilliant colors — bright yellow, green, and blue — that fade quickly after landing.\n\nThey're also exceptional table fare, which is why dolphin trips consistently rate as the most popular offshore charters from Charleston.`,
     image:
       'https://images.pexels.com/photos/2624849/pexels-photo-2624849.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'May through October',
