@@ -22,6 +22,13 @@ export const redirects: Record<string, string> = {
 
   // About aliases
   '/meet-the-crew': '/about',
+  '/captains': '/about',
+
+  // Retired packages
+  '/packages/4-hour-family-fun-in-the-sun-charter': '/packages',
+  '/packages/4-hour-near-shore-fishing': '/packages',
+  '/packages/overnight-gulf-stream-deep-sea-fishing': '/packages',
+  '/packages/6-hour-deep-sea-fishing': '/packages/6-hour-bottom-fishing',
 
   // Contact aliases
   '/contact-us': '/contact',

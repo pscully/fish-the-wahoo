@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import PublicLayout from './components/layout/PublicLayout';
+import ScrollToTop from './components/layout/ScrollToTop';
 
 // Existing pages
 import Home from './pages/Home';
 import BookCalendar from './pages/BookCalendar';
+import BookThanks from './pages/BookThanks';
 import CheckCharter from './pages/CheckCharter';
 import About from './pages/About';
 import FAQ from './pages/FAQ';
@@ -14,7 +16,6 @@ import PackageDetail from './pages/PackageDetail';
 import CategoryLanding from './pages/CategoryLanding';
 import Species from './pages/Species';
 import SpeciesDetail from './pages/SpeciesDetail';
-import Captains from './pages/Captains';
 import TourBoats from './pages/TourBoats';
 import TourBoatDetail from './pages/TourBoatDetail';
 import Gallery from './pages/Gallery';
@@ -42,6 +43,7 @@ import AdminAvailability from './pages/admin/AdminAvailability';
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         {/* Public routes with header/footer */}
         <Route element={<PublicLayout />}>
@@ -50,6 +52,7 @@ export default function App() {
           {/* Booking */}
           <Route path="/book" element={<Navigate to="/book/calendar" replace />} />
           <Route path="/book/calendar" element={<BookCalendar />} />
+          <Route path="/book/thanks/:refCode" element={<BookThanks />} />
           <Route path="/check" element={<CheckCharter />} />
           <Route path="/charter-payment" element={<CharterPayment />} />
 
@@ -93,7 +96,7 @@ export default function App() {
                 category="deep-sea"
                 badge="Charleston, SC"
                 headline={<>Fishing Charters in <span className="text-accent-orange">Charleston, SC</span></>}
-                subheadline="Fish The Wahoo is Charleston's premier deep sea fishing charter service. One platform, 15+ captains, the perfect trip every time."
+                subheadline="Fish The Wahoo is Charleston's premier deep sea fishing charter service. One platform, 15+ boats, the perfect trip every time."
                 metaTitle="Fishing Charters in Charleston SC | Fish The Wahoo"
                 metaDescription="Book a fishing charter in Charleston, SC with Fish The Wahoo. Deep sea offshore trips and nearshore family charters. Call (843) 568-3222."
                 canonicalPath="/fishing-charters-in-charleston-sc/"
@@ -119,8 +122,8 @@ export default function App() {
           <Route path="/species" element={<Species />} />
           <Route path="/species/:slug" element={<SpeciesDetail />} />
 
-          {/* Captains & Boats */}
-          <Route path="/captains" element={<Captains />} />
+          {/* Boats */}
+          <Route path="/captains" element={<Navigate to="/about" replace />} />
           <Route path="/tour-boats" element={<TourBoats />} />
           <Route path="/tour-boats/:slug" element={<TourBoatDetail />} />
 

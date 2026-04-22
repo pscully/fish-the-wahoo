@@ -1,41 +1,42 @@
-import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import Stripe from "npm:stripe@14.14.0";
-import { createClient } from "npm:@supabase/supabase-js@2.57.4";
+import 'jsr:@supabase/functions-js/edge-runtime.d.ts';
+import Stripe from 'npm:stripe@14.14.0';
+import { createClient } from 'npm:@supabase/supabase-js@2.57.4';
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers":
-    "Content-Type, Authorization, X-Client-Info, Apikey",
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers':
+    'Content-Type, Authorization, X-Client-Info, Apikey',
 };
 
+const json = (body: unknown, status = 200) =>
+  new Response(JSON.stringify(body), {
+    status,
+    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+  });
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 Deno.serve(async (req: Request) => {
-  if (req.method === "OPTIONS") {
-    return new Response(null, { status: 200, headers: corsHeaders });
-  }
+  if (req.method === 'OPTIONS') return new Response(null, { status: 200, headers: corsHeaders });
+  if (req.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
+
+  const stripeKey = Deno.env.get('STRIPE_SECRET_KEY');
+  if (!stripeKey) return json({ error: 'Stripe is not configured.' }, 500);
+
+  const supabaseUrl = Deno.env.get('SUPABASE_URL');
+  const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+  if (!supabaseUrl || !supabaseServiceKey) return json({ error: 'Supabase env not set' }, 500);
 
   try {
-    const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
-    if (!stripeKey) {
-      return new Response(
-        JSON.stringify({
-          error: "Stripe is not configured. Please contact support.",
-        }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    const stripe = new Stripe(stripeKey, { apiVersion: "2023-10-16" });
-
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
     const body = await req.json();
     const {
       boatClassId,
       tripDurationId,
       bookingDate,
+      backupDate,
+      backupDateNotes,
+      timeSlot,
       partySize,
       firstName,
       lastName,
@@ -44,88 +45,114 @@ Deno.serve(async (req: Request) => {
       specialRequests,
     } = body;
 
-    if (!boatClassId || !tripDurationId || !bookingDate || !firstName || !lastName || !email) {
-      return new Response(
-        JSON.stringify({ error: "Missing required booking fields." }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+    // --- Validation -------------------------------------------------------
+    const errors: string[] = [];
+
+    if (!boatClassId) errors.push('boatClassId required');
+    if (!tripDurationId) errors.push('tripDurationId required');
+    if (!bookingDate) errors.push('bookingDate required');
+    if (!backupDate) errors.push('backupDate required');
+    if (!firstName?.trim()) errors.push('firstName required');
+    if (!lastName?.trim()) errors.push('lastName required');
+    if (!email?.trim() || !EMAIL_RE.test(email)) errors.push('valid email required');
+
+    const today = new Date().toISOString().slice(0, 10);
+    if (bookingDate && bookingDate < today) errors.push('bookingDate must be in the future');
+    if (backupDate && backupDate < today) errors.push('backupDate must be in the future');
+    if (bookingDate && backupDate && bookingDate === backupDate) {
+      errors.push('backupDate must differ from bookingDate');
     }
 
+    const timeSlotNorm = timeSlot ?? '';
+    if (timeSlotNorm && timeSlotNorm !== '06:00' && timeSlotNorm !== '12:00') {
+      errors.push('timeSlot must be 06:00, 12:00, or empty');
+    }
+
+    const party = Number(partySize);
+    if (!Number.isInteger(party) || party < 1 || party > 6) {
+      errors.push('partySize must be 1-6');
+    }
+
+    if (errors.length) return json({ error: errors.join('; ') }, 400);
+
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // --- Resolve pricing (server-side, never trust client) ----------------
     const { data: pricing, error: pricingError } = await supabase
-      .from("pricing")
-      .select("*")
-      .eq("boat_class_id", boatClassId)
-      .eq("trip_duration_id", tripDurationId)
+      .from('pricing')
+      .select('total_price, deposit_amount')
+      .eq('boat_class_id', boatClassId)
+      .eq('trip_duration_id', tripDurationId)
       .maybeSingle();
 
     if (pricingError || !pricing) {
-      return new Response(
-        JSON.stringify({ error: "Could not find pricing for selected options." }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return json({ error: 'Pricing not available for that boat class + duration.' }, 400);
     }
 
     const depositAmount = pricing.deposit_amount;
-
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: depositAmount,
-      currency: "usd",
-      metadata: {
-        boat_class_id: boatClassId,
-        trip_duration_id: tripDurationId,
-        booking_date: bookingDate,
-        customer_name: `${firstName} ${lastName}`,
-        customer_email: email,
-      },
-      receipt_email: email,
-    });
-
-    await stripe.paymentIntents.confirm(paymentIntent.id, {
-      payment_method: "pm_card_visa",
-      return_url: `${req.headers.get("origin") || "https://fishthewahoo.com"}/check`,
-    });
-
-    const { data: booking, error: bookingError } = await supabase
-      .from("bookings")
-      .insert({
-        customer_first_name: firstName,
-        customer_last_name: lastName,
-        customer_email: email,
-        customer_phone: phone || "",
-        party_size: partySize || 2,
-        boat_class_id: boatClassId,
-        trip_duration_id: tripDurationId,
-        booking_date: bookingDate,
-        special_requests: specialRequests || "",
-        deposit_amount: depositAmount,
-        payment_status: "paid",
-        booking_status: "confirmed",
-        stripe_payment_intent_id: paymentIntent.id,
-        reference_code: "",
-      })
-      .select("reference_code")
-      .single();
-
-    if (bookingError) {
-      return new Response(
-        JSON.stringify({ error: "Booking created but failed to save. Please contact support." }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+    if (!depositAmount || depositAmount < 50) {
+      return json({ error: 'Deposit amount is invalid.' }, 500);
     }
 
-    return new Response(
-      JSON.stringify({
-        success: true,
-        referenceCode: booking.reference_code,
-        depositAmount,
-      }),
-      { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+    // --- Create Stripe PaymentIntent (NO auto-confirm) --------------------
+    const stripe = new Stripe(stripeKey, { apiVersion: '2023-10-16' });
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: depositAmount,
+      currency: 'usd',
+      automatic_payment_methods: { enabled: true },
+      receipt_email: email,
+      description: `Fish The Wahoo deposit — ${bookingDate}`,
+      metadata: {
+        customer_name: `${firstName} ${lastName}`,
+        customer_email: email,
+        booking_date: bookingDate,
+        backup_date: backupDate ?? '',
+        boat_class_id: boatClassId,
+        trip_duration_id: tripDurationId,
+      },
+    });
+
+    // --- Insert booking row (payment_status='pending') --------------------
+    const { data: booking, error: bookingError } = await supabase
+      .from('bookings')
+      .insert({
+        customer_first_name: firstName.trim(),
+        customer_last_name: lastName.trim(),
+        customer_email: email.trim(),
+        customer_phone: (phone ?? '').trim(),
+        party_size: party,
+        boat_class_id: boatClassId,
+        trip_duration_id: tripDurationId,
+        booking_date: bookingDate,
+        backup_date: backupDate ?? null,
+        backup_date_notes: (backupDateNotes ?? '').trim(),
+        time_slot: timeSlotNorm,
+        special_requests: (specialRequests ?? '').trim(),
+        deposit_amount: depositAmount,
+        payment_status: 'pending',
+        booking_status: 'pending',
+        stripe_payment_intent_id: paymentIntent.id,
+      })
+      .select('id, reference_code')
+      .single();
+
+    if (bookingError || !booking) {
+      // Best-effort: cancel the payment intent since we failed to persist.
+      try {
+        await stripe.paymentIntents.cancel(paymentIntent.id);
+      } catch {
+        /* ignore */
+      }
+      return json({ error: 'Failed to create booking. Please try again.' }, 500);
+    }
+
+    return json({
+      clientSecret: paymentIntent.client_secret,
+      referenceCode: booking.reference_code,
+      depositAmount,
+    });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "An unexpected error occurred";
-    return new Response(
-      JSON.stringify({ error: message }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+    const message = err instanceof Error ? err.message : 'Unexpected error';
+    return json({ error: message }, 500);
   }
 });

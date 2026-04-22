@@ -168,7 +168,14 @@ export default function CheckCharter() {
                               <p className="text-slate-500 text-xs uppercase tracking-widest">Date</p>
                               <p className="text-white font-medium text-sm">
                                 {formatDate(booking.booking_date)}
+                                {booking.time_slot === '06:00' && ' · 6:00 AM'}
+                                {booking.time_slot === '12:00' && ' · 12:00 PM'}
                               </p>
+                              {booking.backup_date && (
+                                <p className="text-slate-500 text-xs mt-0.5">
+                                  Backup: {formatDate(booking.backup_date)}
+                                </p>
+                              )}
                             </div>
                           </div>
                           <div className="flex items-start gap-3">

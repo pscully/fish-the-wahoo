@@ -6,7 +6,7 @@ interface Stat {
 const defaultStats: Stat[] = [
   { value: '5,000+', label: 'Happy Clients' },
   { value: '12,000+', label: 'Trophy Catches' },
-  { value: '12', label: 'Expert Captains' },
+  { value: '15+', label: 'Boats In Network' },
   { value: '30+', label: 'Years in Business' },
 ];
 

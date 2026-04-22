@@ -1,21 +1,7 @@
 import SEO from '../components/seo/SEO';
 import GallerySection from '../components/sections/GallerySection';
 import CTABanner from '../components/sections/CTABanner';
-
-const allImages = [
-  { src: 'https://images.pexels.com/photos/1586880/pexels-photo-1586880.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Boat at sunset', size: 'large' as const },
-  { src: 'https://images.pexels.com/photos/1630344/pexels-photo-1630344.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Deep sea catch', size: 'medium' as const },
-  { src: 'https://images.pexels.com/photos/1618606/pexels-photo-1618606.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Family fishing', size: 'small' as const },
-  { src: 'https://images.pexels.com/photos/3361691/pexels-photo-3361691.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Fishing charter', size: 'small' as const },
-  { src: 'https://images.pexels.com/photos/2624849/pexels-photo-2624849.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Ocean fishing', size: 'medium' as const },
-  { src: 'https://images.pexels.com/photos/1393382/pexels-photo-1393382.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Trophy tuna', size: 'small' as const },
-  { src: 'https://images.pexels.com/photos/2131967/pexels-photo-2131967.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Captain at helm', size: 'small' as const },
-  { src: 'https://images.pexels.com/photos/1172739/pexels-photo-1172739.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Group catch', size: 'large' as const },
-  { src: 'https://images.pexels.com/photos/1586880/pexels-photo-1586880.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Deep sea action', size: 'small' as const },
-  { src: 'https://images.pexels.com/photos/1630344/pexels-photo-1630344.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Big fish', size: 'small' as const },
-  { src: 'https://images.pexels.com/photos/2624849/pexels-photo-2624849.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Offshore fishing', size: 'medium' as const },
-  { src: 'https://images.pexels.com/photos/1618606/pexels-photo-1618606.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Family trip', size: 'small' as const },
-];
+import { galleryImages } from '../content/gallery';
 
 export default function Gallery() {
   return (
@@ -40,7 +26,7 @@ export default function Gallery() {
         </div>
       </section>
 
-      <GallerySection images={allImages} showViewAll={false} />
+      <GallerySection images={galleryImages} showViewAll={false} />
 
       <CTABanner />
     </>

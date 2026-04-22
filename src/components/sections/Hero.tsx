@@ -17,7 +17,7 @@ export default function Hero({
   subheadline,
   primaryCta = { label: 'Book A Trip', to: '/book' },
   secondaryCta,
-  bgImage = 'https://images.pexels.com/photos/1586880/pexels-photo-1586880.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  bgImage = '/images/fishing-charters-hero-default.webp',
   fullscreen = true,
 }: HeroProps) {
   return (

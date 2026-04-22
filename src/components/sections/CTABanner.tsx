@@ -13,7 +13,7 @@ export default function CTABanner({
   subtext = 'Our calendar fills up fast during peak season. Secure your date today and get ready to experience the best deep sea fishing Charleston has to offer.',
   ctaLabel = 'Check Availability',
   ctaTo = '/book',
-  bgImage = 'https://images.pexels.com/photos/1586880/pexels-photo-1586880.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  bgImage = '/images/fishing-charters-hero-default.webp',
 }: CTABannerProps) {
   return (
     <section

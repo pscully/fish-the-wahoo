@@ -27,3 +27,7 @@ dist-ssr
 
 # Supabase CLI scratch state
 supabase/.temp/
+
+# Local working notes — may contain credentials, never commit
+PROGRESS.md
+PROGRESS.md.backup

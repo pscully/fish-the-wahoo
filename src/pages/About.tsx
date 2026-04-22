@@ -8,7 +8,7 @@ export default function About() {
     <>
       <SEO
         title="About Fish The Wahoo | Charleston Deep Sea Fishing"
-        description="Fish The Wahoo is Charleston's premier deep sea fishing concierge. One booking platform, 15+ captains, and the perfect trip every time."
+        description="Fish The Wahoo is Charleston's premier deep sea fishing concierge. One booking platform, 15+ boats, and the perfect trip every time."
         canonicalPath="/about/"
       />
 
@@ -17,7 +17,7 @@ export default function About() {
           className="absolute inset-0 opacity-30 bg-cover bg-center"
           style={{
             backgroundImage:
-              'url(https://images.pexels.com/photos/2131967/pexels-photo-2131967.jpeg?auto=compress&cs=tinysrgb&w=1920)',
+              'url(/images/fishing-charters-hero-about.webp)',
           }}
         />
         <div className="absolute inset-0 bg-nautical-dark/70" />
@@ -38,7 +38,7 @@ export default function About() {
             <div>
               <span className="section-label">Who We Are</span>
               <h2 className="text-3xl sm:text-4xl text-white uppercase mb-6">
-                One Booking Hub. 15+ Captains. The Perfect Trip Every Time.
+                One Booking Hub. 15+ Boats. The Perfect Trip Every Time.
               </h2>
               <div className="space-y-4 text-slate-300 leading-relaxed">
                 <p>
@@ -61,8 +61,8 @@ export default function About() {
             </div>
             <div className="relative">
               <img
-                src="https://images.pexels.com/photos/1574653/pexels-photo-1574653.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Charleston harbor fishing"
+                src="/images/fishing-charters-about-story.webp"
+                alt="Deep sea fishing rods on the stern"
                 className="rounded-xl w-full object-cover aspect-[4/3]"
               />
             </div>
@@ -87,7 +87,7 @@ export default function About() {
               {
                 icon: Users,
                 title: 'Expert Matching',
-                desc: 'We pair your party with the perfect captain based on your group size, experience level, and target species.',
+                desc: 'We pair your trip with the best available boat and captain for your group size, experience level, and target species.',
               },
               {
                 icon: Award,
@@ -124,21 +124,21 @@ export default function About() {
               {
                 name: '48-50 Foot Sportfisher',
                 image:
-                  'https://images.pexels.com/photos/1223649/pexels-photo-1223649.jpeg?auto=compress&cs=tinysrgb&w=600',
+                  '/images/fishing-charters-000.webp',
                 passengers: 6,
                 desc: 'Fast and reliable with all the gear you need for a great day offshore.',
               },
               {
                 name: '53-59 Foot Sportfisher',
                 image:
-                  'https://images.pexels.com/photos/2614418/pexels-photo-2614418.jpeg?auto=compress&cs=tinysrgb&w=600',
+                  '/images/fishing-charters-001.webp',
                 passengers: 6,
                 desc: 'True battlewagons built for blue water. Smooth ride, serious fish-raising equipment.',
               },
               {
                 name: '60+ Foot Sportfisher',
                 image:
-                  'https://images.pexels.com/photos/3413678/pexels-photo-3413678.jpeg?auto=compress&cs=tinysrgb&w=600',
+                  '/images/fishing-charters-002.webp',
                 passengers: 6,
                 desc: 'The biggest and best in our fleet. Full luxury amenities for the ultimate offshore experience.',
               },

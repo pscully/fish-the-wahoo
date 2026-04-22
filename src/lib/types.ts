@@ -81,6 +81,8 @@ export interface Booking {
   boat_class_id: string;
   trip_duration_id: string;
   booking_date: string;
+  backup_date: string | null;
+  backup_date_notes: string;
   time_slot: string;
   special_requests: string;
   assigned_captain_id: string | null;

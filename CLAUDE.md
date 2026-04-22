@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Website for Fish the Wahoo, a Charleston based deep sea fishing trip booking service with partnerships with over 15 captains and boats in Charleston to book visitors and fishing enthusiasts on the best boats available. We charge a deposit amount, and the final amount is charged to the customer via the boat or captain who accepts the trip. 
 
-Trips are sold in 1/2 day (6 hour), 3/4 day (8 hour), and full day (10-12 hour) trips. Trips can be booked on any day, 1/2 day trips can be booked for 6am or 12pm leave times, all other trips leave at 5am or 6am.  
+Trips are sold in 1/2 day (6 hour), 3/4 day (9 hour), and full day (12 hour) trips. Trips can be booked on any day, 1/2 day trips can be booked for 6am or 12pm leave times, all other trips leave at 5am or 6am. 6-hour trips are bottom fishing only — the offshore run isn't possible in that window, so mahi/wahoo/tuna/marlin targets require the 9- or 12-hour trip.  
 
 ## Orientation
 

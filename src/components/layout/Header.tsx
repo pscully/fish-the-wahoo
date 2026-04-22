@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Anchor } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { to: '/packages', label: 'Packages' },
-  { to: '/captains', label: 'Captains' },
+  { to: '/tour-boats', label: 'Boats' },
   { to: '/gallery', label: 'Gallery' },
   { to: '/reviews', label: 'Reviews' },
+  { to: '/blog', label: 'Blog' },
   { to: '/about', label: 'About' },
   { to: '/faq', label: 'FAQ' },
 ];
@@ -38,18 +39,12 @@ export default function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-2">
-          <div className="bg-accent-orange p-2 rounded-full">
-            <Anchor className="text-white w-5 h-5" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-xl font-display font-bold text-white leading-none uppercase tracking-tighter">
-              Fish The Wahoo
-            </span>
-            <span className="text-[10px] font-medium text-accent-orange uppercase tracking-[0.2em]">
-              Charleston Fishing Charters
-            </span>
-          </div>
+        <Link to="/" className="flex items-center" aria-label="Fish The Wahoo — Charleston Fishing Charters">
+          <img
+            src="/images/logo.webp"
+            alt="Fish The Wahoo — Charleston Fishing Charters"
+            className="h-12 md:h-14 w-auto"
+          />
         </Link>
 
         {/* Desktop Nav */}

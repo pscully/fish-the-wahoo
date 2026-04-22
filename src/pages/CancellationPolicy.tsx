@@ -5,7 +5,7 @@ export default function CancellationPolicy() {
     <>
       <SEO
         title="Cancellation Policy | Fish The Wahoo"
-        description="Fish The Wahoo cancellation and refund policy for deep sea fishing charter bookings in Charleston, SC."
+        description="Fish The Wahoo cancellation and refund policy for Charleston deep sea fishing charter bookings."
         canonicalPath="/cancellation-policy/"
       />
 
@@ -18,13 +18,25 @@ export default function CancellationPolicy() {
           <div className="prose-dark space-y-8 text-slate-300 text-sm leading-relaxed">
             <div className="metallic-card rounded-xl p-8">
               <h2 className="text-xl text-white uppercase mb-4">Customer Cancellations</h2>
-              <ul className="space-y-3">
-                <li>Cancellations made 30+ days before the trip date: full deposit refund.</li>
-                <li>Cancellations made 14-29 days before the trip date: 50% deposit refund.</li>
-                <li>Cancellations made within 14 days: no deposit refund (credit toward a future trip may be available).</li>
-                <li>No-shows: no refund.</li>
+              <ul className="space-y-3 list-disc list-inside marker:text-accent-orange">
+                <li>
+                  Cancellations made <span className="text-white">more than 30 days</span> before
+                  departure receive a full refund of the deposit.
+                </li>
+                <li>
+                  Cancellations made <span className="text-white">7 to 30 days</span> before
+                  departure forfeit the deposit.
+                </li>
+                <li>
+                  Cancellations made <span className="text-white">inside 7 days</span> of departure
+                  are responsible for the full charter payment.
+                </li>
+                <li>
+                  Once the client is on the boat and the boat leaves the dock, no client is
+                  entitled to any discount or refund for any reason.
+                </li>
               </ul>
-              <p className="mt-4 text-slate-400">
+              <p className="mt-6 text-slate-400">
                 All cancellations must be submitted in writing to{' '}
                 <a href="mailto:info@fishthewahoo.com" className="text-accent-orange hover:underline">
                   info@fishthewahoo.com
@@ -36,27 +48,30 @@ export default function CancellationPolicy() {
             <div className="metallic-card rounded-xl p-8">
               <h2 className="text-xl text-white uppercase mb-4">Weather Cancellations</h2>
               <p>
-                If we cancel your trip due to unsafe weather conditions, you will receive a full
-                refund of your deposit OR the option to reschedule at no additional charge. We will
+                If we cancel your trip due to unsafe weather conditions, you'll receive a full
+                refund of your deposit or the option to reschedule at no additional charge. We'll
                 notify you at least 24 hours in advance when possible.
               </p>
               <p className="mt-4 text-slate-400">
-                Note: We do not cancel for rain alone. We cancel when conditions are unsafe for
+                Note: we do not cancel for rain alone. We cancel when conditions are unsafe for
                 offshore operations (high seas, lightning, etc.).
               </p>
             </div>
 
             <div className="metallic-card rounded-xl p-8">
-              <h2 className="text-xl text-white uppercase mb-4">Rescheduling</h2>
+              <h2 className="text-xl text-white uppercase mb-4">What We Do And Don't Guarantee</h2>
               <p>
-                You may reschedule your trip up to 14 days before the original date at no charge,
-                subject to availability. Rescheduling within 14 days is subject to a rescheduling
-                fee.
+                Fish The Wahoo cannot warrant or guarantee, in any way: (1) that any particular
+                feature or system of any boat will be in working order, (2) the overall condition of
+                any vessel, (3) that any particular kind of fishing will be attempted — trolling,
+                bottom fishing, etc. — as the captain decides based on circumstances, or (4) that
+                any particular species will be caught or targeted.
               </p>
             </div>
 
             <p className="text-slate-500 text-xs mt-8">
-              Last updated: 2026. Policy subject to change. Contact us with any questions.
+              By completing a booking, you indicate you have read and agree to these terms. Contact
+              us with any questions.
             </p>
           </div>
         </div>

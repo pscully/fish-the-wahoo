@@ -58,7 +58,17 @@ export default function TourBoatDetail() {
                 ))}
               </div>
 
-              <h3 className="text-xl text-white uppercase mb-6">Onboard Amenities</h3>
+              <h3 className="text-xl text-white uppercase mb-6">Best For</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-12">
+                {boat.bestFor.map((item) => (
+                  <div key={item} className="flex items-center gap-2 text-slate-300 text-sm">
+                    <div className="w-1.5 h-1.5 bg-accent-orange rounded-full" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+
+              <h3 className="text-xl text-white uppercase mb-6">Typical Amenities</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {boat.amenities.map((item) => (
                   <div key={item} className="flex items-center gap-2 text-slate-300 text-sm">
@@ -71,10 +81,10 @@ export default function TourBoatDetail() {
 
             <div>
               <div className="metallic-card rounded-xl p-8 sticky top-24">
-                <h3 className="text-lg text-white uppercase mb-6">Book This Boat</h3>
+                <h3 className="text-lg text-white uppercase mb-6">Book This Class</h3>
                 <p className="text-slate-400 text-sm mb-8 leading-relaxed">
-                  Reserve a trip on the {boat.name}. Pay a small deposit today and we'll confirm
-                  your booking.
+                  Reserve a trip on a {boat.length} class sportfisher. Pay a small deposit today and
+                  we'll confirm your booking and boat assignment.
                 </p>
                 <Link to="/book" className="btn-primary w-full text-center py-4 block">
                   Book Now

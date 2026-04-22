@@ -1,5 +1,7 @@
 export interface BoatData {
   slug: string;
+  /** Matches the boat_classes.slug in Supabase so ?class= URL params resolve. */
+  classSlug: string;
   name: string;
   tagline: string;
   description: string;
@@ -7,8 +9,11 @@ export interface BoatData {
   engine: string;
   speed: string;
   capacity: number;
+  /** Cheapest deposit (in cents) across all durations offered on this class. 10% of lowest total. */
+  startingDepositCents: number;
   image: string;
   amenities: string[];
+  bestFor: string[];
   metaTitle: string;
   metaDescription: string;
 }
@@ -16,16 +21,17 @@ export interface BoatData {
 export const boats: BoatData[] = [
   {
     slug: 'backhaul',
-    name: 'The Backhaul',
-    tagline: '48-foot sportfisher — the economical deep sea choice',
+    classSlug: '48-50-foot-class',
+    name: 'The 48–50 Foot Class',
+    tagline: 'The economical offshore choice',
     description:
-      'A proven offshore performer at an accessible price point. Perfect for serious anglers who want to go deep without the premium price tag.',
-    length: "48'",
-    engine: 'Twin Diesel 600HP',
-    speed: '25 Knots',
+      'The 48 to 50 foot sportfisher class is our most economical way to fish the deep water off Charleston. Boats in this class run a smooth, manageable ride, get to the grounds fast, and handle every trip type we book — from a 6-hour nearshore bottom trip to a full 12-hour run at the Gulf Stream. A great fit for budget-conscious groups who still want the full offshore experience. We don\'t operate a fixed fleet, so the specific boat you fish may vary, but every hull in this class meets our standards for gear, safety, and captain experience.',
+    length: '48–50 ft',
+    engine: 'Twin diesel',
+    speed: 'Up to 25 knots',
     capacity: 6,
-    image:
-      'https://images.pexels.com/photos/1586880/pexels-photo-1586880.jpeg?auto=compress&cs=tinysrgb&w=800',
+    startingDepositCents: 28000,
+    image: '/images/fishing-charters-000.webp',
     amenities: [
       'Enclosed cabin',
       'Ice boxes',
@@ -34,22 +40,29 @@ export const boats: BoatData[] = [
       'Expert tackle',
       'Marine head',
     ],
-    metaTitle: 'The Backhaul — 48ft Fishing Charter Boat | Fish The Wahoo',
+    bestFor: [
+      '6-hour bottom fishing',
+      '9-hour offshore runs',
+      'Budget-friendly offshore trips',
+      'Small groups up to 6',
+    ],
+    metaTitle: '48–50 Foot Class Sportfisher | Fish The Wahoo Charleston',
     metaDescription:
-      'Charter the Backhaul — a 48-foot sportfisher out of Charleston, SC. Economical deep sea fishing for up to 6 passengers.',
+      'What to expect from a 48–50 foot class sportfisher out of Charleston, SC. Capacity, trip types, and what the class handles best.',
   },
   {
     slug: 'wahoo',
-    name: 'The Wahoo',
-    tagline: '55-foot sportfisher — the workhorse of the fleet',
+    classSlug: '53-59-foot-class',
+    name: 'The 53–59 Foot Class',
+    tagline: 'The comfortable workhorse class',
     description:
-      'The most popular boat in our fleet. A perfect balance of comfort, speed, and fishability for any offshore trip.',
-    length: "55'",
-    engine: 'Twin Diesel 800HP',
-    speed: '28 Knots',
+      'The 53 to 59 foot class is the most common size we book for serious offshore days. A little more boat than the economy class, a little more room, a smoother ride when the chop picks up, and enough horsepower to cover water quickly. This is the middle-of-the-road choice for groups who want a comfortable offshore day without paying for the flagship. Like every class we book, the specific hull may vary trip to trip depending on captain and boat availability.',
+    length: '53–59 ft',
+    engine: 'Twin diesel',
+    speed: 'Up to 28 knots',
     capacity: 6,
-    image:
-      'https://images.pexels.com/photos/1630344/pexels-photo-1630344.jpeg?auto=compress&cs=tinysrgb&w=800',
+    startingDepositCents: 39000,
+    image: '/images/fishing-charters-001.webp',
     amenities: [
       'AC cabin',
       'Microwave and fridge',
@@ -58,22 +71,29 @@ export const boats: BoatData[] = [
       'Custom rods',
       'Clean head',
     ],
-    metaTitle: 'The Wahoo — 55ft Fishing Charter Boat | Fish The Wahoo',
+    bestFor: [
+      '9-hour offshore trips',
+      'Full-day deep sea runs',
+      'Groups prioritizing comfort',
+      'Trolling + bottom fishing combos',
+    ],
+    metaTitle: '53–59 Foot Class Sportfisher | Fish The Wahoo Charleston',
     metaDescription:
-      'Charter the Wahoo — a 55-foot sportfisher out of Charleston, SC. The most popular boat in our deep sea fishing fleet.',
+      'What to expect from a 53–59 foot class sportfisher out of Charleston, SC. Capacity, trip types, and what the class handles best.',
   },
   {
     slug: 'teaser-2',
-    name: 'Teaser 2',
-    tagline: '62-foot sportfisher — the ultimate offshore experience',
+    classSlug: '60-plus-foot-class',
+    name: 'The 60+ Foot Class',
+    tagline: 'The flagship experience',
     description:
-      'The flagship of the Fish The Wahoo fleet. Biggest, smoothest, best riding boat in Charleston. For those who want the absolute best.',
-    length: "62'",
-    engine: 'Twin Diesel 1200HP',
-    speed: '32 Knots',
+      'The 60 foot and up class is the biggest, smoothest, best-riding group of boats we have access to in Charleston. If you want the fighting chair, the full galley, a truly luxurious ride to the Gulf Stream, and the kind of onboard experience that makes the whole day feel like a private yacht trip — book this class. Specific boats vary, but every hull we put in this tier is set up for serious offshore fishing with premium tackle and amenities.',
+    length: '60+ ft',
+    engine: 'Twin diesel',
+    speed: 'Up to 32 knots',
     capacity: 6,
-    image:
-      'https://images.pexels.com/photos/2624849/pexels-photo-2624849.jpeg?auto=compress&cs=tinysrgb&w=800',
+    startingDepositCents: 57000,
+    image: '/images/fishing-charters-002.webp',
     amenities: [
       'Full AC cabin',
       'Full galley',
@@ -82,9 +102,15 @@ export const boats: BoatData[] = [
       'Premium tackle',
       'Private head',
     ],
-    metaTitle: 'Teaser 2 — 62ft Flagship Charter Boat | Fish The Wahoo',
+    bestFor: [
+      'Full-day Gulf Stream runs',
+      'Trophy billfish trips',
+      'Groups wanting maximum comfort',
+      'Celebratory or corporate charters',
+    ],
+    metaTitle: '60+ Foot Class Sportfisher | Fish The Wahoo Charleston',
     metaDescription:
-      'Charter Teaser 2 — the 62-foot flagship sportfisher of Fish The Wahoo in Charleston, SC. The ultimate deep sea fishing experience.',
+      'What to expect from a 60+ foot class sportfisher out of Charleston, SC. Capacity, trip types, and what the class handles best.',
   },
 ];
 

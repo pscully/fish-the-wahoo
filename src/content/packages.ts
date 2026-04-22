@@ -25,34 +25,6 @@ export interface PackageData {
 
 export const packages: PackageData[] = [
   {
-    slug: '4-hour-family-fun-in-the-sun-charter',
-    name: '4-Hour Family Fun In The Sun Charter',
-    tagline: 'Perfect for families and beginners',
-    description:
-      'An ideal introduction to Charleston fishing. Great for kids and first-timers looking for a fun half-morning on the water.',
-    longDescription:
-      'Our 4-hour family charter is designed for groups who want a fun, low-pressure day on the water without committing to a full-day adventure. We target nearshore species like red snapper, sea bass, and flounder in the beautiful Charleston coastal waters. All rods, bait, tackle, and fishing licenses are included. Our captains are patient and experienced with children and beginners.',
-    duration: '4 Hours',
-    hours: 4,
-    category: 'family',
-    priceFrom: 450,
-    maxPassengers: 6,
-    includes: [
-      'Rods, reels, and tackle',
-      'Live and cut bait',
-      'Fishing licenses',
-      'Ice and fish cleaning',
-      'Life jackets',
-    ],
-    targetSpecies: ['Red Snapper', 'Sea Bass', 'Flounder', 'Spanish Mackerel'],
-    image:
-      'https://images.pexels.com/photos/1618606/pexels-photo-1618606.jpeg?auto=compress&cs=tinysrgb&w=800',
-    boatClassIndex: 0 as const,
-    metaTitle: '4-Hour Family Fun Fishing Charter | Fish The Wahoo Charleston',
-    metaDescription:
-      'Book a 4-hour family fishing charter out of Charleston, SC. Perfect for kids and beginners. All gear included. Call (843) 568-3222.',
-  },
-  {
     slug: '6-hour-family-fun-in-the-sun-charter',
     name: '6-Hour Family Fun In The Sun Charter',
     tagline: 'More time on the water, more fish in the cooler',
@@ -63,7 +35,7 @@ export const packages: PackageData[] = [
     duration: '6 Hours',
     hours: 6,
     category: 'family',
-    priceFrom: 650,
+    priceFrom: 2800,
     maxPassengers: 6,
     includes: [
       'Rods, reels, and tackle',
@@ -81,34 +53,6 @@ export const packages: PackageData[] = [
       'Six hours of nearshore fishing out of Charleston, SC. Family-friendly, all gear included. Book your spot today.',
   },
   {
-    slug: '4-hour-near-shore-fishing',
-    name: '4-Hour Near Shore Fishing',
-    tagline: 'Inshore action close to home',
-    description:
-      'Targeted nearshore fishing for anglers who want to catch fish fast. Focus on structure fishing and bottom species.',
-    longDescription:
-      'Our nearshore 4-hour trips target the productive reefs and ledges just off the Charleston coast. We focus on bottom fishing for snapper, grouper, and sea bass. This is a fast-paced, action-packed trip ideal for anglers who want to maximize their bite time.',
-    duration: '4 Hours',
-    hours: 4,
-    category: 'near-shore',
-    priceFrom: 500,
-    maxPassengers: 6,
-    includes: [
-      'Rods, reels, and tackle',
-      'Live and cut bait',
-      'Fishing licenses',
-      'Ice and fish cleaning',
-      'Life jackets',
-    ],
-    targetSpecies: ['Red Snapper', 'Grouper', 'Sea Bass', 'Amberjack'],
-    image:
-      'https://images.pexels.com/photos/1586880/pexels-photo-1586880.jpeg?auto=compress&cs=tinysrgb&w=800',
-    boatClassIndex: 0 as const,
-    metaTitle: '4-Hour Nearshore Fishing Charter Charleston SC | Fish The Wahoo',
-    metaDescription:
-      'Fast-paced nearshore fishing trips out of Charleston, SC. Targeting snapper, grouper, and sea bass. All tackle included.',
-  },
-  {
     slug: '6-hour-near-shore-fishing',
     name: '6-Hour Near Shore Fishing',
     tagline: 'Extended nearshore bottom fishing',
@@ -119,7 +63,7 @@ export const packages: PackageData[] = [
     duration: '6 Hours',
     hours: 6,
     category: 'near-shore',
-    priceFrom: 750,
+    priceFrom: 2800,
     maxPassengers: 6,
     includes: [
       'Rods, reels, and tackle',
@@ -137,32 +81,32 @@ export const packages: PackageData[] = [
       'Six-hour nearshore fishing charters from Charleston, SC. Extended action targeting snapper, grouper, and more.',
   },
   {
-    slug: '6-hour-deep-sea-fishing',
-    name: '6-Hour Deep Sea Fishing',
-    tagline: 'Your first taste of the deep blue',
+    slug: '6-hour-bottom-fishing',
+    name: '6-Hour Bottom Fishing',
+    tagline: 'Snapper, grouper, and sea bass on the reefs and ledges',
     description:
-      'Head offshore in search of mahi-mahi, wahoo, and more. Six hours gives you enough time to reach productive deep water.',
+      'Six hours working the productive reefs and ledges off Charleston. Bottom fishing only — offshore runs need a longer day.',
     longDescription:
-      'Our 6-hour deep sea trips take you out to the productive Gulf Stream waters in search of pelagic species. Mahi-mahi, wahoo, and tuna are common targets. Your captain will run to the fish and stay on them. This is our entry-level offshore experience and a great introduction to deep sea fishing.',
+      'A 6-hour trip is our bottom fishing option. Six hours is a tight window, so the offshore run to the Gulf Stream isn\'t possible — we stay on the nearshore reefs and ledges where the bite is consistent and the action is fast. Expect snapper, grouper, sea bass, amberjack, and the occasional king mackerel depending on the season. If you want to target mahi, wahoo, tuna, or billfish, book a 9- or 12-hour trip so we have time to run offshore and fish.',
     duration: '6 Hours',
     hours: 6,
-    category: 'deep-sea',
-    priceFrom: 1200,
+    category: 'near-shore',
+    priceFrom: 2800,
     maxPassengers: 6,
     includes: [
-      'Premium rods, reels, and tackle',
-      'Live and rigged baits',
+      'Rods, reels, and tackle',
+      'Live and cut bait',
       'Fishing licenses',
       'Ice and fish cleaning',
       'Life jackets and safety gear',
     ],
-    targetSpecies: ['Mahi-Mahi', 'Wahoo', 'Tuna', 'King Mackerel'],
+    targetSpecies: ['Red Snapper', 'Grouper', 'Sea Bass', 'Amberjack', 'King Mackerel'],
     image:
       'https://images.pexels.com/photos/3361691/pexels-photo-3361691.jpeg?auto=compress&cs=tinysrgb&w=800',
-    boatClassIndex: 1 as const,
-    metaTitle: '6-Hour Deep Sea Fishing Charter Charleston SC | Fish The Wahoo',
+    boatClassIndex: 0 as const,
+    metaTitle: '6-Hour Bottom Fishing Charter Charleston SC | Fish The Wahoo',
     metaDescription:
-      'Six-hour deep sea fishing trips out of Charleston, SC. Target mahi-mahi, wahoo, and tuna offshore. Book today.',
+      'Six-hour bottom fishing charters out of Charleston, SC. Nearshore reefs and ledges for snapper, grouper, and sea bass. Book today.',
   },
   {
     slug: '9-hour-deep-sea-fishing',
@@ -175,7 +119,7 @@ export const packages: PackageData[] = [
     duration: '9 Hours',
     hours: 9,
     category: 'deep-sea',
-    priceFrom: 1800,
+    priceFrom: 3100,
     maxPassengers: 6,
     includes: [
       'Premium rods, reels, and tackle',
@@ -204,7 +148,7 @@ export const packages: PackageData[] = [
     duration: '12 Hours',
     hours: 12,
     category: 'deep-sea',
-    priceFrom: 2400,
+    priceFrom: 3400,
     maxPassengers: 6,
     includes: [
       'Premium rods, reels, and tackle',
@@ -231,37 +175,6 @@ export const packages: PackageData[] = [
       'Full-day 12-hour deep sea fishing charters from Charleston, SC. Targeting blue marlin, mahi, wahoo, and tuna. The ultimate offshore experience.',
   },
   {
-    slug: 'overnight-gulf-stream-deep-sea-fishing',
-    name: 'Overnight Gulf Stream Deep Sea Fishing',
-    tagline: 'Chase the Gulf Stream through the night',
-    description:
-      'Our most epic adventure. Run out to the Gulf Stream at dusk, fish through the night, and return at dawn.',
-    longDescription:
-      'The overnight Gulf Stream trip is the most ambitious fishing adventure we offer. You\'ll depart in the late afternoon, run out to the Gulf Stream, and spend the night fishing some of the most productive blue water in the Atlantic. Swordfish are a primary target on the overnight drift. By morning you\'ll have experienced something truly special.',
-    duration: 'Overnight',
-    hours: 18,
-    category: 'deep-sea',
-    priceFrom: 4200,
-    maxPassengers: 4,
-    includes: [
-      'Premium rods, reels, and tackle',
-      'Live and rigged baits',
-      'Fishing licenses',
-      'Ice and fish cleaning',
-      'Life jackets and safety gear',
-      'Dinner, overnight snacks, and breakfast',
-      'Beverages',
-      'Sleeping accommodations on board',
-    ],
-    targetSpecies: ['Swordfish', 'Blue Marlin', 'Wahoo', 'Mahi-Mahi', 'Yellowfin Tuna'],
-    image:
-      'https://images.pexels.com/photos/2131967/pexels-photo-2131967.jpeg?auto=compress&cs=tinysrgb&w=800',
-    boatClassIndex: 2 as const,
-    metaTitle: 'Overnight Gulf Stream Deep Sea Fishing | Fish The Wahoo Charleston',
-    metaDescription:
-      'Overnight swordfish and big game fishing trips to the Gulf Stream from Charleston, SC. The most epic fishing adventure on the East Coast.',
-  },
-  {
     slug: 'harbor-cruises',
     name: 'Harbor Cruises',
     tagline: 'Scenic Charleston from the water',
@@ -272,7 +185,7 @@ export const packages: PackageData[] = [
     duration: '2-4 Hours',
     hours: 3,
     category: 'cruise',
-    priceFrom: 350,
+    priceFrom: 750,
     maxPassengers: 12,
     includes: [
       'Private boat and captain',

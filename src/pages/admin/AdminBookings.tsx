@@ -219,8 +219,10 @@ export default function AdminBookings() {
                   { label: 'Email', value: selectedBooking.customer_email },
                   { label: 'Phone', value: selectedBooking.customer_phone || 'N/A' },
                   { label: 'Party Size', value: String(selectedBooking.party_size) },
-                  { label: 'Date', value: formatDate(selectedBooking.booking_date) },
+                  { label: 'Preferred Date', value: formatDate(selectedBooking.booking_date) },
+                  { label: 'Backup Date', value: selectedBooking.backup_date ? formatDate(selectedBooking.backup_date) : '—' },
                   { label: 'Duration', value: selectedBooking.trip_durations?.name || '' },
+                  { label: 'Departure', value: selectedBooking.time_slot === '06:00' ? '6:00 AM' : selectedBooking.time_slot === '12:00' ? '12:00 PM' : '—' },
                   { label: 'Vessel Class', value: selectedBooking.boat_classes?.name || '' },
                   { label: 'Deposit', value: formatCents(selectedBooking.deposit_amount) },
                 ].map(({ label, value }) => (
@@ -230,6 +232,15 @@ export default function AdminBookings() {
                   </div>
                 ))}
               </div>
+
+              {selectedBooking.backup_date_notes && (
+                <div>
+                  <span className="text-slate-500 text-xs uppercase tracking-widest">
+                    Flex Notes
+                  </span>
+                  <p className="text-slate-300 text-sm mt-1">{selectedBooking.backup_date_notes}</p>
+                </div>
+              )}
 
               {selectedBooking.special_requests && (
                 <div>
