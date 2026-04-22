@@ -5,11 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:redirects && npm run build:sitemap && vite build",
+    "build:redirects": "tsx scripts/build-redirects.ts",
+    "build:sitemap": "tsx scripts/build-sitemap.ts",
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
-    "import-wp": "npx tsx scripts/import-wp-posts.ts"
+    "import-wp": "tsx scripts/import-wp-posts.ts"
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^6.1.0",

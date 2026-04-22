@@ -1,4 +1,6 @@
-# WooCommerce replacements
+# Generated from src/data/redirects.ts by scripts/build-redirects.ts
+# Do not edit by hand. Run `npm run build:redirects`.
+
 /shop /book 301
 /checkout /book 301
 /cart /book 301
@@ -6,33 +8,17 @@
 /thank-you /book 301
 /success /book 301
 /fishing-reservation /book 301
-
-# Booking aliases
 /book-your-trip /book 301
 /manual-booking /book 301
-
-# Check aliases
 /check-my-charter /check 301
-
-# About aliases
 /meet-the-crew /about 301
-
-# Contact aliases
 /contact-us /contact 301
+/packages-and-prices /packages 301
 /contact-us/privacy-policy /privacy-policy 301
 /contact-us/terms-of-use /terms-of-use 301
-
-# Packages
-/packages-and-prices /packages 301
-
-# Daily catch
+/category/general /blog 301
 /captain-daily-report /daily-catch 301
 /charter-survey /contact 301
-
-# Blog category
-/category/general /blog 301
-
-# Species legacy flat URLs
 /blue-marlin-fishing /species/blue-marlin 301
 /white-marlin-fishing /species/white-marlin 301
 /dolphin-fishing /species/dolphin 301
@@ -45,8 +31,6 @@
 /swordfish-fishing /species/swordfish 301
 /shark-fishing /species/shark 301
 /wahoo-fishing /species/wahoo 301
-
-# Cryptic date-slug daily catch posts
 /7716 /daily-catch 301
 /82016 /daily-catch 301
 /125-1221 /daily-catch 301
