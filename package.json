@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
-    "import-wp": "tsx scripts/import-wp-posts.ts"
+    "import-wp": "tsx scripts/import-wp-posts.ts",
+    "import-wp-scrape": "tsx scripts/import-wp-scrape.ts"
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^6.1.0",
