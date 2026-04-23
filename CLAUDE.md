@@ -88,7 +88,7 @@ Dark nautical theme defined in [tailwind.config.js](tailwind.config.js): colors 
 
 ## Deploy
 
-Cloudflare Pages. Build command `npm install && npm run build`, output directory `dist`. Required env vars on the CF Pages project: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`. Supabase credentials for local dev live in [.env](.env) (gitignored).
+Cloudflare Pages. Build command `npm install && npm run build`, output directory `dist`. Required env vars on the CF Pages project: `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` (the new `sb_publishable_...` key, not the legacy anon JWT). Supabase credentials for local dev live in [.env](.env) (gitignored).
 
 ## Gotchas
 

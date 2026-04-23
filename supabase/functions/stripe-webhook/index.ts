@@ -19,7 +19,9 @@ import {
  *
  * Env required:
  *   STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, SUPABASE_URL,
- *   SUPABASE_SERVICE_ROLE_KEY, POSTMARK_SERVER_TOKEN, POSTMARK_FROM_EMAIL,
+ *   SUPABASE_SERVICE_ROLE_KEY (auto-injected by Supabase; holds the
+ *   active sb_secret_... value after key rotation),
+ *   POSTMARK_SERVER_TOKEN, POSTMARK_FROM_EMAIL,
  *   ADMIN_EMAILS (comma-separated), GBP_REVIEW_URL, PUBLIC_SITE_URL.
  */
 

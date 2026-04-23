@@ -24,14 +24,14 @@ Deno.serve(async (req: Request) => {
   if (!authHeader) return json({ error: 'Unauthorized' }, 401);
 
   const supabaseUrl = Deno.env.get('SUPABASE_URL');
-  const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
-  if (!supabaseUrl || !supabaseServiceKey) return json({ error: 'Supabase env not set' }, 500);
+  const supabaseSecretKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+  if (!supabaseUrl || !supabaseSecretKey) return json({ error: 'Supabase env not set' }, 500);
 
   try {
     const { bookingId } = await req.json();
     if (!bookingId) return json({ error: 'Missing bookingId' }, 400);
 
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    const supabase = createClient(supabaseUrl, supabaseSecretKey);
 
     const { data: booking, error } = await supabase
       .from('bookings')

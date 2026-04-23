@@ -230,16 +230,12 @@ export default function BookCalendar() {
     setInitLoading(true);
     setPaymentInitError(null);
     try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
-      const supabaseAnon = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
-      const res = await fetch(`${supabaseUrl}/functions/v1/create-payment-intent`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${supabaseAnon}`,
-          apikey: supabaseAnon,
-        },
-        body: JSON.stringify({
+      const { data, error } = await supabase.functions.invoke<{
+        clientSecret: string;
+        referenceCode: string;
+        depositAmount: number;
+      }>('create-payment-intent', {
+        body: {
           boatClassId: form.classId,
           tripDurationId: form.durationId,
           bookingDate: toISO(form.bookingDate),
@@ -252,10 +248,9 @@ export default function BookCalendar() {
           email: form.email,
           phone: form.phone,
           specialRequests: form.specialRequests,
-        }),
+        },
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? 'Could not start payment');
+      if (error || !data) throw new Error(error?.message ?? 'Could not start payment');
       setClientSecret(data.clientSecret);
       setReferenceCode(data.referenceCode);
       setDepositAmount(data.depositAmount);

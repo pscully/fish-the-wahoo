@@ -25,8 +25,8 @@ Deno.serve(async (req: Request) => {
   if (!stripeKey) return json({ error: 'Stripe is not configured.' }, 500);
 
   const supabaseUrl = Deno.env.get('SUPABASE_URL');
-  const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
-  if (!supabaseUrl || !supabaseServiceKey) return json({ error: 'Supabase env not set' }, 500);
+  const supabaseSecretKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+  if (!supabaseUrl || !supabaseSecretKey) return json({ error: 'Supabase env not set' }, 500);
 
   try {
     const body = await req.json();
@@ -75,7 +75,7 @@ Deno.serve(async (req: Request) => {
 
     if (errors.length) return json({ error: errors.join('; ') }, 400);
 
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    const supabase = createClient(supabaseUrl, supabaseSecretKey);
 
     // --- Resolve pricing (server-side, never trust client) ----------------
     const { data: pricing, error: pricingError } = await supabase
