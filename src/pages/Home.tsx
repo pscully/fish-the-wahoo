@@ -5,10 +5,16 @@ import PackagesGrid from '../components/sections/PackagesGrid';
 import GallerySection from '../components/sections/GallerySection';
 import CTABanner from '../components/sections/CTABanner';
 import ReviewsSection from '../components/sections/ReviewsSection';
+import SEO from '../components/seo/SEO';
 
 export default function Home() {
   return (
     <>
+      <SEO
+        title="Charleston Deep Sea Fishing Charters"
+        description="Book Charleston's premier deep sea fishing charter. Half-day, three-quarter-day, and full-day offshore trips for mahi, marlin, wahoo, and tuna aboard 15+ sportfishing boats."
+        canonicalPath="/"
+      />
       <Hero
         bgImage="/images/fishing-charters-hero-home.webp"
         badge="The Premier Deep Sea Experience"
