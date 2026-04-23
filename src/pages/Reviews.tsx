@@ -54,7 +54,7 @@ export default function Reviews() {
       <section className="pt-32 pb-8 bg-nautical-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-label">Customer Reviews</span>
-          <h1 className="text-5xl md:text-6xl text-white uppercase mb-6">What They Say</h1>
+          <h1 className="text-5xl md:text-6xl text-white uppercase mb-6">People Are Talking</h1>
           <div className="section-divider" />
           <div className="flex items-center justify-center gap-2 mt-4">
             {[1,2,3,4,5].map((i) => (
@@ -66,7 +66,7 @@ export default function Reviews() {
         </div>
       </section>
 
-      <ReviewsSection reviews={reviews} title="What Our Anglers Say" />
+      <ReviewsSection reviews={reviews} showHeader={false} />
 
       <CTABanner
         headline="Ready to Create Your Own Story?"

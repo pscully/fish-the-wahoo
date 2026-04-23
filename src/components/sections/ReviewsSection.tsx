@@ -29,20 +29,24 @@ const defaultReviews: Review[] = [
 interface ReviewsSectionProps {
   reviews?: Review[];
   title?: string;
+  showHeader?: boolean;
 }
 
 export default function ReviewsSection({
   reviews = defaultReviews,
   title = "What Our Anglers Say",
+  showHeader = true,
 }: ReviewsSectionProps) {
   return (
     <section id="reviews" className="py-24 bg-nautical-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <span className="section-label">Testimonials</span>
-          <h2 className="text-4xl text-white mb-4 uppercase">{title}</h2>
-          <div className="section-divider" />
-        </div>
+        {showHeader && (
+          <div className="text-center mb-16">
+            <span className="section-label">Testimonials</span>
+            <h2 className="text-4xl text-white mb-4 uppercase">{title}</h2>
+            <div className="section-divider" />
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {reviews.map((review, i) => (
