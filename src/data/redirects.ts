@@ -30,6 +30,10 @@ export const redirects: Record<string, string> = {
   '/packages/overnight-gulf-stream-deep-sea-fishing': '/packages',
   '/packages/6-hour-deep-sea-fishing': '/packages/6-hour-bottom-fishing',
 
+  // Harbor cruises hidden for now
+  '/harbor-cruises': '/packages',
+  '/packages/harbor-cruises': '/packages',
+
   // Contact aliases
   '/contact-us': '/contact',
 

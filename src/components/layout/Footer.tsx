@@ -14,7 +14,6 @@ const packageLinks = [
   { to: '/packages/6-hour-bottom-fishing', label: '6-Hour Bottom Fishing' },
   { to: '/packages/9-hour-deep-sea-fishing', label: '9-Hour Deep Sea' },
   { to: '/packages/12-hour-deep-sea-fishing', label: '12-Hour Deep Sea' },
-  { to: '/packages/harbor-cruises', label: 'Harbor Cruises' },
 ];
 
 export default function Footer() {

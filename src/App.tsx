@@ -103,21 +103,6 @@ export default function App() {
               />
             }
           />
-          <Route
-            path="/harbor-cruises"
-            element={
-              <CategoryLanding
-                category="cruise"
-                badge="Harbor Cruises"
-                headline={<>Charleston <span className="text-accent-orange">Harbor Cruises</span></>}
-                subheadline="Private harbor cruise charters on beautiful Charleston Harbor. Dolphins, Fort Sumter, and the Charleston skyline from the water."
-                metaTitle="Harbor Cruise Charters Charleston SC | Fish The Wahoo"
-                metaDescription="Private harbor cruise charters in Charleston, SC. See Fort Sumter, dolphins, and the Charleston skyline. Book a private boat experience."
-                canonicalPath="/harbor-cruises/"
-              />
-            }
-          />
-
           {/* Species */}
           <Route path="/species" element={<Species />} />
           <Route path="/species/:slug" element={<SpeciesDetail />} />

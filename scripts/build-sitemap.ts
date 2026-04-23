@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import matter from 'gray-matter';
-import { packages } from '../src/content/packages';
+import { visiblePackages } from '../src/content/packages';
 import { species } from '../src/content/species';
 import { boats } from '../src/content/boats';
 
@@ -17,7 +17,6 @@ const staticPaths = [
   '/deep-sea-fishing',
   '/inshore-fishing-charters',
   '/fishing-charters-in-charleston-sc',
-  '/harbor-cruises',
   '/species',
   '/captains',
   '/tour-boats',
@@ -56,7 +55,7 @@ function readBlogEntries(): Entry[] {
 
 const entries: Entry[] = [
   ...staticPaths.map((p) => ({ loc: p })),
-  ...packages.map((p) => ({ loc: `/packages/${p.slug}` })),
+  ...visiblePackages.map((p) => ({ loc: `/packages/${p.slug}` })),
   ...species.map((s) => ({ loc: `/species/${s.slug}` })),
   ...boats.map((b) => ({ loc: `/tour-boats/${b.slug}` })),
   ...readBlogEntries(),

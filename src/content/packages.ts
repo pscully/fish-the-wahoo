@@ -21,6 +21,8 @@ export interface PackageData {
   boatClassIndex: 0 | 1 | 2;
   metaTitle: string;
   metaDescription: string;
+  /** Hide from public listings (grid, category pages, sitemap). Detail route still resolves. */
+  hidden?: boolean;
 }
 
 export const packages: PackageData[] = [
@@ -200,13 +202,17 @@ export const packages: PackageData[] = [
     metaTitle: 'Charleston Harbor Cruise Charters | Fish The Wahoo',
     metaDescription:
       'Private harbor cruise charters in Charleston, SC. See Fort Sumter, dolphins, and the Charleston skyline from the water.',
+    hidden: true,
   },
 ];
+
+/** Packages shown in public grids/category pages/sitemap. */
+export const visiblePackages: PackageData[] = packages.filter((p) => !p.hidden);
 
 export function getPackageBySlug(slug: string): PackageData | undefined {
   return packages.find((p) => p.slug === slug);
 }
 
 export function getPackagesByCategory(category: PackageData['category']): PackageData[] {
-  return packages.filter((p) => p.category === category);
+  return visiblePackages.filter((p) => p.category === category);
 }
