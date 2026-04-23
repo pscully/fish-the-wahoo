@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import PublicLayout from './components/layout/PublicLayout';
 import ScrollToTop from './components/layout/ScrollToTop';
+import TrailingSlashNormalizer from './components/layout/TrailingSlashNormalizer';
 
 // Existing pages
 import Home from './pages/Home';
@@ -44,6 +45,7 @@ import AdminAvailability from './pages/admin/AdminAvailability';
 export default function App() {
   return (
     <BrowserRouter>
+      <TrailingSlashNormalizer />
       <ScrollToTop />
       <Routes>
         {/* Public routes with header/footer */}

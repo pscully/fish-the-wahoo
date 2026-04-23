@@ -37,6 +37,10 @@ const staticPaths = [
 
 type Entry = { loc: string; lastmod?: string };
 
+function withTrailingSlash(p: string): string {
+  return p.endsWith('/') ? p : p + '/';
+}
+
 function readBlogEntries(): Entry[] {
   let files: string[] = [];
   try {
@@ -49,15 +53,15 @@ function readBlogEntries(): Entry[] {
     const { data } = matter(raw);
     const slug = data.slug ?? file.replace(/\.md$/, '');
     const date = typeof data.date === 'string' ? data.date : undefined;
-    return { loc: `/blog/${slug}`, lastmod: date };
+    return { loc: `/blog/${slug}/`, lastmod: date };
   });
 }
 
 const entries: Entry[] = [
-  ...staticPaths.map((p) => ({ loc: p })),
-  ...visiblePackages.map((p) => ({ loc: `/packages/${p.slug}` })),
-  ...species.map((s) => ({ loc: `/species/${s.slug}` })),
-  ...boats.map((b) => ({ loc: `/tour-boats/${b.slug}` })),
+  ...staticPaths.map((p) => ({ loc: withTrailingSlash(p) })),
+  ...visiblePackages.map((p) => ({ loc: `/packages/${p.slug}/` })),
+  ...species.map((s) => ({ loc: `/species/${s.slug}/` })),
+  ...boats.map((b) => ({ loc: `/tour-boats/${b.slug}/` })),
   ...readBlogEntries(),
 ];
 
