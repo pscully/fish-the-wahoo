@@ -37,6 +37,7 @@ import AdminLogin from './pages/admin/AdminLogin';
 import AdminLayout from './components/layout/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminBookings from './pages/admin/AdminBookings';
+import AdminContacts from './pages/admin/AdminContacts';
 import AdminCaptains from './pages/admin/AdminCaptains';
 import AdminAvailability from './pages/admin/AdminAvailability';
 
@@ -168,6 +169,7 @@ export default function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="bookings" element={<AdminBookings />} />
+          <Route path="contacts" element={<AdminContacts />} />
           <Route path="captains" element={<AdminCaptains />} />
           <Route path="availability" element={<AdminAvailability />} />
         </Route>

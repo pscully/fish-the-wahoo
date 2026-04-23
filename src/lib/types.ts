@@ -103,6 +103,18 @@ export interface BookingWithRelations extends Booking {
   boats: Boat | null;
 }
 
+export interface ContactSubmission {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  status: 'new' | 'read' | 'replied' | 'spam';
+  admin_notes: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export type BookingStep = 'class' | 'details' | 'info' | 'payment' | 'confirmation';
 
 export interface BookingFormData {

@@ -6,6 +6,7 @@ import {
   CalendarDays,
   Ship,
   Users,
+  Mail,
   LogOut,
   Menu,
   X,
@@ -15,6 +16,7 @@ import { supabase } from '../../lib/supabase';
 const sidebarLinks = [
   { to: '/admin', label: 'Dashboard', icon: LayoutDashboard, exact: true },
   { to: '/admin/bookings', label: 'Bookings', icon: CalendarDays, exact: false },
+  { to: '/admin/contacts', label: 'Contacts', icon: Mail, exact: false },
   { to: '/admin/captains', label: 'Captains & Boats', icon: Ship, exact: false },
   { to: '/admin/availability', label: 'Availability', icon: Users, exact: false },
 ];
