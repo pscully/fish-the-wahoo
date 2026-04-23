@@ -56,8 +56,8 @@ export default function PrivacyPolicy() {
               <h2 className="text-xl text-white uppercase mb-4">Contact</h2>
               <p>
                 Questions about this policy? Email{' '}
-                <a href="mailto:info@fishthewahoo.com" className="text-accent-orange hover:underline">
-                  info@fishthewahoo.com
+                <a href="mailto:chuck141w@yahoo.com" className="text-accent-orange hover:underline">
+                  chuck141w@yahoo.com
                 </a>
                 .
               </p>

@@ -89,11 +89,11 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-slate-400 text-sm">
                 <Phone className="w-5 h-5 text-accent-orange shrink-0" />
-                <span>(843) 568-3222</span>
+                <span>(843) 312-2981</span>
               </li>
               <li className="flex items-center gap-3 text-slate-400 text-sm">
                 <Mail className="w-5 h-5 text-accent-orange shrink-0" />
-                <span>info@fishthewahoo.com</span>
+                <span>chuck141w@yahoo.com</span>
               </li>
               <li className="text-slate-500 text-xs pt-2 leading-relaxed">
                 Charleston, SC. Our boats dock at multiple marinas around the Charleston area —

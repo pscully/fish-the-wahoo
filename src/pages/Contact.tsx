@@ -58,14 +58,14 @@ export default function Contact() {
                   {
                     icon: Phone,
                     label: 'Phone',
-                    value: '(843) 568-3222',
-                    href: 'tel:8435683222',
+                    value: '(843) 312-2981',
+                    href: 'tel:8433122981',
                   },
                   {
                     icon: Mail,
                     label: 'Email',
-                    value: 'info@fishthewahoo.com',
-                    href: 'mailto:info@fishthewahoo.com',
+                    value: 'chuck141w@yahoo.com',
+                    href: 'mailto:chuck141w@yahoo.com',
                   },
                   {
                     icon: MapPin,

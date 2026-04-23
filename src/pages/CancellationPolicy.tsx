@@ -38,8 +38,8 @@ export default function CancellationPolicy() {
               </ul>
               <p className="mt-6 text-slate-400">
                 All cancellations must be submitted in writing to{' '}
-                <a href="mailto:info@fishthewahoo.com" className="text-accent-orange hover:underline">
-                  info@fishthewahoo.com
+                <a href="mailto:chuck141w@yahoo.com" className="text-accent-orange hover:underline">
+                  chuck141w@yahoo.com
                 </a>
                 .
               </p>

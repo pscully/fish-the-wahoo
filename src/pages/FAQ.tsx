@@ -160,8 +160,8 @@ export default function FAQ() {
             <h3 className="text-xl text-white uppercase mb-3">Still Have Questions?</h3>
             <p className="text-slate-400 text-sm mb-6">
               Give us a call at{' '}
-              <a href="tel:8435683222" className="text-accent-orange hover:underline">
-                (843) 568-3222
+              <a href="tel:8433122981" className="text-accent-orange hover:underline">
+                (843) 312-2981
               </a>{' '}
               or book your charter and add any questions in the special requests field.
             </p>

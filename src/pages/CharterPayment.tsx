@@ -22,8 +22,8 @@ export default function CharterPayment() {
           <div className="metallic-card rounded-xl p-8 text-left">
             <p className="text-slate-400 text-sm text-center">
               Payment link details loading... If you have questions, call{' '}
-              <a href="tel:8435683222" className="text-accent-orange hover:underline">
-                (843) 568-3222
+              <a href="tel:8433122981" className="text-accent-orange hover:underline">
+                (843) 312-2981
               </a>
               .
             </p>
