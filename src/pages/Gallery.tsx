@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import SEO from '../components/seo/SEO';
-import GallerySection from '../components/sections/GallerySection';
+import GalleryGrid from '../components/gallery/GalleryGrid';
+import Lightbox from '../components/gallery/Lightbox';
 import CTABanner from '../components/sections/CTABanner';
 import { galleryImages } from '../content/gallery';
 
 export default function Gallery() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
   return (
     <>
       <SEO
@@ -12,7 +16,7 @@ export default function Gallery() {
         canonicalPath="/gallery/"
       />
 
-      <section className="pt-32 pb-8 bg-nautical-dark">
+      <section className="pt-32 pb-10 bg-nautical-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-label">Photos</span>
           <h1 className="text-5xl md:text-6xl text-white uppercase mb-6">
@@ -26,7 +30,18 @@ export default function Gallery() {
         </div>
       </section>
 
-      <GallerySection images={galleryImages} showViewAll={false} />
+      <section className="pb-24 bg-nautical-dark">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <GalleryGrid images={galleryImages} onImageClick={setActiveIndex} />
+        </div>
+      </section>
+
+      <Lightbox
+        images={galleryImages}
+        index={activeIndex}
+        onClose={() => setActiveIndex(null)}
+        onNavigate={setActiveIndex}
+      />
 
       <CTABanner />
     </>

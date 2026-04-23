@@ -1,16 +1,8 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
-import { type GalleryImage, previewImages } from '../../content/gallery';
+import GalleryGrid from '../gallery/GalleryGrid';
+import { previewImages } from '../../content/gallery';
 
-interface GallerySectionProps {
-  images?: GalleryImage[];
-  showViewAll?: boolean;
-}
-
-export default function GallerySection({
-  images = previewImages,
-  showViewAll = true,
-}: GallerySectionProps) {
+export default function GallerySection() {
   return (
     <section id="gallery" className="py-24 bg-nautical-blue">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,41 +18,13 @@ export default function GallerySection({
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[250px]">
-          {images.map((img, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className={`relative overflow-hidden rounded-xl group cursor-pointer ${
-                img.size === 'large'
-                  ? 'row-span-2 col-span-2'
-                  : img.size === 'medium'
-                  ? 'col-span-2'
-                  : ''
-              }`}
-            >
-              <img
-                src={img.src}
-                alt={img.alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-nautical-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <p className="text-white font-bold uppercase tracking-widest text-sm">{img.alt}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <GalleryGrid images={previewImages} />
 
-        {showViewAll && (
-          <div className="mt-16 text-center">
-            <Link to="/gallery" className="btn-outline">
-              View Full Gallery
-            </Link>
-          </div>
-        )}
+        <div className="mt-16 text-center">
+          <Link to="/gallery" className="btn-outline">
+            View Full Gallery
+          </Link>
+        </div>
       </div>
     </section>
   );
