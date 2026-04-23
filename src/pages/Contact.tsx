@@ -1,13 +1,35 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Loader2 } from 'lucide-react';
 import SEO from '../components/seo/SEO';
+import { supabase } from '../lib/supabase';
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+    honeypot: '',
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
+    setError(null);
+    const { error: fnError } = await supabase.functions.invoke('contact-submit', {
+      body: form,
+    });
+    setSubmitting(false);
+    if (fnError) {
+      setError(
+        fnError.message ||
+          'Could not send message. Please try again or call (843) 568-3222.',
+      );
+      return;
+    }
     setSent(true);
   };
 
@@ -106,7 +128,23 @@ export default function Contact() {
               ) : (
                 <>
                   <h3 className="text-xl text-white uppercase mb-8">Send a Message</h3>
+                  {error && (
+                    <div className="mb-6 p-4 border border-red-500/40 bg-red-500/10 rounded text-red-200 text-sm">
+                      {error}
+                    </div>
+                  )}
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Honeypot — hidden from real users, catches bots */}
+                    <input
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                      value={form.honeypot}
+                      onChange={(e) => setForm({ ...form, honeypot: e.target.value })}
+                      className="sr-only absolute -left-[9999px] -top-[9999px]"
+                    />
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-white/40 text-xs font-bold uppercase tracking-widest mb-2">
@@ -156,8 +194,13 @@ export default function Contact() {
                         className="input-field resize-none"
                       />
                     </div>
-                    <button type="submit" className="btn-primary w-full py-4">
-                      Send Message
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="btn-primary w-full py-4 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
+                      {submitting ? 'Sending…' : 'Send Message'}
                     </button>
                   </form>
                 </>

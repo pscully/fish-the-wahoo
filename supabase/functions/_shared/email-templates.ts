@@ -294,3 +294,66 @@ Fish The Wahoo
 
   return { subject, html, text };
 }
+
+// ---------------------------------------------------------------------------
+// Admin contact-form submission notice
+// ---------------------------------------------------------------------------
+
+export interface ContactSubmissionContext {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
+export function contactSubmissionNotice(
+  submission: ContactSubmissionContext,
+  opts: { siteUrl: string },
+) {
+  const subject = `New contact form submission from ${submission.name}`;
+
+  const text = `
+NEW CONTACT FORM SUBMISSION
+===========================
+
+From: ${submission.name}
+Email: ${submission.email}
+Phone: ${submission.phone || '(not provided)'}
+
+MESSAGE
+${submission.message}
+
+---
+Reply directly to this email to respond, or review in the admin panel:
+${opts.siteUrl}/admin/contacts
+  `.trim();
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f6f8; margin: 0; padding: 24px;">
+  <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <div style="background: #0a192f; color: #ffffff; padding: 20px 28px;">
+      <div style="color: #fbbf24; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;">Contact Form</div>
+      <h1 style="margin: 6px 0 0 0; font-size: 20px;">New message from ${esc(submission.name)}</h1>
+    </div>
+    <div style="padding: 24px 28px; color: #1a2330; line-height: 1.5;">
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 14px;">
+        <tr><td style="padding: 4px 0; color: #64748b; width: 30%;">From</td><td style="padding: 4px 0;">${esc(submission.name)}</td></tr>
+        <tr><td style="padding: 4px 0; color: #64748b;">Email</td><td style="padding: 4px 0;"><a href="mailto:${esc(submission.email)}" style="color: #0a192f;">${esc(submission.email)}</a></td></tr>
+        <tr><td style="padding: 4px 0; color: #64748b;">Phone</td><td style="padding: 4px 0;">${esc(submission.phone || '(not provided)')}</td></tr>
+      </table>
+      <h2 style="font-size: 13px; color: #64748b; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 8px 0;">Message</h2>
+      <p style="background: #fff7ed; border-left: 3px solid #f97316; padding: 12px 16px; margin: 0 0 18px 0; font-size: 14px; white-space: pre-wrap;">${esc(submission.message)}</p>
+      <p style="font-size: 13px; color: #64748b; margin: 18px 0 12px 0;">Reply directly to this email to respond — it will go to ${esc(submission.email)}.</p>
+      <p style="margin: 20px 0 0 0;">
+        <a href="${esc(opts.siteUrl)}/admin/contacts" style="display: inline-block; background: #f97316; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; font-size: 14px;">Open admin inbox</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
+  `.trim();
+
+  return { subject, html, text };
+}
