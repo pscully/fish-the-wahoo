@@ -21,7 +21,7 @@ export default function Hero({
   return (
     <section
       className={`relative flex items-center justify-center overflow-hidden ${
-        fullscreen ? 'min-h-screen' : 'min-h-[60vh]'
+        fullscreen ? 'min-h-screen' : 'min-h-[60vh] pt-28 md:pt-32 pb-16'
       }`}
     >
       <div className="absolute inset-0 z-0">
