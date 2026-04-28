@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ChevronRight, Ruler, Users, Check } from 'lucide-react';
+import { ChevronRight, Ruler, Users } from 'lucide-react';
 import { formatCents } from '../../lib/format';
 import { boats } from '../../content/boats';
 
@@ -80,20 +80,6 @@ export default function PackagesPreview() {
                 </div>
 
                 <p className="text-slate-400 text-sm mb-6 leading-relaxed">{boat.description}</p>
-
-                <div className="mb-6">
-                  <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-3">
-                    Best For
-                  </p>
-                  <ul className="space-y-2">
-                    {boat.bestFor.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-slate-300 text-sm">
-                        <Check className="w-4 h-4 text-accent-orange shrink-0 mt-0.5" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
 
                 <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                   <Link

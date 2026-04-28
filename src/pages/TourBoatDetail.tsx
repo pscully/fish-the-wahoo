@@ -58,16 +58,6 @@ export default function TourBoatDetail() {
                 ))}
               </div>
 
-              <h3 className="text-xl text-white uppercase mb-6">Best For</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-12">
-                {boat.bestFor.map((item) => (
-                  <div key={item} className="flex items-center gap-2 text-slate-300 text-sm">
-                    <div className="w-1.5 h-1.5 bg-accent-orange rounded-full" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-
               <h3 className="text-xl text-white uppercase mb-6">Typical Amenities</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {boat.amenities.map((item) => (

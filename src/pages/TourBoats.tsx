@@ -74,21 +74,7 @@ export default function TourBoats() {
                     ))}
                   </div>
 
-                  <div className="mb-8">
-                    <p className="text-white text-sm font-bold uppercase tracking-widest mb-4">
-                      Best For
-                    </p>
-                    <div className="grid grid-cols-2 gap-2">
-                      {boat.bestFor.map((item) => (
-                        <div key={item} className="flex items-center gap-2 text-slate-400 text-sm">
-                          <div className="w-1 h-1 bg-accent-orange rounded-full" />
-                          {item}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-col sm:flex-row gap-4 mt-8">
                     <Link to="/book" className="btn-primary py-3 px-8">
                       Book This Class
                     </Link>

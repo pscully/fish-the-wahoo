@@ -13,7 +13,6 @@ export interface BoatData {
   startingDepositCents: number;
   image: string;
   amenities: string[];
-  bestFor: string[];
   metaTitle: string;
   metaDescription: string;
   /** Show a "Most Popular" emphasis on cards/sections for this class. */
@@ -42,12 +41,6 @@ export const boats: BoatData[] = [
       'Premium tackle',
       'Private head',
     ],
-    bestFor: [
-      'Full-day Gulf Stream runs',
-      'Trophy billfish trips',
-      'Groups wanting maximum comfort',
-      'Celebratory or corporate charters',
-    ],
     metaTitle: '60+ Foot Class Sportfisher | Fish The Wahoo Charleston',
     metaDescription:
       'What to expect from a 60+ foot class sportfisher out of Charleston, SC. Capacity, trip types, and what the class handles best.',
@@ -72,12 +65,6 @@ export const boats: BoatData[] = [
       'Outriggers',
       'Custom rods',
       'Clean head',
-    ],
-    bestFor: [
-      '3/4 day offshore trips',
-      'Full day deep sea runs',
-      'Groups prioritizing comfort',
-      'Trolling + bottom fishing combos',
     ],
     metaTitle: '53–59 Foot Class Sportfisher | Fish The Wahoo Charleston',
     metaDescription:
@@ -104,12 +91,6 @@ export const boats: BoatData[] = [
       'Live well',
       'Expert tackle',
       'Marine head',
-    ],
-    bestFor: [
-      '1/2 day bottom fishing',
-      '3/4 day offshore runs',
-      'Budget-friendly offshore trips',
-      'Small groups up to 6',
     ],
     metaTitle: '48–50 Foot Class Sportfisher | Fish The Wahoo Charleston',
     metaDescription:
