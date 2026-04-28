@@ -14,7 +14,7 @@ const faqs = [
       },
       {
         q: 'How much is the deposit?',
-        a: 'Deposits vary by boat class and trip duration, typically ranging from $500 to $900. This deposit is our captain placement fee and secures your reservation. The full charter price minus your deposit is paid directly to your captain.',
+        a: 'Deposits vary by boat class and trip duration, typically ranging from $300 to $700. This deposit is our captain placement fee and secures your reservation. The full charter price minus your deposit is paid directly to your captain.',
       },
       {
         q: 'What is your cancellation policy?',

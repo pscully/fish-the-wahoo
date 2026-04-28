@@ -37,7 +37,7 @@ export const packages: PackageData[] = [
     duration: '1/2 Day',
     hours: 6,
     category: 'near-shore',
-    priceFrom: 2800,
+    priceFrom: 3200,
     maxPassengers: 6,
     includes: [
       'Rods, reels, and tackle',
@@ -65,7 +65,7 @@ export const packages: PackageData[] = [
     duration: '3/4 Day',
     hours: 9,
     category: 'deep-sea',
-    priceFrom: 3100,
+    priceFrom: 3500,
     maxPassengers: 6,
     includes: [
       'Premium rods, reels, and tackle',
@@ -94,7 +94,7 @@ export const packages: PackageData[] = [
     duration: 'Full Day',
     hours: 12,
     category: 'deep-sea',
-    priceFrom: 3400,
+    priceFrom: 3800,
     maxPassengers: 6,
     includes: [
       'Premium rods, reels, and tackle',

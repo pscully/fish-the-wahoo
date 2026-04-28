@@ -31,7 +31,7 @@ export const boats: BoatData[] = [
     engine: 'Twin diesel',
     speed: 'Up to 32 knots',
     capacity: 6,
-    startingDepositCents: 57000,
+    startingDepositCents: 61000,
     image: '/images/fishing-charters-002.webp',
     amenities: [
       'Full AC cabin',
@@ -56,7 +56,7 @@ export const boats: BoatData[] = [
     engine: 'Twin diesel',
     speed: 'Up to 28 knots',
     capacity: 6,
-    startingDepositCents: 39000,
+    startingDepositCents: 43000,
     image: '/images/fishing-charters-001.webp',
     amenities: [
       'AC cabin',
@@ -82,7 +82,7 @@ export const boats: BoatData[] = [
     engine: 'Twin diesel',
     speed: 'Up to 25 knots',
     capacity: 6,
-    startingDepositCents: 28000,
+    startingDepositCents: 32000,
     image: '/images/fishing-charters-000.webp',
     amenities: [
       'Enclosed cabin',
