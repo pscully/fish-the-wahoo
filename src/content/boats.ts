@@ -49,7 +49,7 @@ export const boats: BoatData[] = [
     slug: 'wahoo',
     classSlug: '53-59-foot-class',
     name: 'The 53–59 Foot Class',
-    tagline: 'The comfortable workhorse class',
+    tagline: 'The comfortable workhorse',
     description:
       'The most common size we book for serious offshore days. More room and a smoother ride than the 48-50, with enough horsepower to cover water fast without paying for the flagship.',
     length: '53–59 ft',
