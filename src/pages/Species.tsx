@@ -13,7 +13,6 @@ export default function Species() {
         canonicalPath="/species/"
       />
       <Hero
-        badge="Target Species"
         headline={
           <>
             What We <span className="text-accent-orange">Catch</span>

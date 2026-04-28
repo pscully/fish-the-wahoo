@@ -8,7 +8,6 @@ import CTABanner from '../components/sections/CTABanner';
 interface CategoryConfig {
   category: PackageData['category'];
   headline: React.ReactNode;
-  badge: string;
   subheadline: string;
   metaTitle: string;
   metaDescription: string;
@@ -19,7 +18,6 @@ interface CategoryConfig {
 export default function CategoryLanding({
   category,
   headline,
-  badge,
   subheadline,
   metaTitle,
   metaDescription,
@@ -32,7 +30,6 @@ export default function CategoryLanding({
     <>
       <SEO title={metaTitle} description={metaDescription} canonicalPath={canonicalPath} />
       <Hero
-        badge={badge}
         headline={headline}
         subheadline={subheadline}
         primaryCta={{ label: 'View All Packages', to: '/packages' }}

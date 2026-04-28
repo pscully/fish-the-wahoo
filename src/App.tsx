@@ -69,7 +69,6 @@ export default function App() {
             element={
               <CategoryLanding
                 category="deep-sea"
-                badge="Offshore Fishing"
                 headline={<>Deep Sea <span className="text-accent-orange">Fishing</span></>}
                 subheadline="Head offshore to the Gulf Stream for mahi-mahi, wahoo, marlin, and tuna. Charleston's best deep sea fishing charters."
                 metaTitle="Deep Sea Fishing Charters Charleston SC | Fish The Wahoo"
@@ -83,7 +82,6 @@ export default function App() {
             element={
               <CategoryLanding
                 category="near-shore"
-                badge="Nearshore Fishing"
                 headline={<>Inshore <span className="text-accent-orange">Charters</span></>}
                 subheadline="Nearshore and inshore fishing trips targeting snapper, grouper, sea bass, and more. Great for families and first-timers."
                 metaTitle="Inshore Fishing Charters Charleston SC | Fish The Wahoo"
@@ -97,7 +95,6 @@ export default function App() {
             element={
               <CategoryLanding
                 category="deep-sea"
-                badge="Charleston, SC"
                 headline={<>Fishing Charters in <span className="text-accent-orange">Charleston, SC</span></>}
                 subheadline="Fish The Wahoo is Charleston's premier deep sea fishing charter service. One platform, 15+ boats, the perfect trip every time."
                 metaTitle="Fishing Charters in Charleston SC | Fish The Wahoo"

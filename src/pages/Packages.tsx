@@ -13,7 +13,6 @@ export default function Packages() {
       />
       <Hero
         bgImage="/images/fishing-charters-hero-home.webp"
-        badge="Choose Your Adventure"
         headline={
           <>
             Charter Packages <br />

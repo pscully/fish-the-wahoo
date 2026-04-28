@@ -17,7 +17,6 @@ export default function Home() {
       />
       <Hero
         bgImage="/images/boats-banner.jpg"
-        badge="The Premier Deep Sea Experience"
         headline={
           <>
             The Home For <span className="text-accent-orange">Deep Sea</span> Fishing{' '}

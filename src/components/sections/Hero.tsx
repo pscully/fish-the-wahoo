@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 
 interface HeroProps {
-  badge?: string;
   headline: React.ReactNode;
   subheadline?: string;
   primaryCta?: { label: string; to: string };
@@ -12,7 +11,6 @@ interface HeroProps {
 }
 
 export default function Hero({
-  badge = 'The Premier Deep Sea Experience',
   headline,
   subheadline,
   primaryCta = { label: 'Book A Trip', to: '/book' },
@@ -41,11 +39,6 @@ export default function Hero({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {badge && (
-            <span className="section-label">
-              {badge}
-            </span>
-          )}
           <h1 className="text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-[0.9] uppercase">
             {headline}
           </h1>

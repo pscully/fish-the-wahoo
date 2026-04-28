@@ -12,7 +12,6 @@ export default function TourBoats() {
         canonicalPath="/tour-boats/"
       />
       <Hero
-        badge="Boat Classes"
         headline={
           <>
             Our <span className="text-accent-orange">Boat Classes</span>
