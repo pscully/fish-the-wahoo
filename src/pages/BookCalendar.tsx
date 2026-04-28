@@ -580,9 +580,9 @@ function StepDuration({
           <span className="font-display font-bold uppercase tracking-widest text-accent-orange text-xs block mb-1">
             Heads up
           </span>
-          A 6-hour day is bottom fishing only. The offshore run to the Gulf Stream isn't
-          possible in that window — to target mahi, wahoo, tuna, or marlin book the 9-hour or
-          12-hour trip.
+          A 1/2 day trip is bottom fishing only. The offshore run to the Gulf Stream isn't
+          possible in that window — to target mahi, wahoo, tuna, or marlin book the 3/4 day or
+          full day trip.
         </div>
       )}
 

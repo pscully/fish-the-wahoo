@@ -8,7 +8,7 @@ export default function Packages() {
     <>
       <SEO
         title="Fishing Charter Packages & Pricing"
-        description="Browse all Fish The Wahoo fishing charter packages out of Charleston, SC. 6-hour bottom fishing, 9-hour and 12-hour deep sea trips, and private harbor cruises."
+        description="Browse all Fish The Wahoo fishing charter packages out of Charleston, SC. 1/2 day, 3/4 day, and full day deep sea trips."
         canonicalPath="/packages/"
       />
       <Hero
@@ -19,7 +19,7 @@ export default function Packages() {
             <span className="text-accent-orange">&amp; Pricing</span>
           </>
         }
-        subheadline="From 6-hour bottom fishing on the nearshore reefs to full-day offshore runs for marlin, mahi, and wahoo. All trips include rods, bait, tackle, and licenses."
+        subheadline="From half day bottom fishing on the nearshore reefs to full day offshore runs for marlin, mahi, and wahoo. All trips include rods, bait, tackle, and licenses."
         primaryCta={{ label: 'Book A Trip', to: '/book' }}
         fullscreen={false}
       />

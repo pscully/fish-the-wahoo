@@ -13,7 +13,7 @@ const BASE_URL = 'https://fishthewahoo.com';
 export default function SEO({ title, description, ogImage, canonicalPath }: SEOProps) {
   const fullTitle = title === BASE_TITLE ? title : `${title} | Fish The Wahoo`;
   const defaultDesc =
-    'Charleston\'s premier deep sea fishing charter service. Book a 4-12 hour offshore trip with expert captains. Mahi, marlin, wahoo, and more.';
+    'Charleston\'s premier deep sea fishing charter service. Book a 1/2 day, 3/4 day, or full day offshore trip with expert captains. Mahi, marlin, wahoo, and more.';
 
   useEffect(() => {
     document.title = fullTitle;

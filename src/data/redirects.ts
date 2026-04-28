@@ -26,9 +26,14 @@ export const redirects: Record<string, string> = {
 
   // Retired packages
   '/packages/4-hour-family-fun-in-the-sun-charter': '/packages',
+  '/packages/6-hour-family-fun-in-the-sun-charter': '/packages',
   '/packages/4-hour-near-shore-fishing': '/packages',
+  '/packages/6-hour-near-shore-fishing': '/packages/half-day-charter',
   '/packages/overnight-gulf-stream-deep-sea-fishing': '/packages',
-  '/packages/6-hour-deep-sea-fishing': '/packages/6-hour-bottom-fishing',
+  '/packages/6-hour-deep-sea-fishing': '/packages/half-day-charter',
+  '/packages/6-hour-bottom-fishing': '/packages/half-day-charter',
+  '/packages/9-hour-deep-sea-fishing': '/packages/three-quarter-day-deep-sea-fishing',
+  '/packages/12-hour-deep-sea-fishing': '/packages/full-day-deep-sea-fishing',
 
   // Harbor cruises hidden for now
   '/harbor-cruises': '/packages',

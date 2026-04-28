@@ -23,7 +23,7 @@ export const species: SpeciesData[] = [
     image:
       'https://images.pexels.com/photos/1586880/pexels-photo-1586880.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'June through September (peak)',
-    bestPackages: ['9-hour-deep-sea-fishing', '12-hour-deep-sea-fishing', 'overnight-gulf-stream-deep-sea-fishing'],
+    bestPackages: ['three-quarter-day-deep-sea-fishing', 'full-day-deep-sea-fishing', 'overnight-gulf-stream-deep-sea-fishing'],
     metaTitle: 'Blue Marlin Fishing Charleston SC | Fish The Wahoo',
     metaDescription:
       'Book a blue marlin fishing charter out of Charleston, SC. The Gulf Stream brings trophy billfish within reach during summer months.',
@@ -39,7 +39,7 @@ export const species: SpeciesData[] = [
     image:
       'https://images.pexels.com/photos/1630344/pexels-photo-1630344.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'August through October (peak)',
-    bestPackages: ['9-hour-deep-sea-fishing', '12-hour-deep-sea-fishing'],
+    bestPackages: ['three-quarter-day-deep-sea-fishing', 'full-day-deep-sea-fishing'],
     metaTitle: 'White Marlin Fishing Charleston SC | Fish The Wahoo',
     metaDescription:
       'White marlin fishing charters from Charleston, SC. Target the Atlantic\'s most athletic billfish on a Gulf Stream trip.',
@@ -55,7 +55,7 @@ export const species: SpeciesData[] = [
     image:
       'https://images.pexels.com/photos/2624849/pexels-photo-2624849.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'May through October',
-    bestPackages: ['6-hour-deep-sea-fishing', '9-hour-deep-sea-fishing', '12-hour-deep-sea-fishing'],
+    bestPackages: ['6-hour-deep-sea-fishing', 'three-quarter-day-deep-sea-fishing', 'full-day-deep-sea-fishing'],
     metaTitle: 'Mahi-Mahi Fishing Charleston SC | Fish The Wahoo',
     metaDescription:
       'Mahi-mahi fishing charters from Charleston, SC. Catch the most colorful fish in the sea on a Gulf Stream offshore trip.',
@@ -71,7 +71,7 @@ export const species: SpeciesData[] = [
     image:
       'https://images.pexels.com/photos/1172739/pexels-photo-1172739.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'Year-round (peak: October through February)',
-    bestPackages: ['9-hour-deep-sea-fishing', '12-hour-deep-sea-fishing', 'overnight-gulf-stream-deep-sea-fishing'],
+    bestPackages: ['three-quarter-day-deep-sea-fishing', 'full-day-deep-sea-fishing', 'overnight-gulf-stream-deep-sea-fishing'],
     metaTitle: 'Wahoo Fishing Charleston SC | Fish The Wahoo',
     metaDescription:
       'Wahoo fishing charters out of Charleston, SC. Target the fastest fish in the Atlantic on an offshore trip to the Gulf Stream.',
@@ -87,7 +87,7 @@ export const species: SpeciesData[] = [
     image:
       'https://images.pexels.com/photos/1393382/pexels-photo-1393382.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'April through June and September through November',
-    bestPackages: ['6-hour-near-shore-fishing', '9-hour-deep-sea-fishing', '12-hour-deep-sea-fishing'],
+    bestPackages: ['half-day-charter', 'three-quarter-day-deep-sea-fishing', 'full-day-deep-sea-fishing'],
     metaTitle: 'Grouper Fishing Charleston SC | Fish The Wahoo',
     metaDescription:
       'Grouper fishing charters out of Charleston, SC. Target gag and red grouper on the nearshore reefs and offshore ledges.',
@@ -103,7 +103,7 @@ export const species: SpeciesData[] = [
     image:
       'https://images.pexels.com/photos/3361691/pexels-photo-3361691.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'Summer months (limited federal season)',
-    bestPackages: ['4-hour-near-shore-fishing', '6-hour-near-shore-fishing', '6-hour-deep-sea-fishing'],
+    bestPackages: ['half-day-charter', 'three-quarter-day-deep-sea-fishing'],
     metaTitle: 'Red Snapper Fishing Charleston SC | Fish The Wahoo',
     metaDescription:
       'Red snapper fishing charters from Charleston, SC. One of the most prized and delicious fish on the Atlantic coast.',
@@ -119,7 +119,7 @@ export const species: SpeciesData[] = [
     image:
       'https://images.pexels.com/photos/1586880/pexels-photo-1586880.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'September through December (migration)',
-    bestPackages: ['9-hour-deep-sea-fishing', '12-hour-deep-sea-fishing'],
+    bestPackages: ['three-quarter-day-deep-sea-fishing', 'full-day-deep-sea-fishing'],
     metaTitle: 'Sailfish Fishing Charleston SC | Fish The Wahoo',
     metaDescription:
       'Sailfish fishing charters from Charleston, SC. Target the Atlantic\'s most spectacular billfish during the fall migration.',
@@ -135,7 +135,7 @@ export const species: SpeciesData[] = [
     image:
       'https://images.pexels.com/photos/1618606/pexels-photo-1618606.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'Year-round (peak: spring and fall)',
-    bestPackages: ['4-hour-family-fun-in-the-sun-charter', '4-hour-near-shore-fishing', '6-hour-near-shore-fishing'],
+    bestPackages: ['half-day-charter'],
     metaTitle: 'Sea Bass Fishing Charleston SC | Fish The Wahoo',
     metaDescription:
       'Black sea bass fishing charters from Charleston, SC. Great for families and beginners. Abundant, hard-fighting, and delicious.',
@@ -151,7 +151,7 @@ export const species: SpeciesData[] = [
     image:
       'https://images.pexels.com/photos/2131967/pexels-photo-2131967.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'Yellowfin: May-November. Bluefin: January-March.',
-    bestPackages: ['9-hour-deep-sea-fishing', '12-hour-deep-sea-fishing', 'overnight-gulf-stream-deep-sea-fishing'],
+    bestPackages: ['three-quarter-day-deep-sea-fishing', 'full-day-deep-sea-fishing', 'overnight-gulf-stream-deep-sea-fishing'],
     metaTitle: 'Tuna Fishing Charleston SC | Fish The Wahoo',
     metaDescription:
       'Yellowfin and bluefin tuna fishing charters from Charleston, SC. The pinnacle of offshore fishing in the Gulf Stream.',
@@ -183,7 +183,7 @@ export const species: SpeciesData[] = [
     image:
       'https://images.pexels.com/photos/1393382/pexels-photo-1393382.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'May through September',
-    bestPackages: ['9-hour-deep-sea-fishing', '12-hour-deep-sea-fishing'],
+    bestPackages: ['three-quarter-day-deep-sea-fishing', 'full-day-deep-sea-fishing'],
     metaTitle: 'Shark Fishing Charters Charleston SC | Fish The Wahoo',
     metaDescription:
       'Shark fishing charters from Charleston, SC. Target mako, thresher, and hammerhead sharks in the Gulf Stream.',
@@ -199,7 +199,7 @@ export const species: SpeciesData[] = [
     image:
       'https://images.pexels.com/photos/2624849/pexels-photo-2624849.jpeg?auto=compress&cs=tinysrgb&w=800',
     seasons: 'May through October',
-    bestPackages: ['6-hour-deep-sea-fishing', '9-hour-deep-sea-fishing', '12-hour-deep-sea-fishing'],
+    bestPackages: ['6-hour-deep-sea-fishing', 'three-quarter-day-deep-sea-fishing', 'full-day-deep-sea-fishing'],
     metaTitle: 'Dolphin (Mahi-Mahi) Fishing Charleston SC | Fish The Wahoo',
     metaDescription:
       'Dolphin/mahi-mahi fishing charters from Charleston, SC. The most popular offshore target on the East Coast.',

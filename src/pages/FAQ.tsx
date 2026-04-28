@@ -31,7 +31,7 @@ const faqs = [
     questions: [
       {
         q: 'What are the trip duration options?',
-        a: 'We offer trips ranging from 4-hour family trips to 12-hour full-day offshore adventures and overnight Gulf Stream expeditions. Longer trips allow you to venture further offshore for bigger game fish.',
+        a: 'We offer 1/2 day, 3/4 day, and full day charters. Half day trips stay nearshore for bottom fishing; 3/4 day and full day trips run offshore for big game like mahi, wahoo, tuna, and marlin.',
       },
       {
         q: 'What fish will we catch?',

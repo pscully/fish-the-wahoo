@@ -6,7 +6,7 @@ export interface PackageData {
   longDescription: string;
   duration: string;
   hours: number;
-  category: 'family' | 'near-shore' | 'deep-sea' | 'cruise';
+  category: 'near-shore' | 'deep-sea' | 'cruise';
   priceFrom: number;
   maxPassengers: number;
   includes: string[];
@@ -27,70 +27,14 @@ export interface PackageData {
 
 export const packages: PackageData[] = [
   {
-    slug: '6-hour-family-fun-in-the-sun-charter',
-    name: '6-Hour Family Fun In The Sun Charter',
-    tagline: 'More time on the water, more fish in the cooler',
+    slug: 'half-day-charter',
+    name: '1/2 Day Charter',
+    tagline: 'Half day on the water, half day in Charleston',
     description:
-      'Six hours of nearshore action targeting a wide variety of coastal species. Great value for families who want a full morning adventure.',
+      'A half day trip out of Charleston. Pick a 6am or noon departure and still have time left in your day.',
     longDescription:
-      'Our 6-hour family charter gives you more time to explore Charleston\'s productive nearshore fishing grounds. You\'ll target a wide variety of species including red snapper, grouper, sea bass, and more. This trip departs early morning and returns before lunch, leaving the afternoon free. All gear provided, no experience necessary.',
-    duration: '6 Hours',
-    hours: 6,
-    category: 'family',
-    priceFrom: 2800,
-    maxPassengers: 6,
-    includes: [
-      'Rods, reels, and tackle',
-      'Live and cut bait',
-      'Fishing licenses',
-      'Ice and fish cleaning',
-      'Life jackets',
-    ],
-    targetSpecies: ['Red Snapper', 'Grouper', 'Sea Bass', 'Flounder', 'Spanish Mackerel'],
-    image:
-      'https://images.pexels.com/photos/1393382/pexels-photo-1393382.jpeg?auto=compress&cs=tinysrgb&w=800',
-    boatClassIndex: 0 as const,
-    metaTitle: '6-Hour Family Fishing Charter | Fish The Wahoo Charleston',
-    metaDescription:
-      'Six hours of nearshore fishing out of Charleston, SC. Family-friendly, all gear included. Book your spot today.',
-  },
-  {
-    slug: '6-hour-near-shore-fishing',
-    name: '6-Hour Near Shore Fishing',
-    tagline: 'Extended nearshore bottom fishing',
-    description:
-      'Six hours targeting nearshore structure, reefs, and ledges for bottom species and migratory fish.',
-    longDescription:
-      'With 6 hours to work the nearshore grounds, your captain can cover more territory and find the bite wherever it is. We target a wide mix of species depending on season and conditions. This trip offers great value for groups who want more action without going offshore.',
-    duration: '6 Hours',
-    hours: 6,
-    category: 'near-shore',
-    priceFrom: 2800,
-    maxPassengers: 6,
-    includes: [
-      'Rods, reels, and tackle',
-      'Live and cut bait',
-      'Fishing licenses',
-      'Ice and fish cleaning',
-      'Life jackets',
-    ],
-    targetSpecies: ['Red Snapper', 'Grouper', 'Sea Bass', 'Amberjack', 'King Mackerel'],
-    image:
-      'https://images.pexels.com/photos/2624849/pexels-photo-2624849.jpeg?auto=compress&cs=tinysrgb&w=800',
-    boatClassIndex: 0 as const,
-    metaTitle: '6-Hour Nearshore Fishing Charter Charleston SC | Fish The Wahoo',
-    metaDescription:
-      'Six-hour nearshore fishing charters from Charleston, SC. Extended action targeting snapper, grouper, and more.',
-  },
-  {
-    slug: '6-hour-bottom-fishing',
-    name: '6-Hour Bottom Fishing',
-    tagline: 'Snapper, grouper, and sea bass on the reefs and ledges',
-    description:
-      'Six hours working the productive reefs and ledges off Charleston. Bottom fishing only — offshore runs need a longer day.',
-    longDescription:
-      'A 6-hour trip is our bottom fishing option. Six hours is a tight window, so the offshore run to the Gulf Stream isn\'t possible — we stay on the nearshore reefs and ledges where the bite is consistent and the action is fast. Expect snapper, grouper, sea bass, amberjack, and the occasional king mackerel depending on the season. If you want to target mahi, wahoo, tuna, or billfish, book a 9- or 12-hour trip so we have time to run offshore and fish.',
-    duration: '6 Hours',
+      'Book a 1/2 day trip and make your time at sea just part of your day in Charleston. Go out at 6am and be back at 11, or book for the afternoon from noon to 5pm. Looking for a fun activity and still have plenty of time to do other things? Half day deep sea fishing is the perfect answer. Get out on the water, hopefully catch some fish and hang out with your friends on a nice big boat – and still have time to enjoy Charleston.',
+    duration: '1/2 Day',
     hours: 6,
     category: 'near-shore',
     priceFrom: 2800,
@@ -106,19 +50,19 @@ export const packages: PackageData[] = [
     image:
       'https://images.pexels.com/photos/3361691/pexels-photo-3361691.jpeg?auto=compress&cs=tinysrgb&w=800',
     boatClassIndex: 0 as const,
-    metaTitle: '6-Hour Bottom Fishing Charter Charleston SC | Fish The Wahoo',
+    metaTitle: '1/2 Day Fishing Charter Charleston SC | Fish The Wahoo',
     metaDescription:
-      'Six-hour bottom fishing charters out of Charleston, SC. Nearshore reefs and ledges for snapper, grouper, and sea bass. Book today.',
+      'Half day fishing charters out of Charleston, SC. Pick a 6am or noon departure and be back with plenty of day left. Book today.',
   },
   {
-    slug: '9-hour-deep-sea-fishing',
-    name: '9-Hour Deep Sea Fishing',
+    slug: 'three-quarter-day-deep-sea-fishing',
+    name: '3/4 Day Deep Sea Fishing',
     tagline: 'The serious angler\'s offshore trip',
     description:
-      'Nine hours gives you maximum fishing time at the best offshore grounds. Ideal for targeting big game pelagics.',
+      'A 3/4 day trip gives you maximum fishing time at the best offshore grounds. Ideal for targeting big game pelagics.',
     longDescription:
-      'With 9 hours on the water, your captain can run to the most productive offshore grounds and give you the best chance at landing a trophy fish. This is the trip for serious anglers who want to maximize their offshore time. Mahi-mahi, wahoo, tuna, and sailfish are all targets depending on season.',
-    duration: '9 Hours',
+      'The ¾ Day package gives you a decent dose of either Trolling or Bottom Fishing, but it is difficult to do both in this amount of time. In fact, depending on season and conditions, the captain might elect to only troll. Keep in mind, it takes at least an hour and a half to reach the offshore fishing grounds, so time is limited. That being said, 3/4 day trips can still produce a very nice catch. *** We do not put groups together. You book the entire boat for your own group only regardless of party size.',
+    duration: '3/4 Day',
     hours: 9,
     category: 'deep-sea',
     priceFrom: 3100,
@@ -135,19 +79,19 @@ export const packages: PackageData[] = [
     image:
       'https://images.pexels.com/photos/1172739/pexels-photo-1172739.jpeg?auto=compress&cs=tinysrgb&w=800',
     boatClassIndex: 1 as const,
-    metaTitle: '9-Hour Deep Sea Fishing Charter Charleston SC | Fish The Wahoo',
+    metaTitle: '3/4 Day Deep Sea Fishing Charter Charleston SC | Fish The Wahoo',
     metaDescription:
-      'Nine-hour offshore fishing charters from Charleston. Maximum time on the water targeting mahi, wahoo, tuna, and marlin.',
+      'Three-quarter day offshore fishing charters from Charleston. Maximum time on the water targeting mahi, wahoo, tuna, and marlin.',
   },
   {
-    slug: '12-hour-deep-sea-fishing',
-    name: '12-Hour Deep Sea Fishing',
+    slug: 'full-day-deep-sea-fishing',
+    name: 'Full Day Deep Sea Fishing',
     tagline: 'The full offshore experience',
     description:
       'A full day offshore targeting the best big game fishing Charleston has to offer. Our most popular serious angler trip.',
     longDescription:
-      'The 12-hour deep sea charter is the gold standard for offshore fishing out of Charleston. Departing before dawn, your captain runs to the best grounds for the season. You\'ll spend maximum time fishing, targeting blue marlin, white marlin, mahi-mahi, wahoo, and tuna. This is the trip everyone talks about when they get back to the dock.',
-    duration: '12 Hours',
+      'There are two types of deep sea fishing. TROLLING is fishing on top of the water for big fish like Marlin, Sailfish, Mahi, Wahoo, Tuna, etc. BOTTOM FISHING is anchoring over a reef and dropping bait to the ocean floor for smaller fish like Grouper, Snapper, Triggerfish, Sea Bass, etc. Trolling is exciting because while you are not catching as many fish, the fish you catch are typically quite large and put up a spectacular fight, often taking to the air. Trolling is sport fishing at it\'s best. If the trolling bite is slow, we might stop and bottom fish (Captain\'s discretion based on season and conditions). The fish are typically much smaller bottom fishing, but there is typically more action. The full day package gives us the best opportunity at tracking down the trolling bite. *** We do not put groups together. You book the entire boat for your own group only regardless of party size.',
+    duration: 'Full Day',
     hours: 12,
     category: 'deep-sea',
     priceFrom: 3400,
@@ -172,9 +116,9 @@ export const packages: PackageData[] = [
     image:
       'https://images.pexels.com/photos/1630344/pexels-photo-1630344.jpeg?auto=compress&cs=tinysrgb&w=800',
     boatClassIndex: 2 as const,
-    metaTitle: '12-Hour Full Day Deep Sea Fishing Charter Charleston SC | Fish The Wahoo',
+    metaTitle: 'Full Day Deep Sea Fishing Charter Charleston SC | Fish The Wahoo',
     metaDescription:
-      'Full-day 12-hour deep sea fishing charters from Charleston, SC. Targeting blue marlin, mahi, wahoo, and tuna. The ultimate offshore experience.',
+      'Full day deep sea fishing charters from Charleston, SC. Targeting blue marlin, mahi, wahoo, and tuna. The ultimate offshore experience.',
   },
   {
     slug: 'harbor-cruises',

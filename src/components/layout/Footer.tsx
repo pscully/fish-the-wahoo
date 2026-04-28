@@ -11,9 +11,9 @@ const quickLinks = [
 ];
 
 const packageLinks = [
-  { to: '/packages/6-hour-bottom-fishing', label: '6-Hour Bottom Fishing' },
-  { to: '/packages/9-hour-deep-sea-fishing', label: '9-Hour Deep Sea' },
-  { to: '/packages/12-hour-deep-sea-fishing', label: '12-Hour Deep Sea' },
+  { to: '/packages/half-day-charter', label: '1/2 Day Charter' },
+  { to: '/packages/three-quarter-day-deep-sea-fishing', label: '3/4 Day Deep Sea' },
+  { to: '/packages/full-day-deep-sea-fishing', label: 'Full Day Deep Sea' },
 ];
 
 export default function Footer() {
