@@ -43,7 +43,14 @@ export default function TourBoats() {
                   </div>
                 </div>
                 <div className={i % 2 !== 0 ? 'lg:order-1' : ''}>
-                  <span className="section-label">{boat.length} Sportfisher Class</span>
+                  <div className="flex items-center gap-3 mb-1">
+                    <span className="section-label !mb-0">{boat.length} Sportfisher Class</span>
+                    {boat.isMostPopular && (
+                      <span className="bg-accent-gold text-nautical-dark text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                        Most Popular
+                      </span>
+                    )}
+                  </div>
                   <h2 className="text-4xl text-white uppercase mb-4">{boat.name}</h2>
                   <p className="text-accent-orange font-bold uppercase tracking-widest text-sm mb-6">
                     {boat.tagline}

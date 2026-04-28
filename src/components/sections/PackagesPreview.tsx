@@ -17,13 +17,16 @@ export default function PackagesPreview() {
         <div className="text-center mb-16">
           <span className="section-label">Start With The Boat</span>
           <h2 className="text-4xl md:text-5xl text-white mb-4 uppercase">
-            Three Classes Of Sportfishers
+            Deep Sea Fishing Pricing
           </h2>
           <div className="section-divider" />
+          <p className="text-slate-400 max-w-2xl mx-auto mb-4">
+            Fifteen different boats at our disposal in three different size classes. With
+            Charleston's finest captains and crew, all fifteen boats are capable of delivering
+            a fishing trip of a lifetime.
+          </p>
           <p className="text-slate-400 max-w-2xl mx-auto">
-            Every trip we book rolls on one of three boat size classes out of Charleston. Pick
-            the class that fits your group and budget — the trip lengths and targets stay the
-            same across all three.
+            Which boat class and package is best for you?
           </p>
         </div>
 
@@ -36,8 +39,15 @@ export default function PackagesPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.15 }}
-              className="metallic-card rounded-xl overflow-hidden flex flex-col h-full group"
+              className={`metallic-card rounded-xl overflow-hidden flex flex-col h-full group relative ${
+                boat.isMostPopular ? 'ring-2 ring-accent-gold shadow-2xl shadow-accent-gold/20' : ''
+              }`}
             >
+              {boat.isMostPopular && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 bg-accent-gold text-nautical-dark text-xs font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-lg">
+                  Most Popular
+                </div>
+              )}
               <div className="relative h-64 overflow-hidden">
                 <img
                   src={boat.image}
