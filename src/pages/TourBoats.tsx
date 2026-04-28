@@ -25,11 +25,17 @@ export default function TourBoats() {
 
       <section className="py-20 bg-nautical-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-16">
-            {boats.map((boat, i) => (
+          <div className="flex flex-col gap-16">
+            {boats.map((boat, i) => {
+              const mobileOrder = [
+                'order-3 lg:order-none',
+                'order-2 lg:order-none',
+                'order-1 lg:order-none',
+              ][i];
+              return (
               <div
                 key={boat.slug}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${mobileOrder} ${
                   i % 2 !== 0 ? 'lg:flex-row-reverse' : ''
                 }`}
               >
@@ -99,7 +105,8 @@ export default function TourBoats() {
                   </div>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

@@ -31,7 +31,13 @@ export default function PackagesPreview() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {boats.map((boat, index) => (
+          {boats.map((boat, index) => {
+            const mobileOrder = [
+              'order-3 md:order-none',
+              'order-2 md:order-none',
+              'order-1 md:order-none',
+            ][index];
+            return (
             <motion.div
               key={boat.slug}
               whileHover={{ y: -10 }}
@@ -39,7 +45,7 @@ export default function PackagesPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.15 }}
-              className={`metallic-card rounded-xl flex flex-col h-full group relative ${
+              className={`metallic-card rounded-xl flex flex-col h-full group relative ${mobileOrder} ${
                 boat.isMostPopular ? 'ring-2 ring-accent-gold shadow-2xl shadow-accent-gold/20' : ''
               }`}
             >
@@ -105,7 +111,8 @@ export default function PackagesPreview() {
                 </div>
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="text-center mt-12">
