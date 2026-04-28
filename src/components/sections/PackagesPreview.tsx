@@ -39,16 +39,16 @@ export default function PackagesPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.15 }}
-              className={`metallic-card rounded-xl overflow-hidden flex flex-col h-full group relative ${
+              className={`metallic-card rounded-xl flex flex-col h-full group relative ${
                 boat.isMostPopular ? 'ring-2 ring-accent-gold shadow-2xl shadow-accent-gold/20' : ''
               }`}
             >
               {boat.isMostPopular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 bg-accent-gold text-nautical-dark text-xs font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-lg">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 bg-accent-gold text-nautical-dark text-xs font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-lg whitespace-nowrap">
                   Most Popular
                 </div>
               )}
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-64 overflow-hidden rounded-t-xl">
                 <img
                   src={boat.image}
                   alt={boat.name}
