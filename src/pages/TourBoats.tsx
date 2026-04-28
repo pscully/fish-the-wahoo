@@ -86,7 +86,7 @@ export default function TourBoats() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex flex-col sm:flex-row gap-4">
                     <Link to="/book" className="btn-primary py-3 px-8">
                       Book This Class
                     </Link>

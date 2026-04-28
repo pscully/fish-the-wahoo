@@ -89,10 +89,10 @@ export default function PackagesPreview() {
                   </ul>
                 </div>
 
-                <div className="flex gap-3 mt-auto">
+                <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                   <Link
                     to={`/book/calendar?class=${boat.classSlug}`}
-                    className="btn-primary flex-grow py-3 text-sm text-center"
+                    className="btn-primary sm:flex-grow py-3 text-sm text-center"
                   >
                     Book This Class
                   </Link>
