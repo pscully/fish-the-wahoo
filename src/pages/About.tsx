@@ -24,7 +24,7 @@ export default function About() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-label">Our Story</span>
           <h1 className="text-5xl sm:text-6xl text-white uppercase mb-6">
-            About Fish The Wahoo
+            About Charleston Fishing Charters
           </h1>
           <p className="text-slate-300 max-w-xl mx-auto text-lg">
             Your single source for the best deep sea fishing experiences in Charleston, SC
