@@ -16,7 +16,7 @@ export default function Home() {
         canonicalPath="/"
       />
       <Hero
-        bgImage="/images/fishing-charters-hero-home.webp"
+        bgImage="/images/boats-banner.jpg"
         badge="The Premier Deep Sea Experience"
         headline={
           <>

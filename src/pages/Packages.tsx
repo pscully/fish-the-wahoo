@@ -12,6 +12,7 @@ export default function Packages() {
         canonicalPath="/packages/"
       />
       <Hero
+        bgImage="/images/fishing-charters-hero-home.webp"
         badge="Choose Your Adventure"
         headline={
           <>
