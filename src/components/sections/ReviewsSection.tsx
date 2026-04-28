@@ -10,18 +10,18 @@ interface Review {
 
 const defaultReviews: Review[] = [
   {
-    name: 'Robert Thompson',
-    text: "Best fishing trip of my life. The captain put us right on the marlin within the first hour. The boat was immaculate and the crew was top notch.",
+    name: 'Kelly Pipkin',
+    text: "Captain Chris exceeded our expectations on Get R Done. The boat was clean and organized. The fishing was fantastic! Lots of high fives after we landed the 50lb yellowfin tuna. Could not ask for a better experience. 10/10",
     stars: 5,
   },
   {
-    name: 'James Wilson',
-    text: "Took the family out on the 50ft class boat. The kids had a blast catching snapper and the crew was incredibly patient and helpful.",
+    name: 'George McCurdy',
+    text: "My family just went out with Capt Jamie on the Teaser 2. We had a blast. The whole crew did a fantastic job. My wife and I took our 8yr old son and 11yr niece and we all caught plenty of fish. Crew did a wonderful job helping the kids manage the bigger fish. Highly recommend for the whole family.",
     stars: 5,
   },
   {
-    name: 'Sarah Miller',
-    text: "Professional, safe, and exciting. Everything you want in a charter. We've been booking with them for 5 years now and they never disappoint.",
+    name: 'Kyle Lagunas',
+    text: "Caught Wahoo, Dolphin and released a Marlin. Capt. Drew and David were great! They put us on the fish and provided an excellent environment for us to reel them in. Topped it off with fantastic photos and a video of it all. Can't recommend them enough.",
     stars: 5,
   },
 ];
