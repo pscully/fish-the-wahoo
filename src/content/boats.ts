@@ -27,7 +27,7 @@ export const boats: BoatData[] = [
     name: 'The 60+ Foot Class',
     tagline: 'The flagship experience',
     description:
-      'The 60 foot and up class is the biggest, smoothest, best-riding group of boats we have access to in Charleston. If you want the fighting chair, the full galley, a truly luxurious ride to the Gulf Stream, and the kind of onboard experience that makes the whole day feel like a private yacht trip — book this class. Specific boats vary, but every hull we put in this tier is set up for serious offshore fishing with premium tackle and amenities.',
+      'Our biggest, smoothest-riding class. Fighting chair, full galley, AC cabin, and the kind of onboard experience that makes the day feel like a private yacht trip to the Gulf Stream.',
     length: '60+ ft',
     engine: 'Twin diesel',
     speed: 'Up to 32 knots',
@@ -58,7 +58,7 @@ export const boats: BoatData[] = [
     name: 'The 53–59 Foot Class',
     tagline: 'The comfortable workhorse class',
     description:
-      'The 53 to 59 foot class is the most common size we book for serious offshore days. A little more boat than the economy class, a little more room, a smoother ride when the chop picks up, and enough horsepower to cover water quickly. This is the middle-of-the-road choice for groups who want a comfortable offshore day without paying for the flagship. Like every class we book, the specific hull may vary trip to trip depending on captain and boat availability.',
+      'The most common size we book for serious offshore days. More room and a smoother ride than the 48-50, with enough horsepower to cover water fast without paying for the flagship.',
     length: '53–59 ft',
     engine: 'Twin diesel',
     speed: 'Up to 28 knots',
@@ -90,7 +90,7 @@ export const boats: BoatData[] = [
     tagline: 'The economical offshore choice',
     isMostPopular: true,
     description:
-      'The 48 to 50 foot sportfisher class is our most economical way to fish the deep water off Charleston. Boats in this class run a smooth, manageable ride, get to the grounds fast, and handle every trip type we book — from a 1/2 day nearshore bottom trip to a full day run at the Gulf Stream. A great fit for budget-conscious groups who still want the full offshore experience. We don\'t operate a fixed fleet, so the specific boat you fish may vary, but every hull in this class meets our standards for gear, safety, and captain experience.',
+      'The most economical way to fish the deep water off Charleston. Smooth, manageable ride, fast to the grounds, and handles every trip we book, from a 1/2 day bottom trip to a full day Gulf Stream run.',
     length: '48–50 ft',
     engine: 'Twin diesel',
     speed: 'Up to 25 knots',
