@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Anchor, Loader2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 
@@ -52,9 +52,17 @@ export default function AdminLogin() {
             />
           </div>
           <div>
-            <label className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-2">
-              Password
-            </label>
+            <div className="flex items-center justify-between mb-2">
+              <label className="block text-xs font-bold text-white/40 uppercase tracking-widest">
+                Password
+              </label>
+              <Link
+                to="/admin/forgot-password"
+                className="text-xs text-accent-orange/80 hover:text-accent-orange"
+              >
+                Forgot?
+              </Link>
+            </div>
             <input
               type="password"
               value={password}

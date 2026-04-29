@@ -35,12 +35,15 @@ import CharterPayment from './pages/CharterPayment';
 
 // Admin pages
 import AdminLogin from './pages/admin/AdminLogin';
+import AdminForgotPassword from './pages/admin/AdminForgotPassword';
+import AdminAuthCallback from './pages/admin/AdminAuthCallback';
 import AdminLayout from './components/layout/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminBookings from './pages/admin/AdminBookings';
 import AdminContacts from './pages/admin/AdminContacts';
 import AdminCaptains from './pages/admin/AdminCaptains';
 import AdminAvailability from './pages/admin/AdminAvailability';
+import AdminUsers from './pages/admin/AdminUsers';
 
 export default function App() {
   return (
@@ -165,12 +168,15 @@ export default function App() {
 
         {/* Admin routes */}
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/forgot-password" element={<AdminForgotPassword />} />
+        <Route path="/admin/auth/callback" element={<AdminAuthCallback />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="bookings" element={<AdminBookings />} />
           <Route path="contacts" element={<AdminContacts />} />
           <Route path="captains" element={<AdminCaptains />} />
           <Route path="availability" element={<AdminAvailability />} />
+          <Route path="users" element={<AdminUsers />} />
         </Route>
       </Routes>
     </BrowserRouter>

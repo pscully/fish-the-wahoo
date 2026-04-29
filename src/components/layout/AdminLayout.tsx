@@ -6,6 +6,7 @@ import {
   CalendarDays,
   Ship,
   Users,
+  UserCog,
   Mail,
   LogOut,
   Menu,
@@ -19,6 +20,7 @@ const sidebarLinks = [
   { to: '/admin/contacts', label: 'Contacts', icon: Mail, exact: false },
   { to: '/admin/captains', label: 'Captains & Boats', icon: Ship, exact: false },
   { to: '/admin/availability', label: 'Availability', icon: Users, exact: false },
+  { to: '/admin/users', label: 'Admin Users', icon: UserCog, exact: false },
 ];
 
 export default function AdminLayout() {
