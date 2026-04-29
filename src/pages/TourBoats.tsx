@@ -81,6 +81,7 @@ export default function TourBoats() {
                     <Link
                       to={`/tour-boats/${boat.slug}`}
                       className="btn-outline py-3 px-8"
+                      aria-label={`Learn more about the ${boat.name} fishing boat`}
                     >
                       Learn More
                     </Link>

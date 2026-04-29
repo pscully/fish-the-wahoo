@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 import SEO from '../components/seo/SEO';
+import JsonLd from '../components/seo/JsonLd';
 import CTABanner from '../components/sections/CTABanner';
 
 const faqs = [
@@ -117,6 +118,18 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 }
 
 export default function FAQ() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.flatMap((section) =>
+      section.questions.map((q) => ({
+        '@type': 'Question',
+        name: q.q,
+        acceptedAnswer: { '@type': 'Answer', text: q.a },
+      })),
+    ),
+  };
+
   return (
     <>
       <SEO
@@ -124,6 +137,7 @@ export default function FAQ() {
         description="Frequently asked questions about booking a deep sea fishing charter with Fish The Wahoo in Charleston, SC."
         canonicalPath="/faq/"
       />
+      <JsonLd data={faqSchema} id="faq" />
 
       <section className="relative pt-40 pb-16 bg-nautical-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

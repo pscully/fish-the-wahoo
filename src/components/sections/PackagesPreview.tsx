@@ -91,6 +91,7 @@ export default function PackagesPreview() {
                   <Link
                     to={`/tour-boats/${boat.slug}`}
                     className="btn-outline px-4 py-3 text-sm"
+                    aria-label={`Learn more about the ${boat.name} fishing boat`}
                   >
                     Learn More
                   </Link>

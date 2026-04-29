@@ -4,7 +4,10 @@ import { Clock, Users, ChevronRight, Fish } from 'lucide-react';
 import { getPackageBySlug } from '../content/packages';
 import { supabase } from '../lib/supabase';
 import SEO from '../components/seo/SEO';
+import JsonLd from '../components/seo/JsonLd';
 import CTABanner from '../components/sections/CTABanner';
+
+const SITE_URL = 'https://fishthewahoo.com';
 
 export default function PackageDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -27,14 +30,52 @@ export default function PackageDetail() {
   if (!pkg) return <Navigate to="/packages" replace />;
 
   const displayImage = heroImage ?? pkg.image;
+  const canonicalUrl = `${SITE_URL}/packages/${pkg.slug}/`;
+  const absImage = displayImage.startsWith('http') ? displayImage : `${SITE_URL}${displayImage}`;
+
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: pkg.name,
+    description: pkg.description,
+    serviceType: 'Fishing Charter',
+    url: canonicalUrl,
+    image: absImage,
+    provider: { '@id': `${SITE_URL}/#business` },
+    areaServed: { '@type': 'City', name: 'Charleston, SC' },
+    offers: {
+      '@type': 'Offer',
+      price: pkg.priceFrom,
+      priceCurrency: 'USD',
+      url: `${SITE_URL}/book/calendar?package=${pkg.slug}`,
+      availability: 'https://schema.org/InStock',
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        minPrice: pkg.priceFrom,
+        priceCurrency: 'USD',
+      },
+    },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: 'Packages', item: `${SITE_URL}/packages/` },
+      { '@type': 'ListItem', position: 3, name: pkg.name, item: canonicalUrl },
+    ],
+  };
 
   return (
     <>
       <SEO
         title={pkg.metaTitle}
         description={pkg.metaDescription}
+        ogImage={displayImage}
         canonicalPath={`/packages/${pkg.slug}/`}
       />
+      <JsonLd data={[serviceSchema, breadcrumbSchema]} id="package" />
 
       {/* Hero */}
       <section className="relative min-h-[60vh] flex items-end overflow-hidden">

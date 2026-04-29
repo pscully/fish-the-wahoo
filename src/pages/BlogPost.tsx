@@ -3,7 +3,10 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { getPostBySlug, getAllPosts } from '../lib/blog';
 import SEO from '../components/seo/SEO';
+import JsonLd from '../components/seo/JsonLd';
 import CTABanner from '../components/sections/CTABanner';
+
+const SITE_URL = 'https://fishthewahoo.com';
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
@@ -16,6 +19,43 @@ export default function BlogPost() {
   const prev = allPosts[idx + 1];
   const next = allPosts[idx - 1];
 
+  const canonicalUrl = `${SITE_URL}/blog/${post.slug}/`;
+  const absImage = post.image
+    ? post.image.startsWith('http')
+      ? post.image
+      : `${SITE_URL}${post.image}`
+    : `${SITE_URL}/images/fish-the-wahoo-charleston-sc.jpg`;
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    image: absImage,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { '@type': 'Organization', name: 'Fish The Wahoo', url: `${SITE_URL}/` },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Fish The Wahoo',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/images/fish-the-wahoo-charleston-sc.jpg`,
+      },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog/` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: canonicalUrl },
+    ],
+  };
+
   return (
     <>
       <SEO
@@ -24,6 +64,7 @@ export default function BlogPost() {
         ogImage={post.image}
         canonicalPath={`/blog/${post.slug}/`}
       />
+      <JsonLd data={[articleSchema, breadcrumbSchema]} id="blog" />
 
       {/* Hero */}
       <section className="relative pt-40 pb-16 overflow-hidden">
