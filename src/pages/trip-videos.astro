@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/sections/CTABanner.astro';
+import { createClient } from '@supabase/supabase-js';
+
+interface TripVideo {
+  id: string;
+  title: string;
+  description: string;
+  youtube_id: string;
+  display_order: number;
+}
+
+const url = import.meta.env.VITE_SUPABASE_URL ?? '';
+const key = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ?? '';
+
+let videos: TripVideo[] = [];
+if (url && key) {
+  try {
+    const supabase = createClient(url, key);
+    const { data } = await supabase
+      .from('trip_videos')
+      .select('id, title, description, youtube_id, display_order')
+      .eq('is_active', true)
+      .order('display_order');
+    if (data) videos = data as TripVideo[];
+  } catch (err) {
+    console.warn('[trip-videos] Supabase fetch failed at build time, falling back to empty list:', err);
+  }
+}
+---
+
+<BaseLayout
+  title="Trip Videos | Fish The Wahoo Charleston"
+  description="Watch deep sea fishing trip videos from Fish The Wahoo out of Charleston, SC. Blue marlin, mahi-mahi, wahoo, swordfish, and more."
+>
+  <section class="pt-32 pb-8 bg-nautical-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="section-label">Video</span>
+      <h1 class="text-5xl md:text-6xl text-white uppercase mb-6">Trip Videos</h1>
+      <div class="section-divider"></div>
+      <p class="text-slate-400 max-w-2xl mx-auto">
+        Watch our captains in action. From trophy marlin to swordfish in the Gulf Stream,
+        here's what fishing with Fish The Wahoo looks like.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 bg-nautical-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {videos.length === 0 ? (
+        <div class="bg-nautical-blue rounded-xl p-12 text-center border border-white/10">
+          <p class="text-slate-400">Videos coming soon. Follow us on YouTube for the latest trips.</p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {videos.map((video) => (
+            <div class="metallic-card rounded-xl overflow-hidden">
+              <div class="aspect-video">
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.youtube_id}`}
+                  title={video.title}
+                  class="w-full h-full"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <div class="p-6">
+                <h3 class="text-white font-display font-bold mb-2 leading-snug">{video.title}</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">{video.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>

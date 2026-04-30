@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTABanner from '../../components/sections/CTABanner.astro';
+import { getCollection } from 'astro:content';
+
+const all = await getCollection('blog');
+const posts = all
+  .filter((p) => p.data.title && p.data.date)
+  .sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
+
+function postSlug(p: typeof posts[number]) {
+  return p.data.slug ?? p.id.replace(/\.md$/, '');
+}
+---
+
+<BaseLayout
+  title="Deep Sea Fishing Blog | Fish The Wahoo Charleston"
+  description="Fishing tips, trip reports, species guides, and deep sea fishing news from Fish The Wahoo out of Charleston, SC."
+>
+  <section class="pt-32 pb-8 bg-nautical-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="section-label">Articles</span>
+      <h1 class="text-5xl text-white uppercase mb-4">Fishing Blog</h1>
+      <div class="w-24 h-1 bg-accent-orange mb-6"></div>
+      <p class="text-slate-400 max-w-2xl">Fishing tips, species guides, trip reports, and deep sea fishing news from the Fish The Wahoo crew.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-nautical-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {posts.length === 0 ? (
+        <div class="bg-nautical-blue rounded-xl p-12 text-center border border-white/10">
+          <p class="text-slate-400 text-lg mb-2">Blog posts are being migrated.</p>
+          <p class="text-slate-500 text-sm">Check back soon for tips, reports, and species guides.</p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post) => (
+            <a href={`/blog/${postSlug(post)}/`} class="metallic-card rounded-xl overflow-hidden group block">
+              {post.data.image && (
+                <div class="h-48 overflow-hidden">
+                  <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                </div>
+              )}
+              <div class="p-6">
+                <p class="text-slate-500 text-xs uppercase tracking-widest mb-2">{post.data.date}</p>
+                <h2 class="text-white font-display font-bold text-lg mb-3 leading-snug group-hover:text-accent-orange transition-colors">{post.data.title}</h2>
+                {post.data.description && (
+                  <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">{post.data.description}</p>
+                )}
+                <span class="inline-block mt-4 text-accent-orange text-xs font-bold uppercase tracking-widest">Read More →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>

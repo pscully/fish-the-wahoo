@@ -4,20 +4,23 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "npm run build:redirects && npm run build:sitemap && vite build",
+    "dev": "astro dev",
+    "build": "npm run build:redirects && astro build",
     "build:redirects": "tsx scripts/build-redirects.ts",
-    "build:sitemap": "tsx scripts/build-sitemap.ts",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "preview": "astro preview",
+    "typecheck": "astro check",
     "import-wp": "tsx scripts/import-wp-posts.ts",
     "import-wp-scrape": "tsx scripts/import-wp-scrape.ts"
   },
   "dependencies": {
+    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/react": "^5.0.4",
+    "@astrojs/sitemap": "^3.7.2",
     "@stripe/react-stripe-js": "^6.1.0",
     "@stripe/stripe-js": "^9.2.0",
     "@supabase/supabase-js": "^2.57.4",
+    "astro": "^6.1.10",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.344.0",
@@ -30,6 +33,7 @@
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
     "@eslint/js": "^9.9.1",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",

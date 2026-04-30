@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /book/
+Disallow: /charter-payment/
+Disallow: /check/
 
-Sitemap: https://fishthewahoo.com/sitemap.xml
+Sitemap: https://fishthewahoo.com/sitemap-index.xml

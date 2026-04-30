@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTABanner from '../../components/sections/CTABanner.astro';
+import { boats, type BoatData } from '../../content/boats';
+import { SITE_URL } from '../../lib/site';
+
+export async function getStaticPaths() {
+  return boats.map((b) => ({ params: { slug: b.slug }, props: { boat: b } }));
+}
+
+const { boat } = Astro.props as { boat: BoatData };
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+    { '@type': 'ListItem', position: 2, name: 'Boats', item: `${SITE_URL}/tour-boats/` },
+    { '@type': 'ListItem', position: 3, name: boat.name, item: `${SITE_URL}/tour-boats/${boat.slug}/` },
+  ],
+};
+---
+
+<BaseLayout title={boat.metaTitle} description={boat.metaDescription} image={boat.image} jsonLd={breadcrumbSchema}>
+  <section class="relative min-h-[60vh] flex items-end overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={boat.image} alt={boat.name} class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+      <div class="absolute inset-0 bg-gradient-to-t from-nautical-dark via-nautical-dark/60 to-transparent"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">
+      <a href="/tour-boats/" class="inline-flex items-center gap-1 text-accent-orange text-sm font-bold uppercase tracking-widest mb-6">← All Boats</a>
+      <h1 class="text-4xl md:text-6xl text-white uppercase mb-4">{boat.name}</h1>
+      <p class="text-accent-orange font-bold uppercase tracking-widest text-sm">{boat.tagline}</p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-nautical-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-2">
+          <p class="text-slate-300 leading-relaxed text-lg mb-12">{boat.description}</p>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-12">
+            {[
+              { label: 'Length', value: boat.length },
+              { label: 'Engine', value: boat.engine },
+              { label: 'Speed', value: boat.speed },
+              { label: 'Capacity', value: `${boat.capacity} passengers` },
+            ].map((spec) => (
+              <div class="bg-nautical-blue rounded-lg p-4 border border-white/10">
+                <p class="text-white/40 text-xs font-bold uppercase tracking-widest mb-2">{spec.label}</p>
+                <p class="text-white font-semibold">{spec.value}</p>
+              </div>
+            ))}
+          </div>
+
+          <h3 class="text-xl text-white uppercase mb-6">Typical Amenities</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {boat.amenities.map((item) => (
+              <div class="flex items-center gap-2 text-slate-300 text-sm">
+                <div class="w-1.5 h-1.5 bg-accent-orange rounded-full"></div>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <div class="metallic-card rounded-xl p-8 sticky top-24">
+            <h3 class="text-lg text-white uppercase mb-6">Book This Class</h3>
+            <p class="text-slate-400 text-sm mb-8 leading-relaxed">
+              Reserve a trip on a {boat.length} class sportfisher. Pay a small deposit today and we'll confirm your booking and boat assignment.
+            </p>
+            <a href="/book/calendar/" class="btn-primary w-full text-center py-4 block">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>

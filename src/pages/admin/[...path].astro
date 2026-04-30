@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdminApp from '../../react-islands/AdminApp';
+
+export async function getStaticPaths() {
+  return [
+    { params: { path: undefined } },
+    { params: { path: 'login' } },
+    { params: { path: 'forgot-password' } },
+    { params: { path: 'auth/callback' } },
+    { params: { path: 'bookings' } },
+    { params: { path: 'contacts' } },
+    { params: { path: 'captains' } },
+    { params: { path: 'availability' } },
+    { params: { path: 'users' } },
+  ];
+}
+---
+
+<BaseLayout
+  title="Admin"
+  description="Fish The Wahoo administration"
+  noindex={true}
+>
+  <AdminApp client:only="react" />
+</BaseLayout>

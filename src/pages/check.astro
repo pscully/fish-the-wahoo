@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CheckApp from '../react-islands/CheckApp';
+---
+
+<BaseLayout
+  title="Check Your Charter | Fish The Wahoo"
+  description="Look up your Fish The Wahoo charter booking with your reference code."
+>
+  <CheckApp client:only="react" />
+</BaseLayout>

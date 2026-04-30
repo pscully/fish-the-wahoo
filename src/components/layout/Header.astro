@@ -1,0 +1,130 @@
+---
+const navLinks = [
+  { to: '/packages/', label: 'Packages' },
+  { to: '/tour-boats/', label: 'Boats' },
+  { to: '/gallery/', label: 'Gallery' },
+  { to: '/reviews/', label: 'Reviews' },
+  { to: '/blog/', label: 'Blog' },
+  { to: '/about/', label: 'About' },
+  { to: '/faq/', label: 'FAQ' },
+];
+
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/' || pathname === '';
+---
+
+<header
+  id="site-header"
+  data-home={isHome ? 'true' : 'false'}
+  class:list={[
+    'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+    isHome ? 'bg-transparent py-6' : 'bg-nautical-dark/95 backdrop-blur-md py-3 shadow-xl',
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+    <a href="/" class="flex items-center" aria-label="Fish The Wahoo — Charleston Fishing Charters">
+      <img
+        src="/images/logo.webp"
+        alt="Fish The Wahoo — Charleston Fishing Charters"
+        class="h-12 md:h-14 w-auto"
+        width="160"
+        height="56"
+      />
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-8">
+      {navLinks.map((link) => {
+        const active = pathname.startsWith(link.to);
+        return (
+          <a
+            href={link.to}
+            class:list={[
+              'text-sm font-display font-semibold uppercase tracking-widest transition-colors duration-200',
+              active ? 'text-accent-orange' : 'text-white hover:text-accent-orange',
+            ]}
+          >
+            {link.label}
+          </a>
+        );
+      })}
+      <a href="/book/calendar/" class="btn-primary py-2 px-6 text-sm">Book A Trip</a>
+    </nav>
+
+    <button
+      id="mobile-menu-toggle"
+      class="lg:hidden text-white"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg class="w-6 h-6 menu-icon-open" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <line x1="4" y1="6" x2="20" y2="6"></line>
+        <line x1="4" y1="12" x2="20" y2="12"></line>
+        <line x1="4" y1="18" x2="20" y2="18"></line>
+      </svg>
+      <svg class="w-6 h-6 menu-icon-close hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="absolute top-full left-0 right-0 bg-nautical-blue border-t border-white/10 p-6 lg:hidden hidden"
+  >
+    <nav class="flex flex-col gap-4">
+      {navLinks.map((link) => {
+        const active = pathname.startsWith(link.to);
+        return (
+          <a
+            href={link.to}
+            class:list={[
+              'text-lg font-display font-semibold uppercase transition-colors',
+              active ? 'text-accent-orange' : 'text-white hover:text-accent-orange',
+            ]}
+          >
+            {link.label}
+          </a>
+        );
+      })}
+      <a href="/book/calendar/" class="btn-primary w-full mt-4 text-center">Book A Trip</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = toggle?.querySelector('.menu-icon-open');
+  const iconClose = toggle?.querySelector('.menu-icon-close');
+  const isHome = header?.dataset.home === 'true';
+
+  function setMenu(open: boolean) {
+    if (!toggle || !menu || !iconOpen || !iconClose) return;
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menu.classList.toggle('hidden', !open);
+    iconOpen.classList.toggle('hidden', open);
+    iconClose.classList.toggle('hidden', !open);
+  }
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    setMenu(!open);
+  });
+
+  if (isHome && header) {
+    const apply = () => {
+      const scrolled = window.scrollY > 50;
+      header.classList.toggle('bg-transparent', !scrolled);
+      header.classList.toggle('py-6', !scrolled);
+      header.classList.toggle('bg-nautical-dark/95', scrolled);
+      header.classList.toggle('backdrop-blur-md', scrolled);
+      header.classList.toggle('py-3', scrolled);
+      header.classList.toggle('shadow-xl', scrolled);
+    };
+    window.addEventListener('scroll', apply, { passive: true });
+    apply();
+  }
+</script>

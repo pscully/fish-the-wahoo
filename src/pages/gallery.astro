@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/sections/CTABanner.astro';
+import GalleryWithLightbox from '../react-islands/GalleryWithLightbox';
+import { galleryImages } from '../content/gallery';
+---
+
+<BaseLayout
+  title="Photo Gallery | Fish The Wahoo Charleston"
+  description="Photos from deep sea fishing trips out of Charleston, SC. Trophy catches, beautiful boats, and unforgettable moments on the water."
+>
+  <section class="pt-32 pb-10 bg-nautical-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="section-label">Photos</span>
+      <h1 class="text-5xl md:text-6xl text-white uppercase mb-6">Trip Gallery</h1>
+      <div class="section-divider"></div>
+      <p class="text-slate-400 max-w-2xl mx-auto">
+        A look at the daily adventures on the Atlantic. Trophy catches, beautiful sunrises, and
+        the best deep sea fishing Charleston has to offer.
+      </p>
+    </div>
+  </section>
+
+  <section class="pb-24 bg-nautical-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <noscript>
+        <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4">
+          {galleryImages.map((image, i) => (
+            <div class="mb-4 break-inside-avoid rounded-xl overflow-hidden">
+              <img src={image.src} alt={image.alt} class="w-full h-auto block" loading={i < 4 ? 'eager' : 'lazy'} />
+            </div>
+          ))}
+        </div>
+      </noscript>
+      <GalleryWithLightbox client:load />
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>

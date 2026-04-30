@@ -1,0 +1,69 @@
+---
+export interface Props {
+  headlineHtml: string;
+  subheadline?: string;
+  primaryCta?: { label: string; to: string };
+  secondaryCta?: { label: string; to: string };
+  bgImage?: string;
+  fullscreen?: boolean;
+}
+
+const {
+  headlineHtml,
+  subheadline,
+  primaryCta = { label: 'Book A Trip', to: '/book/calendar/' },
+  secondaryCta,
+  bgImage = '/images/fishing-charters-hero-default.webp',
+  fullscreen = true,
+} = Astro.props;
+---
+
+<section
+  class:list={[
+    'relative flex items-center justify-center overflow-hidden',
+    fullscreen ? 'min-h-screen' : 'min-h-[60vh] pt-28 md:pt-32 pb-16',
+  ]}
+>
+  <div class="absolute inset-0 z-0">
+    <img src={bgImage} alt="Deep Sea Fishing" class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+    <div class="absolute inset-0 bg-gradient-to-b from-nautical-dark/60 via-nautical-dark/40 to-nautical-dark"></div>
+  </div>
+
+  <div class="relative z-10 max-w-5xl mx-auto px-4 text-center pt-20 hero-fade-in">
+    <h1 class="text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-[0.9] uppercase" set:html={headlineHtml} />
+    {subheadline && (
+      <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto font-light">{subheadline}</p>
+    )}
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href={primaryCta.to} class="btn-primary w-full sm:w-auto px-12 py-4 text-lg">{primaryCta.label}</a>
+      {secondaryCta && (
+        <a href={secondaryCta.to} class="btn-outline w-full sm:w-auto px-12 py-4 text-lg">{secondaryCta.label}</a>
+      )}
+    </div>
+  </div>
+
+  {fullscreen && (
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/30 hero-bounce">
+      <div class="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-1">
+        <div class="w-1 h-2 bg-accent-orange rounded-full"></div>
+      </div>
+    </div>
+  )}
+</section>
+
+<style>
+  .hero-fade-in {
+    animation: heroFadeIn 0.8s ease-out forwards;
+  }
+  @keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-bounce {
+    animation: heroBounce 2s ease-in-out infinite;
+  }
+  @keyframes heroBounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 10px); }
+  }
+</style>

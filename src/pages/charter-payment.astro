@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CharterPaymentApp from '../react-islands/CharterPaymentApp';
+---
+
+<BaseLayout
+  title="Charter Payment"
+  description="Pay your charter balance"
+  noindex={true}
+>
+  <CharterPaymentApp client:only="react" />
+</BaseLayout>

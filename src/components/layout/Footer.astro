@@ -1,0 +1,113 @@
+---
+import { Phone, Mail, Instagram, Facebook, Youtube } from 'lucide-react';
+import { PHONE, EMAIL } from '../../lib/site';
+
+const quickLinks = [
+  { to: '/packages/', label: 'Packages & Pricing' },
+  { to: '/gallery/', label: 'Gallery' },
+  { to: '/reviews/', label: 'Reviews' },
+  { to: '/blog/', label: 'Blog' },
+  { to: '/about/', label: 'About Us' },
+  { to: '/contact/', label: 'Contact' },
+];
+
+const packageLinks = [
+  { to: '/packages/half-day-charter/', label: '1/2 Day Charter' },
+  { to: '/packages/three-quarter-day-deep-sea-fishing/', label: '3/4 Day Deep Sea' },
+  { to: '/packages/full-day-deep-sea-fishing/', label: 'Full Day Deep Sea' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-nautical-dark border-t border-white/5 pt-20 pb-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+      <div>
+        <a href="/" class="inline-block mb-6" aria-label="Fish The Wahoo — Charleston Fishing Charters">
+          <img
+            src="/images/logo.webp"
+            alt="Fish The Wahoo — Charleston Fishing Charters"
+            class="h-16 w-auto"
+            width="180"
+            height="64"
+          />
+        </a>
+        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+          Charleston's premier deep-sea fishing charter service. Providing
+          unforgettable offshore adventures for over 30 years.
+        </p>
+        <div class="flex gap-4">
+          <a href="https://instagram.com/fishthewahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-orange transition-colors" aria-label="Instagram">
+            <Instagram className="w-5 h-5" />
+          </a>
+          <a href="https://facebook.com/fishthewahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-orange transition-colors" aria-label="Facebook">
+            <Facebook className="w-5 h-5" />
+          </a>
+          <a href="https://youtube.com/@fishthewahoo" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-orange transition-colors" aria-label="YouTube">
+            <Youtube className="w-5 h-5" />
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h5 class="text-white font-display font-bold uppercase tracking-widest mb-6 text-sm">Quick Links</h5>
+        <ul class="space-y-3">
+          {quickLinks.map((link) => (
+            <li>
+              <a href={link.to} class="text-slate-400 hover:text-accent-orange text-sm transition-colors">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="text-white font-display font-bold uppercase tracking-widest mb-6 text-sm">Contact Info</h5>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-3 text-slate-400 text-sm">
+            <Phone className="w-5 h-5 text-accent-orange shrink-0" />
+            <a href={`tel:${PHONE.replace(/[^0-9]/g, '')}`} class="hover:text-accent-orange transition-colors">{PHONE}</a>
+          </li>
+          <li class="flex items-center gap-3 text-slate-400 text-sm">
+            <Mail className="w-5 h-5 text-accent-orange shrink-0" />
+            <a href={`mailto:${EMAIL}`} class="hover:text-accent-orange transition-colors">{EMAIL}</a>
+          </li>
+          <li class="text-slate-500 text-xs pt-2 leading-relaxed">
+            Charleston, SC. Our boats dock at multiple marinas around the Charleston area —
+            your captain will send specific directions once your trip is confirmed.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="text-white font-display font-bold uppercase tracking-widest mb-6 text-sm">Newsletter</h5>
+        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+          Subscribe for seasonal updates, trip reports, and special offers.
+        </p>
+        <form action="/contact/" method="get" class="flex">
+          <input type="email" name="email" placeholder="Email Address" class="bg-nautical-blue border border-white/10 px-4 py-2 text-sm text-white w-full focus:outline-none focus:border-accent-orange placeholder:text-slate-500" required />
+          <button type="submit" class="bg-accent-orange px-4 py-2 text-white hover:bg-orange-600 transition-colors shrink-0">Go</button>
+        </form>
+        <div class="mt-8">
+          <h5 class="text-white font-display font-bold uppercase tracking-widest mb-4 text-sm">Fishing Packages</h5>
+          <ul class="space-y-2">
+            {packageLinks.map((link) => (
+              <li>
+                <a href={link.to} class="text-slate-400 hover:text-accent-orange text-sm transition-colors">{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="text-slate-500 text-xs">&copy; {year} Fish The Wahoo. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="/privacy-policy/" class="text-slate-500 hover:text-white text-xs transition-colors">Privacy Policy</a>
+        <a href="/terms-of-use/" class="text-slate-500 hover:text-white text-xs transition-colors">Terms of Use</a>
+        <a href="/cancellation-policy/" class="text-slate-500 hover:text-white text-xs transition-colors">Cancellation Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>

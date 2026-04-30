@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/sections/Hero.astro';
+import PackagesGrid from '../../components/sections/PackagesGrid.astro';
+import { ChevronRight } from 'lucide-react';
+
+const includes = [
+  'Fishing licenses', 'Rods and reels', 'Live and cut bait', 'Tackle and lures',
+  'Ice and fish cleaning', 'Life jackets', 'Safety equipment', 'Expert captain',
+];
+---
+
+<BaseLayout
+  title="Fishing Charter Packages & Pricing"
+  description="Browse all Fish The Wahoo fishing charter packages out of Charleston, SC. 1/2 day, 3/4 day, and full day deep sea trips."
+>
+  <Hero
+    bgImage="/images/fishing-charters-hero-home.webp"
+    headlineHtml={`Charter Packages <br /><span class="text-accent-orange">&amp; Pricing</span>`}
+    subheadline="From half day bottom fishing on the nearshore reefs to full day offshore runs for marlin, mahi, and wahoo. All trips include rods, bait, tackle, and licenses."
+    primaryCta={{ label: 'Book A Trip', to: '/book/calendar/' }}
+    fullscreen={false}
+  />
+
+  <section class="py-20 bg-nautical-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <PackagesGrid />
+
+      <div class="mt-16 bg-nautical-blue rounded-xl p-8 text-center border border-white/10">
+        <h3 class="text-2xl text-white mb-4 uppercase">What Every Trip Includes</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+          {includes.map((item) => (
+            <div class="flex items-center gap-2 text-slate-300 text-sm">
+              <ChevronRight className="w-4 h-4 text-accent-orange shrink-0" />
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

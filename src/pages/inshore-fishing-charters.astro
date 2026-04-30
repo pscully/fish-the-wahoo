@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CategoryLanding from '../components/sections/CategoryLanding.astro';
+---
+
+<BaseLayout
+  title="Inshore Fishing Charters Charleston SC | Fish The Wahoo"
+  description="Inshore and nearshore fishing charters out of Charleston, SC. Target snapper, grouper, and sea bass. Family-friendly trips available."
+>
+  <CategoryLanding
+    category="near-shore"
+    headlineHtml={`Inshore <span class="text-accent-orange">Charters</span>`}
+    subheadline="Nearshore and inshore fishing trips targeting snapper, grouper, sea bass, and more. Great for families and first-timers."
+  />
+</BaseLayout>

@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CategoryLanding from '../components/sections/CategoryLanding.astro';
+---
+
+<BaseLayout
+  title="Fishing Charters in Charleston SC | Fish The Wahoo"
+  description="Book a fishing charter in Charleston, SC with Fish The Wahoo. Deep sea offshore trips and nearshore family charters. Call (843) 312-2981."
+>
+  <CategoryLanding
+    category="deep-sea"
+    headlineHtml={`Fishing Charters in <span class="text-accent-orange">Charleston, SC</span>`}
+    subheadline="Fish The Wahoo is Charleston's premier deep sea fishing charter service. One platform, 15+ boats, the perfect trip every time."
+  />
+</BaseLayout>

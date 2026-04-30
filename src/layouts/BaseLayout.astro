@@ -1,0 +1,98 @@
+---
+import '../styles/global.css';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE, DEFAULT_DESCRIPTION, absUrl } from '../lib/site';
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description, image, noindex, jsonLd } = Astro.props;
+const finalDesc = description ?? DEFAULT_DESCRIPTION;
+const finalImage = absUrl(image ?? DEFAULT_OG_IMAGE);
+const fullTitle = title.toLowerCase().includes('fish the wahoo')
+  ? title
+  : `${title} | ${SITE_NAME}`;
+const canonical = new URL(Astro.url.pathname, SITE_URL).toString();
+const jsonLdItems = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
+
+const businessJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${SITE_URL}/#business`,
+  name: 'Fish The Wahoo',
+  description:
+    'Charleston deep sea fishing charter booking service. Match with 15+ Charleston sportfishing captains for half-day, three-quarter-day, and full-day offshore trips.',
+  url: `${SITE_URL}/`,
+  telephone: '+1-843-312-2981',
+  image: absUrl(DEFAULT_OG_IMAGE),
+  logo: absUrl(DEFAULT_OG_IMAGE),
+  priceRange: '$$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Ripley Light Marina, 4 Ashley Point Drive',
+    addressLocality: 'Charleston',
+    addressRegion: 'SC',
+    postalCode: '29407',
+    addressCountry: 'US',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 32.7765, longitude: -79.9311 },
+  areaServed: { '@type': 'City', name: 'Charleston, SC' },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a192f" />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={finalDesc} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:site_name" content="Fish The Wahoo" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={finalDesc} />
+    <meta property="og:image" content={finalImage} />
+    <meta property="og:image:alt" content="Fish The Wahoo Charleston deep sea fishing charter" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={finalDesc} />
+    <meta name="twitter:image" content={finalImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(businessJsonLd)} />
+    {jsonLdItems.map((item) => (
+      <script type="application/ld+json" set:html={JSON.stringify(item)} />
+    ))}
+  </head>
+  <body class="min-h-screen flex flex-col bg-nautical-dark text-slate-200">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

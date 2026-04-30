@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTABanner from '../../components/sections/CTABanner.astro';
+import { Clock, Users, ChevronRight, Fish } from 'lucide-react';
+import { packages, type PackageData } from '../../content/packages';
+import { createClient } from '@supabase/supabase-js';
+import { SITE_URL, absUrl } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const url = import.meta.env.VITE_SUPABASE_URL ?? '';
+  const key = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ?? '';
+  let boatClassImages: (string | null)[] = [];
+  if (url && key) {
+    try {
+      const supabase = createClient(url, key);
+      const { data } = await supabase
+        .from('boat_classes')
+        .select('image_url')
+        .order('display_order');
+      boatClassImages = (data ?? []).map((d) => (d?.image_url as string | null) ?? null);
+    } catch (err) {
+      console.warn('[packages] Supabase boat_classes fetch failed:', err);
+    }
+  }
+  return packages.map((pkg: PackageData) => ({
+    params: { slug: pkg.slug },
+    props: { pkg, hero: boatClassImages[pkg.boatClassIndex] ?? pkg.image },
+  }));
+}
+
+const { pkg, hero } = Astro.props as { pkg: PackageData; hero: string };
+const canonicalUrl = `${SITE_URL}/packages/${pkg.slug}/`;
+const absImage = hero.startsWith('http') ? hero : absUrl(hero);
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: pkg.name,
+  description: pkg.description,
+  serviceType: 'Fishing Charter',
+  url: canonicalUrl,
+  image: absImage,
+  provider: { '@id': `${SITE_URL}/#business` },
+  areaServed: { '@type': 'City', name: 'Charleston, SC' },
+  offers: {
+    '@type': 'Offer',
+    price: pkg.priceFrom,
+    priceCurrency: 'USD',
+    url: `${SITE_URL}/book/calendar/?package=${pkg.slug}`,
+    availability: 'https://schema.org/InStock',
+    priceSpecification: { '@type': 'PriceSpecification', minPrice: pkg.priceFrom, priceCurrency: 'USD' },
+  },
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+    { '@type': 'ListItem', position: 2, name: 'Packages', item: `${SITE_URL}/packages/` },
+    { '@type': 'ListItem', position: 3, name: pkg.name, item: canonicalUrl },
+  ],
+};
+---
+
+<BaseLayout
+  title={pkg.metaTitle}
+  description={pkg.metaDescription}
+  image={hero}
+  jsonLd={[serviceSchema, breadcrumbSchema]}
+>
+  <section class="relative min-h-[60vh] flex items-end overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={hero} alt={pkg.name} class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+      <div class="absolute inset-0 bg-gradient-to-t from-nautical-dark via-nautical-dark/60 to-transparent"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">
+      <a href="/packages/" class="inline-flex items-center gap-1 text-accent-orange text-sm font-bold uppercase tracking-widest mb-6 hover:gap-2 transition-all">← All Packages</a>
+      <h1 class="text-4xl md:text-6xl text-white uppercase mb-4">{pkg.name}</h1>
+      <p class="text-accent-orange font-bold uppercase tracking-widest text-sm mb-6">{pkg.tagline}</p>
+      <div class="flex flex-wrap gap-4">
+        <span class="flex items-center gap-2 bg-white/10 text-white text-sm px-4 py-2 rounded-sm">
+          <Clock className="w-4 h-4 text-accent-orange" /> {pkg.duration}
+        </span>
+        <span class="flex items-center gap-2 bg-white/10 text-white text-sm px-4 py-2 rounded-sm">
+          <Users className="w-4 h-4 text-accent-orange" /> Up to {pkg.maxPassengers} passengers
+        </span>
+        <span class="bg-accent-orange text-white text-sm px-4 py-2 rounded-sm font-bold">From ${pkg.priceFrom.toLocaleString()}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-nautical-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-2">
+          <div class="prose prose-invert max-w-none text-slate-300 leading-relaxed mb-12">
+            {pkg.longDescription.split('\n\n').map((para) => <p class="mb-6">{para}</p>)}
+          </div>
+          {pkg.targetSpecies.length > 0 && (
+            <div class="mb-12">
+              <h3 class="text-xl text-white uppercase mb-6">Target Species</h3>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {pkg.targetSpecies.map((s) => (
+                  <div class="flex items-center gap-2 text-slate-300 text-sm">
+                    <Fish className="w-4 h-4 text-accent-orange shrink-0" /> {s}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+        <div>
+          <div class="metallic-card rounded-xl p-8 sticky top-24">
+            <h3 class="text-xl text-white uppercase mb-6">Trip Includes</h3>
+            <ul class="space-y-3 mb-8">
+              {pkg.includes.map((item) => (
+                <li class="flex items-start gap-3 text-slate-300 text-sm">
+                  <ChevronRight className="w-4 h-4 text-accent-orange shrink-0 mt-0.5" /> {item}
+                </li>
+              ))}
+            </ul>
+            <a href={`/book/calendar/?package=${pkg.slug}`} class="btn-primary w-full text-center py-4 block">Book This Trip</a>
+            <p class="text-slate-500 text-xs text-center mt-4">Pay a small deposit to hold your date. Balance due on the day of the trip.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    headline="Ready to Book This Trip?"
+    subtext="Our calendar fills up fast. Secure your date with a small deposit and we'll match you with the perfect captain and boat."
+    ctaLabel="Book Now"
+    ctaTo={`/book/calendar/?package=${pkg.slug}`}
+  />
+</BaseLayout>

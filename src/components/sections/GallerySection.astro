@@ -1,0 +1,37 @@
+---
+import { previewImages } from '../../content/gallery';
+---
+
+<section id="gallery" class="py-24 bg-nautical-blue">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="section-label">Photos</span>
+      <h2 class="text-4xl md:text-5xl text-white mb-4 uppercase">Recent Catches & Our Fleet</h2>
+      <div class="section-divider"></div>
+      <p class="text-slate-400 max-w-2xl mx-auto">
+        A glimpse into the daily adventures on the Atlantic. From trophy catches to our
+        state-of-the-art sportfishing fleet.
+      </p>
+    </div>
+
+    <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 [column-fill:_balance]">
+      {previewImages.map((image, i) => (
+        <div class="group relative block w-full overflow-hidden rounded-xl bg-nautical-light mb-4 break-inside-avoid">
+          <img
+            src={image.src}
+            alt={image.alt}
+            loading={i < 4 ? 'eager' : 'lazy'}
+            decoding="async"
+            fetchpriority={i < 4 ? 'high' : 'auto'}
+            class="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+          <span aria-hidden="true" class="pointer-events-none absolute inset-0 bg-gradient-to-t from-nautical-dark/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-16 text-center">
+      <a href="/gallery/" class="btn-outline">View Full Gallery</a>
+    </div>
+  </div>
+</section>

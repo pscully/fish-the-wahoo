@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTABanner from '../../components/sections/CTABanner.astro';
+import { species, type SpeciesData } from '../../content/species';
+import { getPackageBySlug } from '../../content/packages';
+import { SITE_URL } from '../../lib/site';
+
+export async function getStaticPaths() {
+  return species.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+
+const { s } = Astro.props as { s: SpeciesData };
+const relatedPackages = s.bestPackages
+  .map((slug) => getPackageBySlug(slug))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+    { '@type': 'ListItem', position: 2, name: 'Species', item: `${SITE_URL}/species/` },
+    { '@type': 'ListItem', position: 3, name: s.name, item: `${SITE_URL}/species/${s.slug}/` },
+  ],
+};
+---
+
+<BaseLayout title={s.metaTitle} description={s.metaDescription} image={s.image} jsonLd={breadcrumbSchema}>
+  <section class="relative min-h-[60vh] flex items-end overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={s.image} alt={s.name} class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+      <div class="absolute inset-0 bg-gradient-to-t from-nautical-dark via-nautical-dark/50 to-transparent"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">
+      <a href="/species/" class="inline-flex items-center gap-1 text-accent-orange text-sm font-bold uppercase tracking-widest mb-6 hover:gap-2 transition-all">← All Species</a>
+      <h1 class="text-4xl md:text-6xl text-white uppercase mb-4">{s.name}</h1>
+      <p class="text-accent-orange font-bold uppercase tracking-widest text-sm mb-4">{s.tagline}</p>
+      <p class="text-slate-300 text-sm">Best season: {s.seasons}</p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-nautical-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-2">
+          <div class="text-slate-300 leading-relaxed">
+            {s.body.split('\n\n').map((para) => <p class="mb-6">{para}</p>)}
+          </div>
+        </div>
+        {relatedPackages.length > 0 && (
+          <div>
+            <div class="metallic-card rounded-xl p-8 sticky top-24">
+              <h3 class="text-lg text-white uppercase mb-6">Best Trips for {s.name}</h3>
+              <div class="space-y-4">
+                {relatedPackages.map((pkg) => (
+                  <div class="border-b border-white/10 pb-4 last:border-0">
+                    <p class="text-white text-sm font-bold mb-1">{pkg.name}</p>
+                    <p class="text-slate-400 text-xs mb-3">{pkg.duration} · Up to {pkg.maxPassengers} passengers</p>
+                    <a href={`/packages/${pkg.slug}/`} class="text-accent-orange text-xs font-bold uppercase tracking-widest hover:underline">View Package →</a>
+                  </div>
+                ))}
+              </div>
+              <a href="/book/calendar/" class="btn-primary w-full text-center py-4 block mt-6">Book A Trip</a>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>

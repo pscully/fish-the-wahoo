@@ -11,6 +11,9 @@ dist
 dist-ssr
 *.local
 
+# Astro
+.astro/
+
 .vscode/*
 !.vscode/extensions.json
 .idea

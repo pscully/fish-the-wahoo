@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/sections/Hero.astro';
+import CTABanner from '../../components/sections/CTABanner.astro';
+import { species } from '../../content/species';
+---
+
+<BaseLayout
+  title="Fish Species Guide | Charleston SC Fishing"
+  description="Learn about the fish species you can target on a deep sea fishing charter out of Charleston, SC. Blue marlin, mahi-mahi, wahoo, grouper, and more."
+>
+  <Hero
+    headlineHtml={`What We <span class="text-accent-orange">Catch</span>`}
+    subheadline="The Gulf Stream and South Carolina coast offer some of the most diverse fishing on the East Coast. Here's what awaits you offshore."
+    primaryCta={{ label: 'Book A Trip', to: '/book/calendar/' }}
+    fullscreen={false}
+  />
+
+  <section class="py-20 bg-nautical-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {species.map((s) => (
+          <a href={`/species/${s.slug}/`} class="metallic-card rounded-xl overflow-hidden group block">
+            <div class="relative h-48 overflow-hidden">
+              <img src={s.image} alt={s.name} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-nautical-dark/80 to-transparent"></div>
+              <div class="absolute bottom-4 left-4">
+                <p class="text-white/60 text-xs uppercase tracking-widest">{s.seasons}</p>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl text-white uppercase mb-2 group-hover:text-accent-orange transition-colors">{s.name}</h3>
+              <p class="text-accent-orange text-xs font-bold uppercase tracking-widest mb-3">{s.tagline}</p>
+              <p class="text-slate-400 text-sm leading-relaxed line-clamp-2">{s.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>

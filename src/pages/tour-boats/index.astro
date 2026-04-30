@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/sections/Hero.astro';
+import { boats } from '../../content/boats';
+---
+
+<BaseLayout
+  title="Charleston Fishing Charter Boat Classes | Fish The Wahoo"
+  description="Three classes of offshore sportfishing boats we book out of Charleston, SC — 48–50ft, 53–59ft, and 60+ft. What to expect from each class and the trips they handle best."
+>
+  <Hero
+    headlineHtml={`Our <span class="text-accent-orange">Boat Classes</span>`}
+    subheadline="Three sportfisher size classes we book out of Charleston. Specific hulls rotate based on captain availability, but every boat in each class meets the same standards for gear, safety, and crew experience."
+    primaryCta={{ label: 'Book A Trip', to: '/book/calendar/' }}
+    fullscreen={false}
+  />
+
+  <section class="py-20 bg-nautical-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col gap-16">
+        {boats.map((boat, i) => {
+          const reverse = i % 2 !== 0;
+          const mobileOrder = ['order-3 lg:order-none', 'order-2 lg:order-none', 'order-1 lg:order-none'][i] ?? '';
+          return (
+            <div class:list={['grid grid-cols-1 lg:grid-cols-2 gap-12 items-center', mobileOrder]}>
+              <div class={reverse ? 'lg:order-2' : ''}>
+                <div class="aspect-[4/3] rounded-xl overflow-hidden">
+                  <img src={boat.image} alt={boat.name} class="w-full h-full object-cover" loading="lazy" />
+                </div>
+              </div>
+              <div class={reverse ? 'lg:order-1' : ''}>
+                {boat.isMostPopular && (
+                  <span class="inline-block bg-accent-gold text-nautical-dark text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">Most Popular</span>
+                )}
+                <h2 class="text-4xl text-white uppercase mb-4">{boat.name}</h2>
+                <p class="text-accent-orange font-bold uppercase tracking-widest text-sm mb-6">{boat.tagline}</p>
+                <p class="text-slate-300 leading-relaxed mb-8">{boat.description}</p>
+                <div class="grid grid-cols-3 gap-6 mb-8">
+                  <div>
+                    <p class="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">Length</p>
+                    <p class="text-white font-semibold text-sm">{boat.length}</p>
+                  </div>
+                  <div>
+                    <p class="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">Capacity</p>
+                    <p class="text-white font-semibold text-sm">{boat.capacity} passengers</p>
+                  </div>
+                  <div>
+                    <p class="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">Speed</p>
+                    <p class="text-white font-semibold text-sm">{boat.speed}</p>
+                  </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 mt-8">
+                  <a href="/book/calendar/" class="btn-primary py-3 px-8">Book This Class</a>
+                  <a href={`/tour-boats/${boat.slug}/`} class="btn-outline py-3 px-8" aria-label={`Learn more about the ${boat.name} fishing boat`}>Learn More</a>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

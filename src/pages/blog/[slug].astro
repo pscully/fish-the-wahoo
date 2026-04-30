@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTABanner from '../../components/sections/CTABanner.astro';
+import { getCollection, render } from 'astro:content';
+import { SITE_URL, absUrl, DEFAULT_OG_IMAGE } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const all = await getCollection('blog');
+  const posts = all
+    .filter((p) => p.data.title && p.data.date)
+    .sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
+  return posts.map((post, idx) => ({
+    params: { slug: post.data.slug ?? post.id.replace(/\.md$/, '') },
+    props: {
+      post,
+      prev: posts[idx + 1] ?? null,
+      next: posts[idx - 1] ?? null,
+    },
+  }));
+}
+
+const { post, prev, next } = Astro.props;
+const { Content } = await render(post);
+const slug = post.data.slug ?? post.id.replace(/\.md$/, '');
+const canonicalUrl = `${SITE_URL}/blog/${slug}/`;
+const absImage = post.data.image
+  ? post.data.image.startsWith('http')
+    ? post.data.image
+    : absUrl(post.data.image)
+  : absUrl(DEFAULT_OG_IMAGE);
+
+function postPath(p: { data: { slug?: string }; id: string }) {
+  return `/blog/${p.data.slug ?? p.id.replace(/\.md$/, '')}/`;
+}
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  image: absImage,
+  datePublished: post.data.date,
+  dateModified: post.data.date,
+  author: { '@type': 'Organization', name: 'Fish The Wahoo', url: `${SITE_URL}/` },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Fish The Wahoo',
+    logo: { '@type': 'ImageObject', url: absUrl(DEFAULT_OG_IMAGE) },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog/` },
+    { '@type': 'ListItem', position: 3, name: post.data.title, item: canonicalUrl },
+  ],
+};
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} image={post.data.image} jsonLd={[articleSchema, breadcrumbSchema]}>
+  <section class="relative pt-40 pb-16 overflow-hidden">
+    {post.data.image ? (
+      <>
+        <div class="absolute inset-0 z-0">
+          <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover" loading="eager" />
+          <div class="absolute inset-0 bg-nautical-dark/80"></div>
+        </div>
+        <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/blog/" class="inline-flex items-center gap-1 text-accent-orange text-sm font-bold uppercase tracking-widest mb-6 hover:gap-2 transition-all">← Blog</a>
+          <p class="text-slate-400 text-sm uppercase tracking-widest mb-3">{post.data.date}</p>
+          <h1 class="text-4xl md:text-5xl text-white uppercase leading-tight">{post.data.title}</h1>
+        </div>
+      </>
+    ) : (
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <a href="/blog/" class="inline-flex items-center gap-1 text-accent-orange text-sm font-bold uppercase tracking-widest mb-6 hover:gap-2 transition-all">← Blog</a>
+        <p class="text-slate-400 text-sm uppercase tracking-widest mb-3">{post.data.date}</p>
+        <h1 class="text-4xl md:text-5xl text-white uppercase leading-tight">{post.data.title}</h1>
+      </div>
+    )}
+  </section>
+
+  <section class="py-12 bg-nautical-dark">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose-dark">
+        <Content />
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-white/10 grid grid-cols-2 gap-8">
+        {prev ? (
+          <a href={postPath(prev)} class="group">
+            <p class="text-slate-500 text-xs uppercase tracking-widest mb-1">← Previous</p>
+            <p class="text-white text-sm font-bold group-hover:text-accent-orange transition-colors leading-snug">{prev.data.title}</p>
+          </a>
+        ) : <div></div>}
+        {next && (
+          <a href={postPath(next)} class="group text-right">
+            <p class="text-slate-500 text-xs uppercase tracking-widest mb-1">Next →</p>
+            <p class="text-white text-sm font-bold group-hover:text-accent-orange transition-colors leading-snug">{next.data.title}</p>
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>

@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BookingApp from '../../react-islands/BookingApp';
+
+export async function getStaticPaths() {
+  return [
+    { params: { path: undefined } },
+    { params: { path: 'calendar' } },
+    { params: { path: 'thanks' } },
+  ];
+}
+---
+
+<BaseLayout
+  title="Book Your Charleston Fishing Charter"
+  description="Pick your boat class, trip length, and dates. Pay a small deposit to lock in your Charleston deep sea fishing trip."
+  noindex={true}
+>
+  <BookingApp client:only="react" />
+</BaseLayout>

@@ -1,0 +1,33 @@
+---
+import { Clock, Users } from 'lucide-react';
+import { visiblePackages } from '../../content/packages';
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {visiblePackages.map((pkg) => (
+    <div class="metallic-card rounded-xl overflow-hidden flex flex-col group">
+      <div class="p-6 flex-grow flex flex-col">
+        <div class="flex justify-between items-start mb-4 gap-3">
+          <div class="flex gap-2 flex-wrap">
+            <span class="bg-nautical-light/60 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+              <Clock className="w-3 h-3 text-accent-orange" /> {pkg.duration}
+            </span>
+            <span class="bg-nautical-light/60 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+              <Users className="w-3 h-3 text-accent-orange" /> Up to {pkg.maxPassengers}
+            </span>
+          </div>
+          <div class="bg-accent-orange text-white font-bold px-3 py-1 text-sm rounded-sm shrink-0">
+            From ${pkg.priceFrom.toLocaleString()}
+          </div>
+        </div>
+        <h3 class="text-lg text-white mb-2 uppercase leading-tight">{pkg.name}</h3>
+        <p class="text-accent-orange text-xs font-bold uppercase tracking-widest mb-3">{pkg.tagline}</p>
+        <p class="text-slate-400 text-sm leading-relaxed flex-grow mb-6">{pkg.description}</p>
+        <div class="flex gap-3">
+          <a href={`/book/calendar/?package=${pkg.slug}`} class="btn-primary flex-grow py-2 text-sm text-center">Book Trip</a>
+          <a href={`/packages/${pkg.slug}/`} class="btn-outline px-4 py-2 text-sm">Details</a>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>

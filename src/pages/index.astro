@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import StatsBar from '../components/sections/StatsBar.astro';
+import PackagesPreview from '../components/sections/PackagesPreview.astro';
+import PackagesGrid from '../components/sections/PackagesGrid.astro';
+import GallerySection from '../components/sections/GallerySection.astro';
+import CTABanner from '../components/sections/CTABanner.astro';
+import ReviewsSection from '../components/sections/ReviewsSection.astro';
+
+const heroHtml = `The Home For <span class="text-accent-orange">Deep Sea</span> Fishing <br /><span class="text-slate-400">Charleston, SC</span>`;
+---
+
+<BaseLayout
+  title="Charleston Deep Sea Fishing Charters"
+  description="Book Charleston's premier deep sea fishing charter. Half-day, three-quarter-day, and full-day offshore trips for mahi, marlin, wahoo, and tuna aboard 15+ sportfishing boats."
+>
+  <Hero
+    bgImage="/images/boats-banner.jpg"
+    headlineHtml={heroHtml}
+    subheadline="Experience the thrill of the Atlantic aboard a network of 15+ Charleston sportfishing boats. From trophy marlin to family fun, we match you with the right boat for the trip you want."
+    primaryCta={{ label: 'Book A Trip', to: '/book/calendar/' }}
+    secondaryCta={{ label: 'View Packages', to: '/packages/' }}
+  />
+
+  <StatsBar />
+
+  <PackagesPreview />
+
+  <section class="py-24 bg-nautical-blue">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="section-label">Trip Packages</span>
+        <h2 class="text-4xl md:text-5xl text-white mb-4 uppercase">Every Trip We Book</h2>
+        <div class="section-divider"></div>
+        <p class="text-slate-400 max-w-2xl mx-auto">
+          Pick the duration and style that fits your group. Every trip includes licenses,
+          bait, tackle, and ice.
+        </p>
+      </div>
+      <PackagesGrid />
+    </div>
+  </section>
+
+  <GallerySection />
+
+  <CTABanner />
+
+  <ReviewsSection />
+</BaseLayout>
